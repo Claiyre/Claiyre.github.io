@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <title> 三栏布局那些事儿 - Claiyre的个人博客 </title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<div id="root">
+    <div class="wrap" data-reactroot="" data-reactid="1" data-react-checksum="-169875803"><header data-reactid="2"><div class="blog-name" data-reactid="3"><a href="/" data-reactid="4">Claiyre&#x27;s Blog</a></div><ul class="nav nav-list" data-reactid="5"><li class="nav-list-item" data-reactid="6"><a class="nav-list-link" href="/posts/1" data-reactid="7">Posts</a></li><li class="nav-list-item" data-reactid="8"><a class="nav-list-link" href="/tags" data-reactid="9">Tags</a></li><li class="nav-list-item" data-reactid="10"><a class="nav-list-link" href="/about" data-reactid="11">About</a></li></ul></header><main data-reactid="12"><div data-reactid="13"><div class="post body-width" data-reactid="14"><article class="post-block" data-reactid="15"><h1 class="title post-title" data-reactid="16">三栏布局那些事儿</h1><div class="post-info" data-reactid="17"><div class="post-info-item" data-reactid="18"><span class="icon-font" data-reactid="19"></span><!-- react-text: 20 -->css<!-- /react-text --></div><div class="post-info-item" data-reactid="21"><span class="icon-font" data-reactid="22"></span><!-- react-text: 23 -->布局<!-- /react-text --></div><div class="post-info-item" data-reactid="24"><span class="icon-font" data-reactid="25"></span><!-- react-text: 26 -->CSS<!-- /react-text --></div><div class="post-info-item" data-reactid="27"><span class="icon-font" data-reactid="28"></span><time datetime="2016-12-18T19:11:50.000Z" data-reactid="29">2016-12-18</time></div></div></article><div class="post-content" data-reactid="30"><article data-reactid="31"><div class="picidae-toc" data-reactid="32"><!-- react-text: 33 -->
+<!-- /react-text --><ul data-reactid="34"><!-- react-text: 35 -->
+<!-- /react-text --><li data-reactid="36"><!-- react-text: 37 -->
+<!-- /react-text --><a href="#%E6%AD%A3%E6%96%87" data-reactid="38">正文</a><!-- react-text: 39 -->
+<!-- /react-text --><ul data-reactid="40"><!-- react-text: 41 -->
+<!-- /react-text --><li data-reactid="42"><!-- react-text: 43 -->
+<!-- /react-text --><a href="#1%E3%80%81%E6%B5%AE%E5%8A%A8%E5%B8%83%E5%B1%80" data-reactid="44">1、浮动布局</a><!-- react-text: 45 -->
+<!-- /react-text --></li><!-- react-text: 46 -->
+<!-- /react-text --><li data-reactid="47"><!-- react-text: 48 -->
+<!-- /react-text --><a href="#2%E3%80%81%E7%BB%9D%E5%AF%B9%E5%AE%9A%E4%BD%8D%E5%B8%83%E5%B1%80" data-reactid="49">2、绝对定位布局</a><!-- react-text: 50 -->
+<!-- /react-text --></li><!-- react-text: 51 -->
+<!-- /react-text --><li data-reactid="52"><!-- react-text: 53 -->
+<!-- /react-text --><a href="#3%E3%80%81%E5%9C%A3%E6%9D%AF%E5%B8%83%E5%B1%80" data-reactid="54">3、圣杯布局</a><!-- react-text: 55 -->
+<!-- /react-text --></li><!-- react-text: 56 -->
+<!-- /react-text --><li data-reactid="57"><!-- react-text: 58 -->
+<!-- /react-text --><a href="#4%E3%80%81%E5%8F%8C%E9%A3%9E%E7%BF%BC%E5%B8%83%E5%B1%80" data-reactid="59">4、双飞翼布局</a><!-- react-text: 60 -->
+<!-- /react-text --></li><!-- react-text: 61 -->
+<!-- /react-text --><li data-reactid="62"><!-- react-text: 63 -->
+<!-- /react-text --><a href="#5%E3%80%81%E4%BD%BF%E7%94%A8flex%E5%B8%83%E5%B1%80" data-reactid="64">5、使用flex布局</a><!-- react-text: 65 -->
+<!-- /react-text --></li><!-- react-text: 66 -->
+<!-- /react-text --></ul><!-- react-text: 67 -->
+<!-- /react-text --></li><!-- react-text: 68 -->
+<!-- /react-text --></ul><!-- react-text: 69 -->
+<!-- /react-text --></div><!-- react-text: 70 -->
+<!-- /react-text --><blockquote data-reactid="71"><!-- react-text: 72 -->
+<!-- /react-text --><p data-reactid="73"><!-- react-text: 74 -->博客原文地址：<!-- /react-text --><a href="https://claiyre.github.io/" data-reactid="75">Claiyre的个人博客 https://claiyre.github.io/</a><!-- react-text: 76 -->
+如需转载，请在文章开头注明原文地址
+人无远虑，必有近忧。<!-- /react-text --></p><!-- react-text: 77 -->
+<!-- /react-text --></blockquote><!-- react-text: 78 -->
+<!-- /react-text --><p data-reactid="79">中间宽度自适应，两边宽度固定的三栏布局，是前端页面开发中极为常见网站布局方式。博主认为，一名合格的前端工程师总是会将之熟记于心。
+以下是博主总结的五种三栏布局的常用方法，与大家分享。</p><!-- react-text: 80 -->
+<!-- /react-text --><!-- react-text: 81 -->
+<!-- /react-text --><h2 id="正文" data-reactid="82"><a href="#%E6%AD%A3%E6%96%87" aria-hidden="true" data-reactid="83"><span class="icon icon-link" data-reactid="84"></span></a><!-- react-text: 85 -->正文<!-- /react-text --></h2><!-- react-text: 86 -->
+<!-- /react-text --><hr data-reactid="87"/><!-- react-text: 88 -->
+<!-- /react-text --><h3 id="1、浮动布局" data-reactid="89"><a href="#1%E3%80%81%E6%B5%AE%E5%8A%A8%E5%B8%83%E5%B1%80" aria-hidden="true" data-reactid="90"><span class="icon icon-link" data-reactid="91"></span></a><!-- react-text: 92 -->1、浮动布局<!-- /react-text --></h3><!-- react-text: 93 -->
+<!-- /react-text --><p data-reactid="94">浮动布局是一种极易理解，也是初学者首先想到的布局方式。仅借用CSS的float属性即可轻松实现。
+html代码</p><!-- react-text: 95 -->
+<!-- /react-text --><pre data-reactid="96"><code data-query="{}" data-lang="data-lang" data-reactid="97">&lt;div class=&quot;left&quot;&gt;Left&lt;/div&gt;
+&lt;div class=&quot;right&quot;&gt;Right&lt;/div&gt;
+&lt;div class=&quot;main&quot;&gt;Main&lt;/div&gt;
+&lt;!-- 注意其先后顺序，main必须在left和right后--&gt;
+</code></pre><!-- react-text: 98 -->
+<!-- /react-text --><p data-reactid="99">CSS代码</p><!-- react-text: 100 -->
+<!-- /react-text --><pre data-reactid="101"><code data-query="{}" data-lang="data-lang" data-reactid="102">.left{
+            background-color: #ffd0d0;
+            width: 160px;
+            height: 400px;
+            float: left;
+        }
+.right{
+            background-color: #a9ffa9;
+            width: 160px;
+            height: 400px;
+            float: right;
+        }
+.main{
+            background-color: #ffffa9;
+            height: 500px;
+            width: auto;
+        }
+</code></pre><!-- react-text: 103 -->
+<!-- /react-text --><p data-reactid="104"><strong data-reactid="105">注意html代码中三栏的先后顺序</strong><!-- react-text: 106 -->
+浮动布局的优点是简单，但也有不少缺点：<!-- /react-text --></p><!-- react-text: 107 -->
+<!-- /react-text --><ol data-reactid="108"><!-- react-text: 109 -->
+<!-- /react-text --><li data-reactid="110"><!-- react-text: 111 -->
+<!-- /react-text --><p data-reactid="112">主要内容main在文档后侧，所以直到最后才能渲染主要内容。</p><!-- react-text: 113 -->
+<!-- /react-text --></li><!-- react-text: 114 -->
+<!-- /react-text --><li data-reactid="115"><!-- react-text: 116 -->
+<!-- /react-text --><p data-reactid="117">left和right其实是浮动到了main上面，也就是说，当主栏高度大于侧栏高度时（这种情况极为常见），main下面的部分内容会和页面同宽。不多说，下面一张图胜过千言万语。</p><!-- react-text: 118 -->
+<!-- /react-text --><p data-reactid="119"><img src="http://p1.bpimg.com/567571/b99d421fb6e59525.jpg" data-reactid="120"/></p><!-- react-text: 121 -->
+<!-- /react-text --></li><!-- react-text: 122 -->
+<!-- /react-text --></ol><!-- react-text: 123 -->
+<!-- /react-text --><h3 id="2、绝对定位布局" data-reactid="124"><a href="#2%E3%80%81%E7%BB%9D%E5%AF%B9%E5%AE%9A%E4%BD%8D%E5%B8%83%E5%B1%80" aria-hidden="true" data-reactid="125"><span class="icon icon-link" data-reactid="126"></span></a><!-- react-text: 127 -->2、绝对定位布局<!-- /react-text --></h3><!-- react-text: 128 -->
+<!-- /react-text --><p data-reactid="129"> 仅两个侧栏使用绝对定位，脱离文档流，始终在页面的两边。然后，为了避免主栏和侧栏内容重叠，给主栏设置外边距，其数值等于侧栏宽度。
+html代码</p><!-- react-text: 130 -->
+<!-- /react-text --><pre data-reactid="131"><code data-query="{}" data-lang="data-lang" data-reactid="132">&lt;div class=&quot;main&quot;&gt;Main&lt;/div&gt;
+&lt;div class=&quot;right&quot;&gt;Right&lt;/div&gt;
+&lt;div class=&quot;left&quot;&gt;Left&lt;/div&gt;
+</code></pre><!-- react-text: 133 -->
+<!-- /react-text --><p data-reactid="134">CSS代码</p><!-- react-text: 135 -->
+<!-- /react-text --><pre data-reactid="136"><code data-query="{}" data-lang="data-lang" data-reactid="137">.main{
+            background-color: #ffffa9;
+            height: 500px;
+            width: auto;
+            margin: 0 160px;
+           /* min-width: 200px;  */
+
+        }
+.left{
+            background-color:#ffd0d0;
+            width:160px;
+            height: 400px;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+.right{
+            background-color: #a9ffa9;
+            width: 160px;
+            height: 400px;
+            position: absolute;
+            top: 0;
+            right: 0;
+        }
+</code></pre><!-- react-text: 138 -->
+<!-- /react-text --><p data-reactid="139">用绝对定位布局思路简单清晰，但有一个明显的缺点，就是如果中间栏有最小宽度限制，当浏览器 缩小至一定程度时，会出现层叠现象。如下图</p><!-- react-text: 140 -->
+<!-- /react-text --><p data-reactid="141"><img src="http://i1.piimg.com/567571/ef5fb0077aed7586.png" data-reactid="142"/></p><!-- react-text: 143 -->
+<!-- /react-text --><h3 id="3、圣杯布局" data-reactid="144"><a href="#3%E3%80%81%E5%9C%A3%E6%9D%AF%E5%B8%83%E5%B1%80" aria-hidden="true" data-reactid="145"><span class="icon icon-link" data-reactid="146"></span></a><!-- react-text: 147 -->3、圣杯布局<!-- /react-text --></h3><!-- react-text: 148 -->
+<!-- /react-text --><p data-reactid="149"><!-- react-text: 150 -->最为经典的圣杯布局，其思路主要是借用<!-- /react-text --><strong data-reactid="151">浮动</strong><!-- react-text: 152 -->分别将左栏和右栏浮动至主栏的两边；然后用外层容器的<!-- /react-text --><strong data-reactid="153">内边距</strong><!-- react-text: 154 -->将主栏两边“推”向中间一定宽度，给左栏和右栏腾出空间；最后借助<!-- /react-text --><strong data-reactid="155">相对定位</strong><!-- react-text: 156 --> 将左栏和右栏定位至合适位置即可。
+话不多说，先上代码：
+<!-- /react-text --><strong data-reactid="157">html代码</strong></p><!-- react-text: 158 -->
+<!-- /react-text --><pre data-reactid="159"><code data-query="{}" data-lang="data-lang" data-reactid="160">&lt;div class=&quot;container&quot;&gt;
+    &lt;div class=&quot;main&quot;&gt;Main&lt;/div&gt;
+    &lt;div class=&quot;left&quot;&gt;Left&lt;/div&gt;
+    &lt;div class=&quot;right&quot;&gt;Right&lt;/div&gt;
+&lt;/div&gt;
+</code></pre><!-- react-text: 161 -->
+<!-- /react-text --><p data-reactid="162"><strong data-reactid="163">CSS代码</strong></p><!-- react-text: 164 -->
+<!-- /react-text --><pre data-reactid="165"><code data-query="{}" data-lang="data-lang" data-reactid="166">.container{
+        /*向中间“推”主栏，给两个侧栏 腾地儿*/                              
+        padding: 0 160px;   
+}
+ .main{
+            background-color: #ffffa9;                           
+            width: 100%;        /*主栏宽度设置为100%，自适应*/
+            height: 500px;
+            float: left;
+        }
+.left{
+            background-color:#ffd0d0;
+            width: 160px;
+            height: 500px;
+            position: relative;
+            float: left;
+            /*左侧外边距为-100%，也就是主栏的宽度，使.left上浮，且左移至main的左边*/
+            margin-left:-100%;
+            /*.left继续左移，直到屏幕的最左边，此时.left正好占据.container左边padding的160px*/
+            left: -160px;
+        }
+.right{
+            background-color: #a9ffa9;
+            width: 160px;
+            height: 400px;
+            float: right;
+            /*上移至容器最右边*/
+            margin-right: -160px;
+            position: relative;
+        }
+</code></pre><!-- react-text: 167 -->
+<!-- /react-text --><p data-reactid="168"><!-- react-text: 169 -->注意，main（也就是主栏）在最前面，两个侧栏尾随其后，当然左栏和右栏谁在前谁在后都是可以的。这样布局的<!-- /react-text --><strong data-reactid="170">好处</strong><!-- react-text: 171 -->是：主栏在文档的前面，所以重要的东西会优先渲染。<!-- /react-text --></p><!-- react-text: 172 -->
+<!-- /react-text --><h3 id="4、双飞翼布局" data-reactid="173"><a href="#4%E3%80%81%E5%8F%8C%E9%A3%9E%E7%BF%BC%E5%B8%83%E5%B1%80" aria-hidden="true" data-reactid="174"><span class="icon icon-link" data-reactid="175"></span></a><!-- react-text: 176 -->4、双飞翼布局<!-- /react-text --></h3><!-- react-text: 177 -->
+<!-- /react-text --><p data-reactid="178"><!-- react-text: 179 -->双飞翼布局是对圣杯布局的优化，以增加一个div为代价换取<!-- /react-text --><strong data-reactid="180">去掉了相对布局</strong><!-- react-text: 181 -->。
+“双飞翼”，顾名思义，是在main外围增加一个div（.main-outer），然后给.main-outer设置左右内边距（或者给main设置外边距，效果相同），像两个翅膀。两侧栏上浮后刚好位于.main-outer的内边距处，因此内边距的值需等于侧栏的宽度.
+html代码<!-- /react-text --></p><!-- react-text: 182 -->
+<!-- /react-text --><pre data-reactid="183"><code data-query="{}" data-lang="data-lang" data-reactid="184">&lt;div class=&quot;container&quot;&gt;
+    &lt;div class=&quot;main-outer&quot;&gt;
+        &lt;div class=&quot;main&quot;&gt;Main&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;left&quot;&gt;Left&lt;/div&gt;
+    &lt;div class=&quot;right&quot;&gt;Right&lt;/div&gt;
+&lt;/div&gt;
+</code></pre><!-- react-text: 185 -->
+<!-- /react-text --><p data-reactid="186">CSS代码</p><!-- react-text: 187 -->
+<!-- /react-text --><pre data-reactid="188"><code data-query="{}" data-lang="data-lang" data-reactid="189"> .main-outer{
+            box-sizing: border-box;
+            padding: 0 160px;
+            width: 100%;
+            float: left;
+        }
+ .main{
+            background-color: #ffffa9;
+            height: 500px;
+        }
+ .left{
+            background-color:#ffd0d0;
+            width:160px;
+            height: 400px;
+            float: left;
+            margin-left:-100%;
+        }
+.right{
+            background-color: #a9ffa9;
+            width: 160px;
+            height: 400px;
+            float: left;
+            margin-left: -160px;
+        }        
+</code></pre><!-- react-text: 190 -->
+<!-- /react-text --><p data-reactid="191">主栏内容同样在文档的开头部分，优先渲染。双飞翼布局不需使用相对定位，相对来说更易理解。</p><!-- react-text: 192 -->
+<!-- /react-text --><h3 id="5、使用flex布局" data-reactid="193"><a href="#5%E3%80%81%E4%BD%BF%E7%94%A8flex%E5%B8%83%E5%B1%80" aria-hidden="true" data-reactid="194"><span class="icon icon-link" data-reactid="195"></span></a><!-- react-text: 196 -->5、使用flex布局<!-- /react-text --></h3><!-- react-text: 197 -->
+<!-- /react-text --><p data-reactid="198">是时候拿出终极武器了，flex布局。万能的flex啊，赐我以能量吧！</p><!-- react-text: 199 -->
+<!-- /react-text --><p data-reactid="200">html代码</p><!-- react-text: 201 -->
+<!-- /react-text --><pre data-reactid="202"><code data-query="{}" data-lang="data-lang" data-reactid="203">&lt;div class=&quot;container&quot;&gt;
+    &lt;div class=&quot;left&quot;&gt;Left&lt;/div&gt;
+    &lt;div class=&quot;main&quot;&gt;Main&lt;/div&gt;
+    &lt;div class=&quot;right&quot;&gt;Right&lt;/div&gt;
+&lt;/div&gt;
+</code></pre><!-- react-text: 204 -->
+<!-- /react-text --><p data-reactid="205">CSS代码</p><!-- react-text: 206 -->
+<!-- /react-text --><pre data-reactid="207"><code data-query="{}" data-lang="data-lang" data-reactid="208">.container{
+            display: flex;
+            
+            /*以下是默认属性，不写也行，为便于理解，博主在此将其罗列出来
+            flex-flow: row nowrap;
+            justify-content: flex-start;
+            align-items: flex-start;   */
+        }
+.main{
+            background-color: #ffffa9;
+            height: 500px;
+            width:100%;  
+        }
+.left{
+            background-color:#ffd0d0;
+            width:160px;
+            height: 400px;
+        }
+.right{
+            background-color: #a9ffa9;
+            width: 160px;
+            height: 400px;
+        }
+</code></pre><!-- react-text: 209 -->
+<!-- /react-text --><p data-reactid="210">上面代码有一个缺陷，就是在html代码中，left，main，right的相对位置不能改变，这就导致了main中的主要内容不能被优先渲染。那怎么办呢？(≧∀≦)ゞ</p><!-- react-text: 211 -->
+<!-- /react-text --><p data-reactid="212">万能的flex当然有办法咯！
+给.mian.left.right三个类中添加如下代码：</p><!-- react-text: 213 -->
+<!-- /react-text --><pre data-reactid="214"><code data-query="{}" data-lang="data-lang" data-reactid="215">.left{
+    order: 1;
+}
+.main{
+    order: 2;
+}
+.right{
+    order: 3;
+}
+</code></pre><!-- react-text: 216 -->
+<!-- /react-text --><p data-reactid="217">搞定！</p><!-- react-text: 218 -->
+<!-- /react-text --><hr data-reactid="219"/><!-- react-text: 220 -->
+<!-- /react-text --><p data-reactid="221">以上五种方法各有优缺点，根据实际情况挑选适合项目的即可，大的项目的尽量使用main内容可优先渲染的。</p><!-- react-text: 222 -->
+<!-- /react-text --></article></div><div class="gitment-container" data-reactid="223"></div></div><div class="paginator body-width" data-reactid="224"><a title="上一篇" class="prev light-tip" href="/Node学习笔记-初识Node" data-reactid="225"><span class="icon-font" data-reactid="226"></span><!-- react-text: 227 --> <!-- /react-text --><!-- react-text: 228 -->上一篇<!-- /react-text --></a><a title="下一篇" class="next light-tip" href="/css居中小结" data-reactid="229"><!-- react-text: 230 -->下一篇<!-- /react-text --><!-- react-text: 231 --> <!-- /react-text --><span class="icon-font" data-reactid="232"></span></a></div></div></main><footer data-reactid="233"><div class="footer-avatar" data-reactid="234"><img src="/avatar.png" alt="avatar" data-reactid="235"/></div><div class="copyright" data-reactid="236"><!-- react-text: 237 -->© <!-- /react-text --><time data-reactid="238">2018</time><!-- react-text: 239 -->. Powered By <!-- /react-text --><a href="https://github.com/picidaejs/picidae" data-reactid="240"> Picidae </a><!-- react-text: 241 -->  |  <!-- /react-text --><a href="https://github.com/picidaejs/picidae-theme-crystal" data-reactid="242"> theme-crystal</a></div><div id="busuanzi-count" data-reactid="243"><span id="busuanzi_container_site_uv" data-reactid="244"><span class="icon-font" data-reactid="245"></span><span id="busuanzi_value_site_uv" data-reactid="246"></span></span><!-- react-text: 247 -->  |  <!-- /react-text --><span id="busuanzi_container_site_pv" data-reactid="248"><span class="icon-font" data-reactid="249"></span><!-- react-text: 250 --> <!-- /react-text --><span id="busuanzi_value_site_pv" data-reactid="251"></span></span></div></footer></div>
+</div>
+<script src="/PICIDAE_COMMON.js"></script>
+<script src="/PICIDAE_ENTRY.js"></script>
+</body>
+</html>

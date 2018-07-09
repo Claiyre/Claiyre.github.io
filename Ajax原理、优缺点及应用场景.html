@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <title> Ajax原理、优缺点及应用场景 - Claiyre的个人博客 </title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<div id="root">
+    <div class="wrap" data-reactroot="" data-reactid="1" data-react-checksum="-247265830"><header data-reactid="2"><div class="blog-name" data-reactid="3"><a href="/" data-reactid="4">Claiyre&#x27;s Blog</a></div><ul class="nav nav-list" data-reactid="5"><li class="nav-list-item" data-reactid="6"><a class="nav-list-link" href="/posts/1" data-reactid="7">Posts</a></li><li class="nav-list-item" data-reactid="8"><a class="nav-list-link" href="/tags" data-reactid="9">Tags</a></li><li class="nav-list-item" data-reactid="10"><a class="nav-list-link" href="/about" data-reactid="11">About</a></li></ul></header><main data-reactid="12"><div data-reactid="13"><div class="post body-width" data-reactid="14"><article class="post-block" data-reactid="15"><h1 class="title post-title" data-reactid="16">Ajax原理、优缺点及应用场景</h1><div class="post-info" data-reactid="17"><div class="post-info-item" data-reactid="18"><span class="icon-font" data-reactid="19"></span><!-- react-text: 20 -->Ajax<!-- /react-text --></div><div class="post-info-item" data-reactid="21"><span class="icon-font" data-reactid="22"></span><!-- react-text: 23 -->Ajax<!-- /react-text --></div><div class="post-info-item" data-reactid="24"><span class="icon-font" data-reactid="25"></span><time datetime="2017-02-25T10:45:15.000Z" data-reactid="26">2017-02-25</time></div></div></article><div class="post-content" data-reactid="27"><article data-reactid="28"><div class="picidae-toc" data-reactid="29"><!-- react-text: 30 -->
+<!-- /react-text --><ul data-reactid="31"><!-- react-text: 32 -->
+<!-- /react-text --><li data-reactid="33"><!-- react-text: 34 -->
+<!-- /react-text --><a href="#%E5%89%8D%E8%A8%80" data-reactid="35">前言</a><!-- react-text: 36 -->
+<!-- /react-text --><ul data-reactid="37"><!-- react-text: 38 -->
+<!-- /react-text --><li data-reactid="39"><!-- react-text: 40 -->
+<!-- /react-text --><ul data-reactid="41"><!-- react-text: 42 -->
+<!-- /react-text --><li data-reactid="43"><!-- react-text: 44 -->
+<!-- /react-text --><a href="#%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86" data-reactid="45">基本原理</a><!-- react-text: 46 -->
+<!-- /react-text --></li><!-- react-text: 47 -->
+<!-- /react-text --><li data-reactid="48"><!-- react-text: 49 -->
+<!-- /react-text --><a href="#xmlhttprequest%E5%AF%B9%E8%B1%A1" data-reactid="50">XMLHttpRequest对象</a><!-- react-text: 51 -->
+<!-- /react-text --></li><!-- react-text: 52 -->
+<!-- /react-text --><li data-reactid="53"><!-- react-text: 54 -->
+<!-- /react-text --><a href="#%E8%AF%B7%E6%B1%82%E7%B1%BB%E5%9E%8B" data-reactid="55">请求类型</a><!-- react-text: 56 -->
+<!-- /react-text --></li><!-- react-text: 57 -->
+<!-- /react-text --><li data-reactid="58"><!-- react-text: 59 -->
+<!-- /react-text --><a href="#ajax%E4%BC%98%E7%BC%BA%E7%82%B9" data-reactid="60">Ajax优缺点</a><!-- react-text: 61 -->
+<!-- /react-text --></li><!-- react-text: 62 -->
+<!-- /react-text --><li data-reactid="63"><!-- react-text: 64 -->
+<!-- /react-text --><a href="#%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF" data-reactid="65">应用场景</a><!-- react-text: 66 -->
+<!-- /react-text --></li><!-- react-text: 67 -->
+<!-- /react-text --></ul><!-- react-text: 68 -->
+<!-- /react-text --></li><!-- react-text: 69 -->
+<!-- /react-text --></ul><!-- react-text: 70 -->
+<!-- /react-text --></li><!-- react-text: 71 -->
+<!-- /react-text --><li data-reactid="72"><!-- react-text: 73 -->
+<!-- /react-text --><a href="#%E7%BB%93%E8%AF%AD" data-reactid="74">结语</a><!-- react-text: 75 -->
+<!-- /react-text --></li><!-- react-text: 76 -->
+<!-- /react-text --></ul><!-- react-text: 77 -->
+<!-- /react-text --></div><!-- react-text: 78 -->
+<!-- /react-text --><blockquote data-reactid="79"><!-- react-text: 80 -->
+<!-- /react-text --><p data-reactid="81"><!-- react-text: 82 -->博客原文地址：<!-- /react-text --><a href="https://claiyre.github.io/" data-reactid="83">Claiyre的个人博客 https://claiyre.github.io/</a><!-- react-text: 84 -->
+博客园地址：<!-- /react-text --><a href="http://www.cnblogs.com/nuannuan7362/" data-reactid="85">http://www.cnblogs.com/nuannuan7362/</a><!-- react-text: 86 -->
+如需转载，请在文章开头注明原文地址<!-- /react-text --></p><!-- react-text: 87 -->
+<!-- /react-text --></blockquote><!-- react-text: 88 -->
+<!-- /react-text --><h1 id="前言" data-reactid="89"><a href="#%E5%89%8D%E8%A8%80" aria-hidden="true" data-reactid="90"><span class="icon icon-link" data-reactid="91"></span></a><!-- react-text: 92 -->前言<!-- /react-text --></h1><!-- react-text: 93 -->
+<!-- /react-text --><p data-reactid="94">Ajax的全称为Asynchronous JavaScript And Xml，是一种web客户端与服务器端异步通信的技术，如今，可以说是web开发人员必须掌握的的一项技能了。本文讲述了Ajax的基本原理、基础知识、优缺点以及应用场景。</p><!-- react-text: 95 -->
+<!-- /react-text --><!-- react-text: 96 -->
+<!-- /react-text --><p data-reactid="97">#正文</p><!-- react-text: 98 -->
+<!-- /react-text --><h3 id="基本原理" data-reactid="99"><a href="#%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86" aria-hidden="true" data-reactid="100"><span class="icon icon-link" data-reactid="101"></span></a><!-- react-text: 102 -->基本原理<!-- /react-text --></h3><!-- react-text: 103 -->
+<!-- /react-text --><p data-reactid="104">Ajax的工作原理相当于在服务器和客户端之间加了一个中间层，由这个中间层操控，使用户操作与服务器端响应异步化。
+Ajax技术的核心是XMLHttpRequest对象，简称为XHR，这是由微软首先引入的一个特性，其他浏览器供应商也先后提供了相同的实现。XHR为向服务器发送请求和解析服务器响应提供了流畅的接口。能以异步的方式为从服务器取得信息，意味着用户单击后（即请求），可以不必刷新页面就能取得数据，也就是说用XHR对象取得新的数据，然后再通过DOM将数据插入到页面中去。
+Ajax可实现无需刷新页面即可胸服务器取得数据展示给用户，但这个数据不一定非要是XML，也可是json字符串等，不要被它的名字所迷惑。</p><!-- react-text: 105 -->
+<!-- /react-text --><h3 id="xmlhttprequest对象" data-reactid="106"><a href="#xmlhttprequest%E5%AF%B9%E8%B1%A1" aria-hidden="true" data-reactid="107"><span class="icon icon-link" data-reactid="108"></span></a><!-- react-text: 109 -->XMLHttpRequest对象<!-- /react-text --></h3><!-- react-text: 110 -->
+<!-- /react-text --><ol data-reactid="111"><!-- react-text: 112 -->
+<!-- /react-text --><li data-reactid="113">创建xhr对象
+IE5是第一款引入XHR对象的浏览器，在IE5中XHR是通过MSXML库中的  ActiveX对象实现的，会遇到三个不同版本的XHR对象，因此创建起来也颇为麻烦。
+但幸运的是，IE7+，Firefox，Opera，chrome和Safari都支持原生的XHR对象，在这些浏览器中都可像下面这样直接使用XMLHttpRequest构造函数创建XHR对象。</li><!-- react-text: 114 -->
+<!-- /react-text --></ol><!-- react-text: 115 -->
+<!-- /react-text --><pre data-reactid="116"><code data-query="{}" data-lang="data-lang" data-reactid="117">var xhr = new XMLHttpRequest();
+</code></pre><!-- react-text: 118 -->
+<!-- /react-text --><ol start="2" data-reactid="119"><!-- react-text: 120 -->
+<!-- /react-text --><li data-reactid="121"><!-- react-text: 122 -->发送请求
+发送请求一共分为两步。第一步，调用XHR对象的 <!-- /react-text --><code data-reactid="123">open()</code><!-- react-text: 124 -->函数，启动一个请求以备发送，调用后，请求并未真正发送。第二步，调用 <!-- /react-text --><code data-reactid="125">send()</code><!-- react-text: 126 --> 函数，真正地将请求发送出去。实例代码如下：<!-- /react-text --></li><!-- react-text: 127 -->
+<!-- /react-text --></ol><!-- react-text: 128 -->
+<!-- /react-text --><pre data-reactid="129"><code data-query="{}" data-lang="data-lang" data-reactid="130">xhr.open(&quot;get&quot;,&quot;example.jsp&quot;,false);
+xhr.send(null);
+</code></pre><!-- react-text: 131 -->
+<!-- /react-text --><p data-reactid="132"><code data-reactid="133">open</code><!-- react-text: 134 -->方法接受三个参数：要发送的请求类型(常用的有get和post)，请求的url和表示是否异步的布尔值。<!-- /react-text --><code data-reactid="135">send()</code><!-- react-text: 136 -->方法接受一个参数，即要作为请求主体发送的数据。但是<!-- /react-text --><strong data-reactid="137"> 不需要通过请求主体发送数据时，必须给send()方法传入 null </strong><!-- react-text: 138 -->。<!-- /react-text --></p><!-- react-text: 139 -->
+<!-- /react-text --><ol start="3" data-reactid="140"><!-- react-text: 141 -->
+<!-- /react-text --><li data-reactid="142">异步请求
+多数情况下，我们不能像上面那样发送同步请求，而是需要发送异步请求，JavaScript可以继续执行而不必等待响应。这时，可以检测XHR对象的readyState属性，它有以下几个可能的值：</li><!-- react-text: 143 -->
+<!-- /react-text --></ol><!-- react-text: 144 -->
+<!-- /react-text --><ul data-reactid="145"><!-- react-text: 146 -->
+<!-- /react-text --><li data-reactid="147">0：未初始化。尚未调用open()</li><!-- react-text: 148 -->
+<!-- /react-text --><li data-reactid="149">1: 启动。已调用open()，未调用send()</li><!-- react-text: 150 -->
+<!-- /react-text --><li data-reactid="151">2: 发送。已调用send()，为未收到响应</li><!-- react-text: 152 -->
+<!-- /react-text --><li data-reactid="153">3：接受。已接受到部分数据</li><!-- react-text: 154 -->
+<!-- /react-text --><li data-reactid="155">4：完成。已接受全部数据</li><!-- react-text: 156 -->
+<!-- /react-text --></ul><!-- react-text: 157 -->
+<!-- /react-text --><p data-reactid="158">readyState的值每次变化都会触发一次readystatechange事件。通常，我们只对最后一个状态感兴趣，只要readyState变为4，我们就可以开始处理响应了。因此可以这样写代码：</p><!-- react-text: 159 -->
+<!-- /react-text --><pre data-reactid="160"><code data-query="{}" data-lang="data-lang" data-reactid="161">var xhr = new XMLHttpRequest();
+xhr.onreadystatechange = function (){
+    if(xhr.readyState == 4){
+        //处理响应
+    }
+};
+xhr.open(&quot;get&quot;,&quot;example.jsp&quot;,true);
+xhr.send(null);
+</code></pre><!-- react-text: 162 -->
+<!-- /react-text --><p data-reactid="163"><!-- react-text: 164 -->注意因为调用open方法时也会触发readystatechange事件，所以<!-- /react-text --><strong data-reactid="165"> 在调用open前就要注册eadystatechange事件 </strong><!-- react-text: 166 -->。<!-- /react-text --></p><!-- react-text: 167 -->
+<!-- /react-text --><p data-reactid="168">4 . 异步请求
+在收到响应后，响应的数据会自动填充xhr对象的相关属性，因此我们只需判断处理这些属性即可。相关属性如下：</p><!-- react-text: 169 -->
+<!-- /react-text --><ul data-reactid="170"><!-- react-text: 171 -->
+<!-- /react-text --><li data-reactid="172">responseText：作为响应被返回的主体</li><!-- react-text: 173 -->
+<!-- /react-text --><li data-reactid="174">responseXML：如果响应的类型是&quot;text/xml&quot;或&quot;application/xml&quot;，这个属性将保存着响应的xml文档</li><!-- react-text: 175 -->
+<!-- /react-text --><li data-reactid="176">status：响应的http状态</li><!-- react-text: 177 -->
+<!-- /react-text --><li data-reactid="178">statusText：http状态的说明</li><!-- react-text: 179 -->
+<!-- /react-text --></ul><!-- react-text: 180 -->
+<!-- /react-text --><p data-reactid="181">收到响应后，我们首先应根据http的状态判断是否成功，一般状态码status = 200,被是做成功状态码为304表示内容未被修改，可使用本地缓存。可像下面这样检测这两种状态码：</p><!-- react-text: 182 -->
+<!-- /react-text --><pre data-reactid="183"><code data-query="{}" data-lang="data-lang" data-reactid="184">var xhr = new XMLHttpRequest();
+
+xhr.onreadystatechange = function (){
+    if(xhr.readyState == 4){
+        if((xhr.status &gt;= 200 &amp;&amp; xhr.status &lt; 300) || xhr.status == 304){
+            //响应成功返回 可做一定处理，比如
+            alert(xhr.responseText);
+        }else{
+            alert(&quot;Request was unsuccessful &quot; + xhr.status);
+        }
+    }
+};
+xhr.open(&quot;get&quot;,&quot;example.jsp&quot;,true);
+xhr.send(null);
+</code></pre><!-- react-text: 185 -->
+<!-- /react-text --><p data-reactid="186">另外在接收到响应之前还可以调用abort()方法来取消异步操作：</p><!-- react-text: 187 -->
+<!-- /react-text --><pre data-reactid="188"><code data-query="{}" data-lang="data-lang" data-reactid="189">xhr.abort()                                     
+</code></pre><!-- react-text: 190 -->
+<!-- /react-text --><h3 id="请求类型" data-reactid="191"><a href="#%E8%AF%B7%E6%B1%82%E7%B1%BB%E5%9E%8B" aria-hidden="true" data-reactid="192"><span class="icon icon-link" data-reactid="193"></span></a><!-- react-text: 194 -->请求类型<!-- /react-text --></h3><!-- react-text: 195 -->
+<!-- /react-text --><p data-reactid="196">常用的请求类型有get和post两种。get请求通常用于向服务器查询信息。必要时可以将查询字符串经正确编码后追加至URL末尾，示例如下：</p><!-- react-text: 197 -->
+<!-- /react-text --><pre data-reactid="198"><code data-query="{}" data-lang="data-lang" data-reactid="199">xhr.open(&quot;get&quot;,&quot;example.php?name1=value1&amp;name2=value2&amp;name3=value3&quot;,true);
+</code></pre><!-- react-text: 200 -->
+<!-- /react-text --><p data-reactid="201"><!-- react-text: 202 -->即路径和第一个查询字符串间用<!-- /react-text --><code data-reactid="203">?</code><!-- react-text: 204 -->分隔，多个查询字符串间用<!-- /react-text --><code data-reactid="205">&amp;</code><!-- react-text: 206 -->分隔。
+下面这个函数可以辅助向url末尾添加查询字符串<!-- /react-text --></p><!-- react-text: 207 -->
+<!-- /react-text --><pre data-reactid="208"><code data-query="{}" data-lang="data-lang" data-reactid="209">function addURLParam (url,name,value) {
+    url += (url.indexOf(&quot;?&quot;) == -1) ? &quot;?&quot; : &quot;&amp;&quot;;
+    url += encodeURLComponent(name) + &quot;=&quot; + encodeURLComponent(value);
+    return url;
+}
+</code></pre><!-- react-text: 210 -->
+<!-- /react-text --><p data-reactid="211">post请求用于向服务器发送要保存的数据，这些数据传入send函数，由send函数发送给服务器。</p><!-- react-text: 212 -->
+<!-- /react-text --><h3 id="ajax优缺点" data-reactid="213"><a href="#ajax%E4%BC%98%E7%BC%BA%E7%82%B9" aria-hidden="true" data-reactid="214"><span class="icon icon-link" data-reactid="215"></span></a><!-- react-text: 216 -->Ajax优缺点<!-- /react-text --></h3><!-- react-text: 217 -->
+<!-- /react-text --><ol data-reactid="218"><!-- react-text: 219 -->
+<!-- /react-text --><li data-reactid="220">优点</li><!-- react-text: 221 -->
+<!-- /react-text --></ol><!-- react-text: 222 -->
+<!-- /react-text --><ul data-reactid="223"><!-- react-text: 224 -->
+<!-- /react-text --><li data-reactid="225"><strong data-reactid="226"> 无刷新更新数据 </strong><!-- react-text: 227 -->。AJAX最大优点就是能在不刷新整个页面的前提下与服务器通信维护数据。这使得Web应用程序更为迅捷地响应用户交互，并避免了在网络上发送那些没有改变的信息，减少用户等待时间，带来非常好的用户体验。<!-- /react-text --></li><!-- react-text: 228 -->
+<!-- /react-text --><li data-reactid="229"><strong data-reactid="230"> 异步与服务器通信 </strong><!-- react-text: 231 -->。AJAX使用异步方式与服务器通信，不需要打断用户的操作，具有更加迅速的响应能力。优化了Browser和Server之间的沟通，减少不必要的数据传输、时间及降低网络上数据流量。<!-- /react-text --></li><!-- react-text: 232 -->
+<!-- /react-text --><li data-reactid="233"><strong data-reactid="234"> 基于标准被广泛支持 </strong><!-- react-text: 235 -->。AJAX基于标准化的并被广泛支持的技术，不需要下载浏览器插件或者小程序，但需要客户允许JavaScript在浏览器上执行。随着Ajax的成熟，一些简化Ajax使用方法的程序库也相继问世。同样，也出现了另一种辅助程序设计的技术，为那些不支持JavaScript的用户提供替代功能。<!-- /react-text --></li><!-- react-text: 236 -->
+<!-- /react-text --><li data-reactid="237"><strong data-reactid="238"> 前端和后端负载平衡 </strong><!-- react-text: 239 -->。AJAX可以把以前一些服务器负担的工作转嫁到客户端，利用客户端闲置的能力来处理，减轻服务器和带宽的负担，节约空间和宽带租用成本。并且减轻服务器的负担，AJAX的原则是“按需取数据”，可以最大程度的减少冗余请求和响应对服务器造成的负担，提升站点性能<!-- /react-text --></li><!-- react-text: 240 -->
+<!-- /react-text --><li data-reactid="241"><strong data-reactid="242"> 界面与应用分离 </strong><!-- react-text: 243 -->。Ajax使WEB中的界面与应用分离（也可以说是数据与呈现分离），有利于分工合作、减少非技术人员对页面的修改造成的WEB应用程序错误、提高效率、也更加适用于现在的发布系统。<!-- /react-text --></li><!-- react-text: 244 -->
+<!-- /react-text --></ul><!-- react-text: 245 -->
+<!-- /react-text --><ol start="2" data-reactid="246"><!-- react-text: 247 -->
+<!-- /react-text --><li data-reactid="248">缺点</li><!-- react-text: 249 -->
+<!-- /react-text --></ol><!-- react-text: 250 -->
+<!-- /react-text --><ul data-reactid="251"><!-- react-text: 252 -->
+<!-- /react-text --><li data-reactid="253">阉割了浏览器的History和BACK功能 **。其一在动态更新页面的情况下，用户无法回到前一个页面状态，因为浏览器仅能记忆历史记录中的静态页面。一个被完整读入的页面与一个已经被动态修改过的页面之间的差别非常微妙；用户通常会希望单击后退按钮能够取消他们的前一次操作，但是在Ajax应用程序中，这将无法实现。其二，后退按钮是一个标准的web站点的重要功能，但是它没法和js进行很好的合作。这是Ajax所带来的两个比较严重的问题，虽然说这个问题是可以解决的，但是它所带来的开发成本是非常高的。</li><!-- react-text: 254 -->
+<!-- /react-text --><li data-reactid="255">AJAX的安全问题。AJAX技术给用户带来很好的用户体验的同时也对IT企业带来了新的安全威胁，Ajax技术就如同对企业数据建立了一个直接通道。这使得开发者在不经意间会暴露比以前更多的数据和服务器逻辑。Ajax的逻辑可以对客户端的安全扫描技术隐藏起来，允许黑客从远端服务器上建立新的攻击。还有Ajax也难以避免一些已知的安全弱点，诸如跨站点脚本攻击、SQL注入攻击和基于Credentials的安全漏洞等等。
+-客户端过肥，太多客户端代码造成开发上的成本。编写复杂、容易出错 ；冗余代码比较多（层层包含js文件是AJAX的通病，再加上以往的很多服务端代码现在放到了客户端）；破坏了Web的原有标准</li><!-- react-text: 256 -->
+<!-- /react-text --></ul><!-- react-text: 257 -->
+<!-- /react-text --><h3 id="应用场景" data-reactid="258"><a href="#%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF" aria-hidden="true" data-reactid="259"><span class="icon icon-link" data-reactid="260"></span></a><!-- react-text: 261 -->应用场景<!-- /react-text --></h3><!-- react-text: 262 -->
+<!-- /react-text --><ol data-reactid="263"><!-- react-text: 264 -->
+<!-- /react-text --><li data-reactid="265">Ajax适用场景</li><!-- react-text: 266 -->
+<!-- /react-text --></ol><!-- react-text: 267 -->
+<!-- /react-text --><ul data-reactid="268"><!-- react-text: 269 -->
+<!-- /react-text --><li data-reactid="270">表单驱动的交互</li><!-- react-text: 271 -->
+<!-- /react-text --><li data-reactid="272">深层次的树的导航</li><!-- react-text: 273 -->
+<!-- /react-text --><li data-reactid="274">快速的用户与用户间的交流响应</li><!-- react-text: 275 -->
+<!-- /react-text --><li data-reactid="276">类似投票、yes/no等无关痛痒的场景</li><!-- react-text: 277 -->
+<!-- /react-text --><li data-reactid="278">对数据进行过滤和操纵相关数据的场景</li><!-- react-text: 279 -->
+<!-- /react-text --><li data-reactid="280">普通的文本输入提示和自动完成的场景</li><!-- react-text: 281 -->
+<!-- /react-text --></ul><!-- react-text: 282 -->
+<!-- /react-text --><ol start="2" data-reactid="283"><!-- react-text: 284 -->
+<!-- /react-text --><li data-reactid="285">Ajax不适用场景</li><!-- react-text: 286 -->
+<!-- /react-text --></ol><!-- react-text: 287 -->
+<!-- /react-text --><ul data-reactid="288"><!-- react-text: 289 -->
+<!-- /react-text --><li data-reactid="290">部分简单的表单</li><!-- react-text: 291 -->
+<!-- /react-text --><li data-reactid="292">搜索</li><!-- react-text: 293 -->
+<!-- /react-text --><li data-reactid="294">基本的导航</li><!-- react-text: 295 -->
+<!-- /react-text --><li data-reactid="296">替换大量的文本</li><!-- react-text: 297 -->
+<!-- /react-text --><li data-reactid="298">对呈现的操纵</li><!-- react-text: 299 -->
+<!-- /react-text --></ul><!-- react-text: 300 -->
+<!-- /react-text --><h1 id="结语" data-reactid="301"><a href="#%E7%BB%93%E8%AF%AD" aria-hidden="true" data-reactid="302"><span class="icon icon-link" data-reactid="303"></span></a><!-- react-text: 304 -->结语<!-- /react-text --></h1><!-- react-text: 305 -->
+<!-- /react-text --><p data-reactid="306">关于Ajax的知识还有很多，比如超时设定、进度事件、跨域资源共享等。其中跨域也是web开发人员所应该掌握的一项技能，其常见的方法有JSONP、comet等，关于跨域的介绍，稍后更。</p><!-- react-text: 307 -->
+<!-- /react-text --><p data-reactid="308"><!-- react-text: 309 -->参考：
+<!-- /react-text --><a href="http://www.cnblogs.com/SanMaoSpace/archive/2013/06/15/3137180.html" data-reactid="310">AJAX工作原理及其优缺点</a><!-- react-text: 311 -->
+<!-- /react-text --><a href="http://blog.csdn.net/yixiaotian1988/article/details/7821973" data-reactid="312">Ajax的工作原理</a><!-- react-text: 313 -->
+JavaScript高级程序设计<!-- /react-text --></p><!-- react-text: 314 -->
+<!-- /react-text --><p data-reactid="315">以上仅我个人浅见，如有错误之处，欢迎指正。</p><!-- react-text: 316 -->
+<!-- /react-text --></article></div><div class="gitment-container" data-reactid="317"></div></div><div class="paginator body-width" data-reactid="318"><a title="上一篇" class="prev light-tip" href="/JavaScript对象的深浅复制" data-reactid="319"><span class="icon-font" data-reactid="320"></span><!-- react-text: 321 --> <!-- /react-text --><!-- react-text: 322 -->上一篇<!-- /react-text --></a><a title="下一篇" class="next light-tip" href="/细谈sass和less中的变量及其作用域" data-reactid="323"><!-- react-text: 324 -->下一篇<!-- /react-text --><!-- react-text: 325 --> <!-- /react-text --><span class="icon-font" data-reactid="326"></span></a></div></div></main><footer data-reactid="327"><div class="footer-avatar" data-reactid="328"><img src="/avatar.png" alt="avatar" data-reactid="329"/></div><div class="copyright" data-reactid="330"><!-- react-text: 331 -->© <!-- /react-text --><time data-reactid="332">2018</time><!-- react-text: 333 -->. Powered By <!-- /react-text --><a href="https://github.com/picidaejs/picidae" data-reactid="334"> Picidae </a><!-- react-text: 335 -->  |  <!-- /react-text --><a href="https://github.com/picidaejs/picidae-theme-crystal" data-reactid="336"> theme-crystal</a></div><div id="busuanzi-count" data-reactid="337"><span id="busuanzi_container_site_uv" data-reactid="338"><span class="icon-font" data-reactid="339"></span><span id="busuanzi_value_site_uv" data-reactid="340"></span></span><!-- react-text: 341 -->  |  <!-- /react-text --><span id="busuanzi_container_site_pv" data-reactid="342"><span class="icon-font" data-reactid="343"></span><!-- react-text: 344 --> <!-- /react-text --><span id="busuanzi_value_site_pv" data-reactid="345"></span></span></div></footer></div>
+</div>
+<script src="/PICIDAE_COMMON.js"></script>
+<script src="/PICIDAE_ENTRY.js"></script>
+</body>
+</html>

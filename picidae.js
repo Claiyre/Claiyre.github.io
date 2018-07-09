@@ -1,0 +1,1 @@
+webpackJsonp([9,20],{784:function(i,n){i.exports={content:'<div class="picidae-toc">\n<ul>\n<li>\n<a href="#picidae">Picidae</a>\n</li>\n</ul>\n</div>\n<h1 id="picidae"><a href="#picidae" aria-hidden="true"><span class="icon icon-link"></span></a>Picidae</h1>\n<p>😄 👍</p>\n',extra:{}}}});

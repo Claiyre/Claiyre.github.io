@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <title> Node学习笔记---初识Node - Claiyre的个人博客 </title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<div id="root">
+    <div class="wrap" data-reactroot="" data-reactid="1" data-react-checksum="1466819733"><header data-reactid="2"><div class="blog-name" data-reactid="3"><a href="/" data-reactid="4">Claiyre&#x27;s Blog</a></div><ul class="nav nav-list" data-reactid="5"><li class="nav-list-item" data-reactid="6"><a class="nav-list-link" href="/posts/1" data-reactid="7">Posts</a></li><li class="nav-list-item" data-reactid="8"><a class="nav-list-link" href="/tags" data-reactid="9">Tags</a></li><li class="nav-list-item" data-reactid="10"><a class="nav-list-link" href="/about" data-reactid="11">About</a></li></ul></header><main data-reactid="12"><div data-reactid="13"><div class="post body-width" data-reactid="14"><article class="post-block" data-reactid="15"><h1 class="title post-title" data-reactid="16">Node学习笔记---初识Node</h1><div class="post-info" data-reactid="17"><div class="post-info-item" data-reactid="18"><span class="icon-font" data-reactid="19"></span><!-- react-text: 20 -->Node<!-- /react-text --></div><div class="post-info-item" data-reactid="21"><span class="icon-font" data-reactid="22"></span><!-- react-text: 23 -->Node<!-- /react-text --></div><div class="post-info-item" data-reactid="24"><span class="icon-font" data-reactid="25"></span><time datetime="2017-01-19T12:07:17.000Z" data-reactid="26">2017-01-19</time></div></div></article><div class="post-content" data-reactid="27"><article data-reactid="28"><div class="picidae-toc" data-reactid="29"><!-- react-text: 30 -->
+<!-- /react-text --><ul data-reactid="31"><!-- react-text: 32 -->
+<!-- /react-text --><li data-reactid="33"><!-- react-text: 34 -->
+<!-- /react-text --><a href="#%E5%89%8D%E8%A8%80" data-reactid="35">前言</a><!-- react-text: 36 -->
+<!-- /react-text --></li><!-- react-text: 37 -->
+<!-- /react-text --><li data-reactid="38"><!-- react-text: 39 -->
+<!-- /react-text --><a href="#%E6%AD%A3%E6%96%87" data-reactid="40">正文</a><!-- react-text: 41 -->
+<!-- /react-text --><ul data-reactid="42"><!-- react-text: 43 -->
+<!-- /react-text --><li data-reactid="44"><!-- react-text: 45 -->
+<!-- /react-text --><ul data-reactid="46"><!-- react-text: 47 -->
+<!-- /react-text --><li data-reactid="48"><!-- react-text: 49 -->
+<!-- /react-text --><a href="#node%E7%9A%84%E7%89%B9%E5%BE%81" data-reactid="50">Node的特征</a><!-- react-text: 51 -->
+<!-- /react-text --></li><!-- react-text: 52 -->
+<!-- /react-text --><li data-reactid="53"><!-- react-text: 54 -->
+<!-- /react-text --><a href="#node%E7%9A%84%E4%BD%BF%E7%94%A8%E8%80%85" data-reactid="55">Node的使用者</a><!-- react-text: 56 -->
+<!-- /react-text --></li><!-- react-text: 57 -->
+<!-- /react-text --></ul><!-- react-text: 58 -->
+<!-- /react-text --></li><!-- react-text: 59 -->
+<!-- /react-text --></ul><!-- react-text: 60 -->
+<!-- /react-text --></li><!-- react-text: 61 -->
+<!-- /react-text --><li data-reactid="62"><!-- react-text: 63 -->
+<!-- /react-text --><a href="#%E7%BB%93%E8%AF%AD" data-reactid="64">结语</a><!-- react-text: 65 -->
+<!-- /react-text --></li><!-- react-text: 66 -->
+<!-- /react-text --></ul><!-- react-text: 67 -->
+<!-- /react-text --></div><!-- react-text: 68 -->
+<!-- /react-text --><blockquote data-reactid="69"><!-- react-text: 70 -->
+<!-- /react-text --><p data-reactid="71"><!-- react-text: 72 -->博客原文地址：<!-- /react-text --><a href="https://claiyre.github.io/" data-reactid="73">Claiyre的个人博客 https://claiyre.github.io/</a><!-- react-text: 74 -->
+博客园地址：<!-- /react-text --><a href="http://www.cnblogs.com/nuannuan7362/" data-reactid="75">http://www.cnblogs.com/nuannuan7362/</a><!-- react-text: 76 -->
+如需转载，请在文章开头注明原文地址<!-- /react-text --></p><!-- react-text: 77 -->
+<!-- /react-text --></blockquote><!-- react-text: 78 -->
+<!-- /react-text --><h1 id="前言" data-reactid="79"><a href="#%E5%89%8D%E8%A8%80" aria-hidden="true" data-reactid="80"><span class="icon icon-link" data-reactid="81"></span></a><!-- react-text: 82 -->前言<!-- /react-text --></h1><!-- react-text: 83 -->
+<!-- /react-text --><p data-reactid="84">作为一名前端er，即便没有用过,想必也听说过很多次Node了。在接触Node前，我对它印象大致有：</p><!-- react-text: 85 -->
+<!-- /react-text --><pre data-reactid="86"><code data-query="{}" data-lang="data-lang" data-reactid="87">- 问世不久就迅速风靡web界
+- 前端用js就可以写后端了
+- 速度快
+</code></pre><!-- react-text: 88 -->
+<!-- /react-text --><!-- react-text: 89 -->
+<!-- /react-text --><p data-reactid="90">鉴于它的火热程度和前端er特有的好奇心，博主决定深入了解一下这个神奇的Node。并在此将学习心得记录下来，用于巩固和分享。</p><!-- react-text: 91 -->
+<!-- /react-text --><h1 id="正文" data-reactid="92"><a href="#%E6%AD%A3%E6%96%87" aria-hidden="true" data-reactid="93"><span class="icon icon-link" data-reactid="94"></span></a><!-- react-text: 95 -->正文<!-- /react-text --></h1><!-- react-text: 96 -->
+<!-- /react-text --><p data-reactid="97"><!-- react-text: 98 -->Node的作者Ryan Dahl在2009年5月在github上发布了其最初的版本，除了Node这个名字外，它还有很多别称，如Nodejs，NodeJS，Node.js等。它是通过通信协议来组织许多个<!-- /react-text --><strong data-reactid="99">Node</strong><!-- react-text: 100 -->，非常容易通过扩展构建大型应用。每一个Node进程都构成这个网络应用的节点，这也是node名称的由来。<!-- /react-text --></p><!-- react-text: 101 -->
+<!-- /react-text --><h3 id="node的特征" data-reactid="102"><a href="#node%E7%9A%84%E7%89%B9%E5%BE%81" aria-hidden="true" data-reactid="103"><span class="icon icon-link" data-reactid="104"></span></a><!-- react-text: 105 -->Node的特征<!-- /react-text --></h3><!-- react-text: 106 -->
+<!-- /react-text --><p data-reactid="107"><!-- react-text: 108 -->Node只是将前端中广泛应用的思想迁移到了服务器端，它没有改变JavaScript语言本身的任何特性，依旧基于作用域和原型链。它有如下特点：
+1. 异步I/O
+和Ajax原理类似，Node也应用了异步I/O，大多数的Node操作都异步的方式进行调用，无需等待前一调用的结束，极大的提升了效率。以Ajax异步调用为例，下面这张图清楚的阐释了异步I/O的原理：
+<!-- /react-text --><img src="http://p1.bqimg.com/567571/a29c4f04b95d7169.png" data-reactid="109"/></p><!-- react-text: 110 -->
+<!-- /react-text --><ol start="2" data-reactid="111"><!-- react-text: 112 -->
+<!-- /react-text --><li data-reactid="113">事件与回调函数
+Node将前端浏览器中应用广泛且较成熟的引入后端，配合异步I/O，将事件点暴露出来，形成整体逻辑。
+如下面这个例子，服务器端处理Ajax异步提交的过程：</li><!-- react-text: 114 -->
+<!-- /react-text --></ol><!-- react-text: 115 -->
+<!-- /react-text --><pre data-reactid="116"><code data-query="{}" data-lang="data-lang" data-reactid="117">var http = require(&#x27;http&#x27;);
+
+//侦听服务器的request事件
+http.createServer(function (req,res){                                                                      
+    var postData = &quot; &quot;;
+    req.setEncoding = (&#x27;utf8&#x27;);                                                                   
+    //侦听请求的data事件
+    req.on(&quot;data&quot;,function (chunk){
+    postData += chunk;
+    });
+    //侦听请求的end事件
+    req.on(&quot;end&quot;,function (){
+        res.end(postData);
+    });
+}).listen(8080);
+console.log(&#x27;服务器已启动&#x27;);
+</code></pre><!-- react-text: 118 -->
+<!-- /react-text --><p data-reactid="119">事件的编程方式具有轻量级，松耦合，只关注事物点等优势，但在多个异步场景下，事件与事件相互独立，如何协作是一个问题。从上面可以看到，回调函数无处不在。Node除了异步和事件外，回调函数也是一大特色。纵观下来，回调函数也是最好的接受异步调用返回数据的方式。
+3. 单线程
+Node保持了JavaScript在浏览器中是单线程的特点。单线程的最大好处是不用像多线程编程那样处处在意状态的同步问题，既没有死锁的存在，也没有线程上下文切换所带来的性能上的开销。但单线程也有它的缺点，如
+- 无法利用多核CPU
+- 错误会引起整个应用退出
+- 大量计算长时间占用CPU，导致无法继续调用异步I/O </p><!-- react-text: 120 -->
+<!-- /react-text --><p data-reactid="121"><!-- react-text: 122 -->Node利用“子进程机制”来解决这些问题。通过将计算分发到各个子进程，可以将大量计算分解掉。然后再通过进程之间的事件消息传递结果，很好得保持应用模型的简单和低依赖。
+4. 跨平台
+起初，Node只能在Linux平台上。随着Node的发展，微软注意到了它的存在并投入了一个团队帮助Node实现Windows平台的兼容。下图是Node基于libuv实现跨平台的架构示意图：
+<!-- /react-text --><img src="http://p1.bpimg.com/567571/32f99fbd3c8181ed.png" data-reactid="123"/></p><!-- react-text: 124 -->
+<!-- /react-text --><h3 id="node的使用者" data-reactid="125"><a href="#node%E7%9A%84%E4%BD%BF%E7%94%A8%E8%80%85" aria-hidden="true" data-reactid="126"><span class="icon icon-link" data-reactid="127"></span></a><!-- react-text: 128 -->Node的使用者<!-- /react-text --></h3><!-- react-text: 129 -->
+<!-- /react-text --><ul data-reactid="130"><!-- react-text: 131 -->
+<!-- /react-text --><li data-reactid="132"><strong data-reactid="133">前后端编程环境的统一。</strong><!-- react-text: 134 -->这类的代表是雅虎。雅虎开放了Cocktail框架，利用自身身后的前端沉淀，将YUI3这个前端框架的能力要借助Node延伸到了服务器端，使得使用者摆脱了日常工作中一边写JavaScript一边写PHP带来的上下文交换负担。<!-- /react-text --></li><!-- react-text: 135 -->
+<!-- /react-text --><li data-reactid="136"><strong data-reactid="137">Node带来的高性能I/O用于实时应用。</strong><!-- react-text: 138 -->典型代表有腾讯，花瓣网，蘑菇街等。腾讯将NOde应用在长连接中已提供实时功能。后两者通过socket.io实现实时通知。<!-- /react-text --></li><!-- react-text: 139 -->
+<!-- /react-text --><li data-reactid="140"><strong data-reactid="141">并行I/O使得使用者可以更高效地利用分布式环境。</strong><!-- react-text: 142 --> 阿里巴巴与ebay是这方面的典型。<!-- /react-text --></li><!-- react-text: 143 -->
+<!-- /react-text --><li data-reactid="144"><strong data-reactid="145">并行I/O，有效利用稳定接口提升web渲染能力。</strong><!-- react-text: 146 --> 放弃同步等待式的顺序请求，大胆采用并行I/O，加速数据获取，从而提升Web的渲染速度。<!-- /react-text --></li><!-- react-text: 147 -->
+<!-- /react-text --><li data-reactid="148"><strong data-reactid="149">云计算平台提供Node支持。</strong><!-- react-text: 150 --> 微软将Node引入Azure的开发中，阿里云、百度纷纷在云服务器上提供Node应用托管服务。<!-- /react-text --></li><!-- react-text: 151 -->
+<!-- /react-text --><li data-reactid="152"><strong data-reactid="153">游戏开发领域。</strong><!-- react-text: 154 --> 游戏领域对实时和并发有很高的要求。网易pomelo实时框架，可以应用在游戏和高实时应用中。<!-- /react-text --></li><!-- react-text: 155 -->
+<!-- /react-text --><li data-reactid="156"><strong data-reactid="157">工具类应用</strong><!-- react-text: 158 -->。过去依赖Java或其他语言编写的工具类应用，纷纷被一些前端工程师用Node重写，用前端熟悉的语言构建熟悉的工具。<!-- /react-text --></li><!-- react-text: 159 -->
+<!-- /react-text --></ul><!-- react-text: 160 -->
+<!-- /react-text --><h1 id="结语" data-reactid="161"><a href="#%E7%BB%93%E8%AF%AD" aria-hidden="true" data-reactid="162"><span class="icon icon-link" data-reactid="163"></span></a><!-- react-text: 164 -->结语<!-- /react-text --></h1><!-- react-text: 165 -->
+<!-- /react-text --><p data-reactid="166">Node在开发高并发、高性能的后端服务程序上有着极大的优势，也正是Node，让JavaScript这门仅活跃于网页编程的脚本语言可以驱动复杂的后端程序。个人认为，Node的出现，对前端领域而言，是一次极大的飞跃，值得每一位前端工程师认真对待并学习。</p><!-- react-text: 167 -->
+<!-- /react-text --></article></div><div class="gitment-container" data-reactid="168"></div></div><div class="paginator body-width" data-reactid="169"><a title="上一篇" class="prev light-tip" href="/js中创建对象的几种方式" data-reactid="170"><span class="icon-font" data-reactid="171"></span><!-- react-text: 172 --> <!-- /react-text --><!-- react-text: 173 -->上一篇<!-- /react-text --></a><a title="下一篇" class="next light-tip" href="/三栏布局那些事儿-1" data-reactid="174"><!-- react-text: 175 -->下一篇<!-- /react-text --><!-- react-text: 176 --> <!-- /react-text --><span class="icon-font" data-reactid="177"></span></a></div></div></main><footer data-reactid="178"><div class="footer-avatar" data-reactid="179"><img src="/avatar.png" alt="avatar" data-reactid="180"/></div><div class="copyright" data-reactid="181"><!-- react-text: 182 -->© <!-- /react-text --><time data-reactid="183">2018</time><!-- react-text: 184 -->. Powered By <!-- /react-text --><a href="https://github.com/picidaejs/picidae" data-reactid="185"> Picidae </a><!-- react-text: 186 -->  |  <!-- /react-text --><a href="https://github.com/picidaejs/picidae-theme-crystal" data-reactid="187"> theme-crystal</a></div><div id="busuanzi-count" data-reactid="188"><span id="busuanzi_container_site_uv" data-reactid="189"><span class="icon-font" data-reactid="190"></span><span id="busuanzi_value_site_uv" data-reactid="191"></span></span><!-- react-text: 192 -->  |  <!-- /react-text --><span id="busuanzi_container_site_pv" data-reactid="193"><span class="icon-font" data-reactid="194"></span><!-- react-text: 195 --> <!-- /react-text --><span id="busuanzi_value_site_pv" data-reactid="196"></span></span></div></footer></div>
+</div>
+<script src="/PICIDAE_COMMON.js"></script>
+<script src="/PICIDAE_ENTRY.js"></script>
+</body>
+</html>

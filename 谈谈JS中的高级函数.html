@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <title> 谈谈JS中的高级函数 - Claiyre的个人博客 </title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<div id="root">
+    <div class="wrap" data-reactroot="" data-reactid="1" data-react-checksum="-301310208"><header data-reactid="2"><div class="blog-name" data-reactid="3"><a href="/" data-reactid="4">Claiyre&#x27;s Blog</a></div><ul class="nav nav-list" data-reactid="5"><li class="nav-list-item" data-reactid="6"><a class="nav-list-link" href="/posts/1" data-reactid="7">Posts</a></li><li class="nav-list-item" data-reactid="8"><a class="nav-list-link" href="/tags" data-reactid="9">Tags</a></li><li class="nav-list-item" data-reactid="10"><a class="nav-list-link" href="/about" data-reactid="11">About</a></li></ul></header><main data-reactid="12"><div data-reactid="13"><div class="post body-width" data-reactid="14"><article class="post-block" data-reactid="15"><h1 class="title post-title" data-reactid="16">谈谈JS中的高级函数</h1><div class="post-info" data-reactid="17"><div class="post-info-item" data-reactid="18"><span class="icon-font" data-reactid="19"></span><!-- react-text: 20 -->JavaScript<!-- /react-text --></div><div class="post-info-item" data-reactid="21"><span class="icon-font" data-reactid="22"></span><!-- react-text: 23 -->学习总结<!-- /react-text --></div><div class="post-info-item" data-reactid="24"><span class="icon-font" data-reactid="25"></span><time datetime="2017-08-14T17:59:55.000Z" data-reactid="26">2017-08-14</time></div></div></article><div class="post-content" data-reactid="27"><article data-reactid="28"><div class="picidae-toc" data-reactid="29"><!-- react-text: 30 -->
+<!-- /react-text --><ul data-reactid="31"><!-- react-text: 32 -->
+<!-- /react-text --><li data-reactid="33"><!-- react-text: 34 -->
+<!-- /react-text --><a href="#%E6%AD%A3%E6%96%87" data-reactid="35">正文</a><!-- react-text: 36 -->
+<!-- /react-text --><ul data-reactid="37"><!-- react-text: 38 -->
+<!-- /react-text --><li data-reactid="39"><!-- react-text: 40 -->
+<!-- /react-text --><ul data-reactid="41"><!-- react-text: 42 -->
+<!-- /react-text --><li data-reactid="43"><!-- react-text: 44 -->
+<!-- /react-text --><a href="#%E4%BD%9C%E7%94%A8%E5%9F%9F%E5%AE%89%E5%85%A8%E7%9A%84%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0" data-reactid="45">作用域安全的构造函数</a><!-- react-text: 46 -->
+<!-- /react-text --></li><!-- react-text: 47 -->
+<!-- /react-text --><li data-reactid="48"><!-- react-text: 49 -->
+<!-- /react-text --><a href="#%E6%83%B0%E6%80%A7%E8%BD%BD%E5%85%A5%E5%87%BD%E6%95%B0" data-reactid="50">惰性载入函数</a><!-- react-text: 51 -->
+<!-- /react-text --></li><!-- react-text: 52 -->
+<!-- /react-text --><li data-reactid="53"><!-- react-text: 54 -->
+<!-- /react-text --><a href="#%E5%87%BD%E6%95%B0%E7%BB%91%E5%AE%9A%E4%BD%9C%E7%94%A8%E5%9F%9F" data-reactid="55">函数绑定作用域</a><!-- react-text: 56 -->
+<!-- /react-text --></li><!-- react-text: 57 -->
+<!-- /react-text --><li data-reactid="58"><!-- react-text: 59 -->
+<!-- /react-text --><a href="#%E5%87%BD%E6%95%B0%E6%9F%AF%E9%87%8C%E5%8C%96curry" data-reactid="60">函数柯里化(curry)</a><!-- react-text: 61 -->
+<!-- /react-text --></li><!-- react-text: 62 -->
+<!-- /react-text --><li data-reactid="63"><!-- react-text: 64 -->
+<!-- /react-text --><a href="#debounce%E5%87%BD%E6%95%B0" data-reactid="65">debounce函数</a><!-- react-text: 66 -->
+<!-- /react-text --></li><!-- react-text: 67 -->
+<!-- /react-text --><li data-reactid="68"><!-- react-text: 69 -->
+<!-- /react-text --><a href="#once%E5%87%BD%E6%95%B0" data-reactid="70">once函数</a><!-- react-text: 71 -->
+<!-- /react-text --></li><!-- react-text: 72 -->
+<!-- /react-text --></ul><!-- react-text: 73 -->
+<!-- /react-text --></li><!-- react-text: 74 -->
+<!-- /react-text --></ul><!-- react-text: 75 -->
+<!-- /react-text --></li><!-- react-text: 76 -->
+<!-- /react-text --><li data-reactid="77"><!-- react-text: 78 -->
+<!-- /react-text --><a href="#%E7%BB%93%E8%AF%AD" data-reactid="79">结语</a><!-- react-text: 80 -->
+<!-- /react-text --></li><!-- react-text: 81 -->
+<!-- /react-text --></ul><!-- react-text: 82 -->
+<!-- /react-text --></div><!-- react-text: 83 -->
+<!-- /react-text --><blockquote data-reactid="84"><!-- react-text: 85 -->
+<!-- /react-text --><p data-reactid="86"><!-- react-text: 87 -->博客原文地址：<!-- /react-text --><a href="https://claiyre.github.io/" data-reactid="88">Claiyre的个人博客</a><!-- react-text: 89 -->
+如需转载，请在文章开头注明原文地址<!-- /react-text --></p><!-- react-text: 90 -->
+<!-- /react-text --></blockquote><!-- react-text: 91 -->
+<!-- /react-text --><p data-reactid="92">在JavaScript中，函数的功能十分强大。它们是第一类对象，也可以作为另一个对象的方法，还可以作为参数传入另一个函数，不仅如此，还能被一个函数返回！可以说，在JS中，函数无处不在，无所不能，堪比孙猴子呀！当你运用好函数时，它能助你取西经，让代码变得优雅简洁，运用不好时，那就遭殃了，要大闹天宫咯~
+除了函数相关的基础知识外，掌握一些高级函数并应用起来，不仅能让JS代码看起来更为精简，还可以提升性能。以下是博主总结的一些常用的、重要的高级函数，加上了一些个人见解，特此记录下来。如果您是JS初学者，也不要被“高级”两个字吓到，因为文中穿插讲解了一些原型、this等基础知识，相信并不难理解。如果您是JS大牛，也可以把本文用来查漏补缺。</p><!-- react-text: 93 -->
+<!-- /react-text --><!-- react-text: 94 -->
+<!-- /react-text --><h1 id="正文" data-reactid="95"><a href="#%E6%AD%A3%E6%96%87" aria-hidden="true" data-reactid="96"><span class="icon icon-link" data-reactid="97"></span></a><!-- react-text: 98 -->正文<!-- /react-text --></h1><!-- react-text: 99 -->
+<!-- /react-text --><h3 id="作用域安全的构造函数" data-reactid="100"><a href="#%E4%BD%9C%E7%94%A8%E5%9F%9F%E5%AE%89%E5%85%A8%E7%9A%84%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0" aria-hidden="true" data-reactid="101"><span class="icon icon-link" data-reactid="102"></span></a><!-- react-text: 103 -->作用域安全的构造函数<!-- /react-text --></h3><!-- react-text: 104 -->
+<!-- /react-text --><pre data-reactid="105"><code data-query="{}" data-lang="data-lang" data-reactid="106">function Person(name,age){
+    this.name = name;
+    this.age = age;
+}
+var p1 = new Person(&quot;Claiyre&quot;,80);
+</code></pre><!-- react-text: 107 -->
+<!-- /react-text --><p data-reactid="108"><!-- react-text: 109 -->相信您对上面的构造函数一定不陌生，但是，，如果某个粗心的程序猿调用这个构造函数时忘记加<!-- /react-text --><code data-reactid="110">new</code><!-- react-text: 111 -->了会发生什么？<!-- /react-text --></p><!-- react-text: 112 -->
+<!-- /react-text --><pre data-reactid="113"><code data-query="{}" data-lang="data-lang" data-reactid="114">var p3 = Person(&quot;Tom&quot;,30);
+console.log(p3);              //undefined
+console.log(window.name);     //Tom
+</code></pre><!-- react-text: 115 -->
+<!-- /react-text --><p data-reactid="116"><!-- react-text: 117 -->由于使用了不安全的构造函数，上面的代码意外的改变了window的name，因为<!-- /react-text --><code data-reactid="118">this</code><!-- react-text: 119 -->对象是在运行时绑定的，使用new调用构造函数时<!-- /react-text --><code data-reactid="120">this</code><!-- react-text: 121 -->是指向新创建的对象的，不使用<!-- /react-text --><code data-reactid="122">new</code><!-- react-text: 123 -->时，<!-- /react-text --><code data-reactid="124">this</code><!-- react-text: 125 -->是指向window的。
+由于window的name属性是用来识别链接目标和frame的，所在这里对该属性的偶然覆盖可能导致其他错误。<!-- /react-text --></p><!-- react-text: 126 -->
+<!-- /react-text --><p data-reactid="127"><!-- react-text: 128 -->作用域安全的构造函数会首先确认<!-- /react-text --><code data-reactid="129">this</code><!-- react-text: 130 -->对象是正确类型的实例，然后再进行更改，如下：<!-- /react-text --></p><!-- react-text: 131 -->
+<!-- /react-text --><pre data-reactid="132"><code data-query="{}" data-lang="data-lang" data-reactid="133">function Person(name,age){
+    if(this instanceof Person){
+        this.name = name;
+        this.age = age;
+    } else {
+        return new Person(name,age);
+    }   
+}
+</code></pre><!-- react-text: 134 -->
+<!-- /react-text --><p data-reactid="135">这样就避免了在全局对象上意外更改或设置属性。
+实现这个安全模式，相当于锁定了调用构造函数的环境，因此借用构造函数继承模式可能会出现问题，解决方法是组合使用原型链和构造函数模式，即组合继承。
+如果您是一个JS库或框架的开发者，相信作用域安全的构造函数一定对您非常有用。在多人协作的项目中，为了避免他们误改了全局对象，也应使用作用域安全的构造函数。</p><!-- react-text: 136 -->
+<!-- /react-text --><h3 id="惰性载入函数" data-reactid="137"><a href="#%E6%83%B0%E6%80%A7%E8%BD%BD%E5%85%A5%E5%87%BD%E6%95%B0" aria-hidden="true" data-reactid="138"><span class="icon icon-link" data-reactid="139"></span></a><!-- react-text: 140 -->惰性载入函数<!-- /react-text --></h3><!-- react-text: 141 -->
+<!-- /react-text --><p data-reactid="142">由于浏览器间的行为差异，代码中可能会有许多检测浏览器行为的if语句。但用户的浏览器若支持某一特性，便会一直支持，所以这些if语句，只用被执行一次，即便只有一个if语句的代码，也比没有要快。
+惰性载入表示函数执行的分支仅会执行一次，有两种实现惰性载入的方式，第一种就是在函数第一次被调用时再处理函数，用检测到的结果重写原函数。</p><!-- react-text: 143 -->
+<!-- /react-text --><pre data-reactid="144"><code data-query="{}" data-lang="data-lang" data-reactid="145">function detection(){
+    if(//支持某特性){
+        detection = function(){
+            //直接用支持的特性
+        }
+    } else if(//支持第二种特性){
+        detection = function(){
+            //用第二种特性
+        }
+    } else {
+        detection = function(){
+            //用其他解决方案
+        }
+    }
+}
+</code></pre><!-- react-text: 146 -->
+<!-- /react-text --><p data-reactid="147">第二种实现惰性载入的方式是在声明函数时就指定适当的函数</p><!-- react-text: 148 -->
+<!-- /react-text --><pre data-reactid="149"><code data-query="{}" data-lang="data-lang" data-reactid="150">var detection = (function(){
+    if(//支持某特性){
+        return function(){
+            //直接用支持的特性
+        }
+    } else if(//支持第二种特性){
+        return function(){
+            //用第二种特性
+        }
+    } else {
+        return function(){
+            //用其他解决方案
+        }
+    } 
+})();
+</code></pre><!-- react-text: 151 -->
+<!-- /react-text --><p data-reactid="152">惰性载入函数的有点是在只初次执行时牺牲一点性能，之后便不会再有多余的消耗性能。</p><!-- react-text: 153 -->
+<!-- /react-text --><h3 id="函数绑定作用域" data-reactid="154"><a href="#%E5%87%BD%E6%95%B0%E7%BB%91%E5%AE%9A%E4%BD%9C%E7%94%A8%E5%9F%9F" aria-hidden="true" data-reactid="155"><span class="icon icon-link" data-reactid="156"></span></a><!-- react-text: 157 -->函数绑定作用域<!-- /react-text --></h3><!-- react-text: 158 -->
+<!-- /react-text --><p data-reactid="159">在JS中，函数的作用域是在函数被调用时动态绑定的，也就是说函数的this对象的指向是不定的，但在一些情况下，我们需要让某一函数的执行作用域固定，总是指向某一对象。这时怎么办呢？
+当当当~~可以用函数绑定作用域函数呀</p><!-- react-text: 160 -->
+<!-- /react-text --><pre data-reactid="161"><code data-query="{}" data-lang="data-lang" data-reactid="162">function bind(fn,context){
+    return function(){
+        return fn.apply(context,arguments);
+    }
+}
+</code></pre><!-- react-text: 163 -->
+<!-- /react-text --><p data-reactid="164">用法：</p><!-- react-text: 165 -->
+<!-- /react-text --><pre data-reactid="166"><code data-query="{}" data-lang="data-lang" data-reactid="167">var person1 = {
+    name: &quot;claiyre&quot;,
+    sayName: function(){
+        alert(this.name);
+    }
+}
+var sayPerson1Name = bind(person1.sayName,person1);
+sayPerson1Name();  //claiyre
+</code></pre><!-- react-text: 168 -->
+<!-- /react-text --><p data-reactid="169"><code data-reactid="170">call</code><!-- react-text: 171 -->函数和<!-- /react-text --><code data-reactid="172">apply</code><!-- react-text: 173 -->函数可以临时改变函数的作用域，使用bind函数可以得到一个绑定了作用域的函数<!-- /react-text --></p><!-- react-text: 174 -->
+<!-- /react-text --><h3 id="函数柯里化curry" data-reactid="175"><a href="#%E5%87%BD%E6%95%B0%E6%9F%AF%E9%87%8C%E5%8C%96curry" aria-hidden="true" data-reactid="176"><span class="icon icon-link" data-reactid="177"></span></a><!-- react-text: 178 -->函数柯里化(curry)<!-- /react-text --></h3><!-- react-text: 179 -->
+<!-- /react-text --><p data-reactid="180">curry的概念很简单：只传递部分参数来调用函数，然后让函数返回另一个函数去处理剩下的参数。可以理解为赋予了函数“加载”的能力。
+许多js库中都封装了curry函数，具体使用可以这样。</p><!-- react-text: 181 -->
+<!-- /react-text --><pre data-reactid="182"><code data-query="{}" data-lang="data-lang" data-reactid="183">var match = curry(function(what,str){
+    return str.match(what)
+}); 
+
+var hasNumber = match(/[0-9]+/g);
+var hasSpace = match(/\s+/g)
+
+hasNumber(&quot;123asd&quot;);       //[&#x27;123&#x27;]
+hasNumber(&quot;hello world!&quot;);  //null
+
+hasSpace(&quot;hello world!&quot;);  //[&#x27; &#x27;];
+hasSpace(&quot;hello&quot;);         //null
+
+console.log(match(/\s+/g,&#x27;i am  Claiyre&#x27;));  //直接全部传参也可： [&#x27; &#x27;,&#x27;  &#x27;]
+</code></pre><!-- react-text: 184 -->
+<!-- /react-text --><p data-reactid="185">一旦函数经过柯里化，我们就可以先传递部分参数调用它，然后得到一个更具体的函数。这个更具体的函数通过闭包帮我们记住了第一次传递的参数，最后我们就可以用这个更具体的函数为所欲为啦~</p><!-- react-text: 186 -->
+<!-- /react-text --><p data-reactid="187">一个较为简单的实现curry的方式：</p><!-- react-text: 188 -->
+<!-- /react-text --><pre data-reactid="189"><code data-query="{}" data-lang="data-lang" data-reactid="190">function curry(fn){
+    var i = 0;
+    var outer = Array.prototype.slice.call(arguments,1);
+    var len = fn.length;
+    return function(){
+        var inner = outer.concat(Array.prototype.slice.call(arguments));
+        return inner.length === len?fn.apply(null,inner):function (){
+                var finalArgs = inner.concat(Array.prototype.slice.call(arguments));
+                return fn.apply(null,finalArgs);
+            }
+    }
+}
+</code></pre><!-- react-text: 191 -->
+<!-- /react-text --><h3 id="debounce函数" data-reactid="192"><a href="#debounce%E5%87%BD%E6%95%B0" aria-hidden="true" data-reactid="193"><span class="icon icon-link" data-reactid="194"></span></a><!-- react-text: 195 -->debounce函数<!-- /react-text --></h3><!-- react-text: 196 -->
+<!-- /react-text --><p data-reactid="197">debounce函数，又称“去抖函数”。它的功能也很简单直接，就是防止某一函数被连续调用，从而导致浏览器卡死或崩溃。用法如下：</p><!-- react-text: 198 -->
+<!-- /react-text --><pre data-reactid="199"><code data-query="{}" data-lang="data-lang" data-reactid="200">var myFunc = debounce(function(){
+    //繁重、耗性能的操作
+}，250);
+window.addEventListener(&#x27;resize&#x27;,myFunc);
+</code></pre><!-- react-text: 201 -->
+<!-- /react-text --><p data-reactid="202">像窗口的resize，这类可以以较高的速率触发的事件，非常适合用去抖函数，这时也可称作“函数节流”，避免给浏览器带来过大的性能负担。
+具体的实现时，当函数被调用时，不立即执行相应的语句，而是等待固定的时间w,若在w时间内，即等待还未结束时，函数又被调用了一次，则再等待w时间，重复上述过程，直到最后一次被调用后的w时间内该函数都没有被再调用，则执行相应的代码。
+实现代码如下：</p><!-- react-text: 203 -->
+<!-- /react-text --><pre data-reactid="204"><code data-query="{}" data-lang="data-lang" data-reactid="205">function debounce(fn,wait){
+    var td;
+    return function(){
+        clearTimeout(td);
+        td= setTimeout(fn,wait);
+    }
+}
+</code></pre><!-- react-text: 206 -->
+<!-- /react-text --><h3 id="once函数" data-reactid="207"><a href="#once%E5%87%BD%E6%95%B0" aria-hidden="true" data-reactid="208"><span class="icon icon-link" data-reactid="209"></span></a><!-- react-text: 210 -->once函数<!-- /react-text --></h3><!-- react-text: 211 -->
+<!-- /react-text --><p data-reactid="212">顾名思义，once函数是仅仅会被执行一次的函数。具体实现如下：</p><!-- react-text: 213 -->
+<!-- /react-text --><pre data-reactid="214"><code data-query="{}" data-lang="data-lang" data-reactid="215">function once(fn){
+    var result;
+    return function(){
+        if(fn){
+            result = fn(arguments);
+            fn = null;
+        }
+        return result;
+    }
+}
+
+var init = once(function(){
+    //初始化操作
+})
+</code></pre><!-- react-text: 216 -->
+<!-- /react-text --><p data-reactid="217">在被执行过一次后,参数fn就被赋值null了，那么在接下来被调用时，便再也不会进入到if语句中了，也就是第一次被调用后，该函数永远不会被执行了。</p><!-- react-text: 218 -->
+<!-- /react-text --><p data-reactid="219">还可以对上述once函数进行改进，不仅可以传入函数，同时还可以给传入的函数绑定作用域u，同时实现了bind和once。</p><!-- react-text: 220 -->
+<!-- /react-text --><pre data-reactid="221"><code data-query="{}" data-lang="data-lang" data-reactid="222">function once(fn,context){
+    var result;
+    return function(){
+        if(fn){
+            result = fn.apply(context,arguments);
+            fn = null;
+        }
+        return result;
+    }
+}
+</code></pre><!-- react-text: 223 -->
+<!-- /react-text --><h1 id="结语" data-reactid="224"><a href="#%E7%BB%93%E8%AF%AD" aria-hidden="true" data-reactid="225"><span class="icon icon-link" data-reactid="226"></span></a><!-- react-text: 227 -->结语<!-- /react-text --></h1><!-- react-text: 228 -->
+<!-- /react-text --><p data-reactid="229">通过以上的阅读，不难发现很多“高级函数”的实现其实并不复杂，数十行代码便可搞定，但重要的是能真正理解它们的原理，在实际中适时地应用，以此性能提升，让代码简洁，逻辑清晰</p><!-- react-text: 230 -->
+<!-- /react-text --></article></div><div class="gitment-container" data-reactid="231"></div></div><div class="paginator body-width" data-reactid="232"><a title="上一篇" class="prev light-tip" href="/带你从Http转入Https的完整攻略" data-reactid="233"><span class="icon-font" data-reactid="234"></span><!-- react-text: 235 --> <!-- /react-text --><!-- react-text: 236 -->上一篇<!-- /react-text --></a><a title="下一篇" class="next light-tip" href="/从网络通信角度谈web性能优化" data-reactid="237"><!-- react-text: 238 -->下一篇<!-- /react-text --><!-- react-text: 239 --> <!-- /react-text --><span class="icon-font" data-reactid="240"></span></a></div></div></main><footer data-reactid="241"><div class="footer-avatar" data-reactid="242"><img src="/avatar.png" alt="avatar" data-reactid="243"/></div><div class="copyright" data-reactid="244"><!-- react-text: 245 -->© <!-- /react-text --><time data-reactid="246">2018</time><!-- react-text: 247 -->. Powered By <!-- /react-text --><a href="https://github.com/picidaejs/picidae" data-reactid="248"> Picidae </a><!-- react-text: 249 -->  |  <!-- /react-text --><a href="https://github.com/picidaejs/picidae-theme-crystal" data-reactid="250"> theme-crystal</a></div><div id="busuanzi-count" data-reactid="251"><span id="busuanzi_container_site_uv" data-reactid="252"><span class="icon-font" data-reactid="253"></span><span id="busuanzi_value_site_uv" data-reactid="254"></span></span><!-- react-text: 255 -->  |  <!-- /react-text --><span id="busuanzi_container_site_pv" data-reactid="256"><span class="icon-font" data-reactid="257"></span><!-- react-text: 258 --> <!-- /react-text --><span id="busuanzi_value_site_pv" data-reactid="259"></span></span></div></footer></div>
+</div>
+<script src="/PICIDAE_COMMON.js"></script>
+<script src="/PICIDAE_ENTRY.js"></script>
+</body>
+</html>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <title> flex学习总结 - Claiyre的个人博客 </title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<div id="root">
+    <div class="wrap" data-reactroot="" data-reactid="1" data-react-checksum="980543048"><header data-reactid="2"><div class="blog-name" data-reactid="3"><a href="/" data-reactid="4">Claiyre&#x27;s Blog</a></div><ul class="nav nav-list" data-reactid="5"><li class="nav-list-item" data-reactid="6"><a class="nav-list-link" href="/posts/1" data-reactid="7">Posts</a></li><li class="nav-list-item" data-reactid="8"><a class="nav-list-link" href="/tags" data-reactid="9">Tags</a></li><li class="nav-list-item" data-reactid="10"><a class="nav-list-link" href="/about" data-reactid="11">About</a></li></ul></header><main data-reactid="12"><div data-reactid="13"><div class="post body-width" data-reactid="14"><article class="post-block" data-reactid="15"><h1 class="title post-title" data-reactid="16">flex学习总结</h1><div class="post-info" data-reactid="17"><div class="post-info-item" data-reactid="18"><span class="icon-font" data-reactid="19"></span><!-- react-text: 20 -->css<!-- /react-text --></div><div class="post-info-item" data-reactid="21"><span class="icon-font" data-reactid="22"></span><!-- react-text: 23 -->CSS<!-- /react-text --></div><div class="post-info-item" data-reactid="24"><span class="icon-font" data-reactid="25"></span><time datetime="2016-11-26T19:14:19.000Z" data-reactid="26">2016-11-26</time></div></div></article><div class="post-content" data-reactid="27"><article data-reactid="28"><div class="picidae-toc" data-reactid="29"><!-- react-text: 30 -->
+<!-- /react-text --><ul data-reactid="31"><!-- react-text: 32 -->
+<!-- /react-text --><li data-reactid="33"><!-- react-text: 34 -->
+<!-- /react-text --><a href="#%E4%B8%80%E3%80%81%E7%AE%80%E8%A6%81%E4%BB%8B%E7%BB%8D" data-reactid="35">一、简要介绍</a><!-- react-text: 36 -->
+<!-- /react-text --></li><!-- react-text: 37 -->
+<!-- /react-text --><li data-reactid="38"><!-- react-text: 39 -->
+<!-- /react-text --><a href="#%E4%BA%8C%E3%80%81%E5%B1%9E%E6%80%A7%E6%80%BB%E7%BB%93%E8%A1%A8" data-reactid="40">二、属性总结表</a><!-- react-text: 41 -->
+<!-- /react-text --></li><!-- react-text: 42 -->
+<!-- /react-text --><li data-reactid="43"><!-- react-text: 44 -->
+<!-- /react-text --><a href="#%E4%B8%89%E3%80%81%E5%AE%B9%E5%99%A8%E5%B1%9E%E6%80%A7%E8%AF%A6%E8%BF%B0" data-reactid="45">三、容器属性详述</a><!-- react-text: 46 -->
+<!-- /react-text --></li><!-- react-text: 47 -->
+<!-- /react-text --><li data-reactid="48"><!-- react-text: 49 -->
+<!-- /react-text --><a href="#%E5%9B%9B%E3%80%81flex-item%E5%B1%9E%E6%80%A7%E8%AF%A6%E8%BF%B0" data-reactid="50">四、flex item属性详述</a><!-- react-text: 51 -->
+<!-- /react-text --></li><!-- react-text: 52 -->
+<!-- /react-text --></ul><!-- react-text: 53 -->
+<!-- /react-text --></div><!-- react-text: 54 -->
+<!-- /react-text --><p data-reactid="55">css3最喜欢的新属性之一便是flex布局属性，用六个字概括便是简单、方便、快速。</p><!-- react-text: 56 -->
+<!-- /react-text --><!-- react-text: 57 -->
+<!-- /react-text --><blockquote data-reactid="58"><!-- react-text: 59 -->
+<!-- /react-text --><p data-reactid="60"><!-- react-text: 61 -->博客原文地址：<!-- /react-text --><a href="https://claiyre.github.io/" data-reactid="62">Claiyre的个人博客 https://claiyre.github.io</a><!-- react-text: 63 -->
+如需转载，请在文章开头注明原文地址<!-- /react-text --></p><!-- react-text: 64 -->
+<!-- /react-text --></blockquote><!-- react-text: 65 -->
+<!-- /react-text --><h3 id="一、简要介绍" data-reactid="66"><a href="#%E4%B8%80%E3%80%81%E7%AE%80%E8%A6%81%E4%BB%8B%E7%BB%8D" aria-hidden="true" data-reactid="67"><span class="icon icon-link" data-reactid="68"></span></a><!-- react-text: 69 -->一、简要介绍<!-- /react-text --></h3><!-- react-text: 70 -->
+<!-- /react-text --><p data-reactid="71">css3最喜欢的新属性之一便是flex布局属性，用六个字概括便是简单、方便、快速。</p><!-- react-text: 72 -->
+<!-- /react-text --><p data-reactid="73"><!-- react-text: 74 -->　　flex（ flexible box：弹性布局盒模型）,是2009年w3c提出的一种可以简洁、快速弹性布局的属性。主要思想是给予容器控制内部元素高度和宽度的能力。目前已得到以下浏览器支持：
+<!-- /react-text --><img src="http://p1.bqimg.com/567571/2d2f87274c60c8d5.png" title="flex support" data-reactid="75"/><!-- react-text: 76 -->
+其中在webkit内核的浏览器中使用时，必须加上-webkit-前缀，以下不再重复说明。
+下图为flex的相关概念的示意图
+<!-- /react-text --><img src="http://i1.piimg.com/567571/a8ebc3267ebe575d.png" data-reactid="77"/><!-- react-text: 78 -->
+使用flex布局的容器（flex container），它内部的元素自动成为flex项目（flex item）。容器拥有两根隐形的轴，水平的主轴（main axis），和竖直的交叉轴。主轴开始的位置，即主轴与右边框的交点，称为main start；主轴结束的位置称为main end；交叉轴开始的位置称为cross start；交叉轴结束的位置称为cross end。item按主轴或交叉轴排列，item在主轴方向上占据的宽度称为main size，在交叉轴方向上占据的宽度称为cross size。
+此外，需注意使用flex容器内元素，即flex item的float，clear、vertical-align属性将失效。<!-- /react-text --></p><!-- react-text: 79 -->
+<!-- /react-text --><h3 id="二、属性总结表" data-reactid="80"><a href="#%E4%BA%8C%E3%80%81%E5%B1%9E%E6%80%A7%E6%80%BB%E7%BB%93%E8%A1%A8" aria-hidden="true" data-reactid="81"><span class="icon icon-link" data-reactid="82"></span></a><!-- react-text: 83 -->二、属性总结表<!-- /react-text --></h3><!-- react-text: 84 -->
+<!-- /react-text --><p data-reactid="85"><img src="http://i1.piimg.com/567571/aa378f77b1938022.png" data-reactid="86"/></p><!-- react-text: 87 -->
+<!-- /react-text --><h3 id="三、容器属性详述" data-reactid="88"><a href="#%E4%B8%89%E3%80%81%E5%AE%B9%E5%99%A8%E5%B1%9E%E6%80%A7%E8%AF%A6%E8%BF%B0" aria-hidden="true" data-reactid="89"><span class="icon icon-link" data-reactid="90"></span></a><!-- react-text: 91 -->三、容器属性详述<!-- /react-text --></h3><!-- react-text: 92 -->
+<!-- /react-text --><p data-reactid="93">1.flex-direction</p><!-- react-text: 94 -->
+<!-- /react-text --><p data-reactid="95">　　　　决定主轴的方向，即项目排列的方向，有四个可能的值：row(默认)|row-reverse|column|column-reverse</p><!-- react-text: 96 -->
+<!-- /react-text --><p data-reactid="97">　　　　row:主轴为水平方向，项目沿主轴从左至右排列</p><!-- react-text: 98 -->
+<!-- /react-text --><p data-reactid="99">　　　　column：主轴为竖直方向，项目沿主轴从上至下排列</p><!-- react-text: 100 -->
+<!-- /react-text --><p data-reactid="101">　　　　row-reverse：主轴水平，项目从右至左排列，与row反向</p><!-- react-text: 102 -->
+<!-- /react-text --><p data-reactid="103"><!-- react-text: 104 -->　　　　column-reverse：主轴竖直，项目从下至上排列，与column反向
+<!-- /react-text --><img src="http://i1.piimg.com/567571/fc235997e664eec6.png" data-reactid="105"/><!-- react-text: 106 -->
+2、flex-wrap<!-- /react-text --></p><!-- react-text: 107 -->
+<!-- /react-text --><p data-reactid="108">　　　　默认情况下，item排列在一条线上，即主轴上，flex-wrap决定当排列不下时是否换行以及换行的方式，可能的值nowrap(默认)|wrap|wrap-reverse</p><!-- react-text: 109 -->
+<!-- /react-text --><p data-reactid="110">　　　　nowrap：自动缩小项目，不换行</p><!-- react-text: 111 -->
+<!-- /react-text --><p data-reactid="112">　　　　wrap：换行，且第一行在上方</p><!-- react-text: 113 -->
+<!-- /react-text --><p data-reactid="114"><!-- react-text: 115 -->　　　　wrap-reverse：换行，第一行在下面
+<!-- /react-text --><img src="http://i1.piimg.com/567571/0f9ebf6b5cfa3945.png" data-reactid="116"/><!-- react-text: 117 -->
+3、flex-flow<!-- /react-text --></p><!-- react-text: 118 -->
+<!-- /react-text --><p data-reactid="119">　　　　是flex-direction和flex-wrap的简写形式，如：row wrap|column wrap-reverse等。默认值为row nowrap，即横向排列 不换行。</p><!-- react-text: 120 -->
+<!-- /react-text --><p data-reactid="121">　　4、justify-content</p><!-- react-text: 122 -->
+<!-- /react-text --><p data-reactid="123">　　　　决定item在主轴上的对齐方式，可能的值有flex-start（默认），flex-end，center，space-between，space-around。当主轴沿水平方向时，具体含义为</p><!-- react-text: 124 -->
+<!-- /react-text --><p data-reactid="125">　　　　　　flex-start：左对齐</p><!-- react-text: 126 -->
+<!-- /react-text --><p data-reactid="127">　　　　　　flex-end：右对齐</p><!-- react-text: 128 -->
+<!-- /react-text --><p data-reactid="129">　　　　　　center：居中对齐</p><!-- react-text: 130 -->
+<!-- /react-text --><p data-reactid="131">　　　　　　space- between：两端对齐</p><!-- react-text: 132 -->
+<!-- /react-text --><p data-reactid="133">　　　　　　space-around：沿轴线均匀分布</p><!-- react-text: 134 -->
+<!-- /react-text --><p data-reactid="135"><!-- react-text: 136 -->　　　　效果如下图　
+<!-- /react-text --><img src="http://i1.piimg.com/567571/419123003b5b4a01.png" data-reactid="137"/><!-- react-text: 138 -->
+5、align-items<!-- /react-text --></p><!-- react-text: 139 -->
+<!-- /react-text --><p data-reactid="140">　　决定了item在交叉轴上的对齐方式，可能的值有flex-start|flex-end|center|baseline|stretch，当主轴水平时，其具体含义为</p><!-- react-text: 141 -->
+<!-- /react-text --><p data-reactid="142">　　　　flex-start：顶端对齐</p><!-- react-text: 143 -->
+<!-- /react-text --><p data-reactid="144">　　　　flex-end：底部对齐</p><!-- react-text: 145 -->
+<!-- /react-text --><p data-reactid="146">　　　　center：竖直方向上居中对齐</p><!-- react-text: 147 -->
+<!-- /react-text --><p data-reactid="148">　　　　baseline：item第一行文字的底部对齐</p><!-- react-text: 149 -->
+<!-- /react-text --><p data-reactid="150">　　　　stretch：当item未设置高度时，item将和容器等高对齐</p><!-- react-text: 151 -->
+<!-- /react-text --><p data-reactid="152"><!-- react-text: 153 -->　　效果图如下：
+<!-- /react-text --><img src="http://i1.piimg.com/567571/dbaf7e51c20ef0fe.png" data-reactid="154"/></p><!-- react-text: 155 -->
+<!-- /react-text --><p data-reactid="156">6、align-content</p><!-- react-text: 157 -->
+<!-- /react-text --><p data-reactid="158"> 　　该属性定义了当有多根主轴时，即item不止一行时，多行在交叉轴轴上的对齐方式。注意当有多行时，定义了align-content后，align-items属性将失效。align-content可能值含义如下（假设主轴为水平方向）：</p><!-- react-text: 159 -->
+<!-- /react-text --><p data-reactid="160">　　　　　　flex-start：左对齐</p><!-- react-text: 161 -->
+<!-- /react-text --><p data-reactid="162">　　　　　　flex-end：右对齐</p><!-- react-text: 163 -->
+<!-- /react-text --><p data-reactid="164">　　　　　　center：居中对齐</p><!-- react-text: 165 -->
+<!-- /react-text --><p data-reactid="166">　　　　　　space- between：两端对齐</p><!-- react-text: 167 -->
+<!-- /react-text --><p data-reactid="168">　　　　　　space-around：沿轴线均匀分布</p><!-- react-text: 169 -->
+<!-- /react-text --><p data-reactid="170">　　　　　　stretch：各行将根据其flex-grow值伸展以充分占据剩余空间</p><!-- react-text: 171 -->
+<!-- /react-text --><p data-reactid="172"><!-- react-text: 173 -->　　效果图如下
+<!-- /react-text --><img src="http://i1.piimg.com/567571/09d39d0a4b5ce480.png" data-reactid="174"/><!-- react-text: 175 -->
+<!-- /react-text --><img src="http://i1.piimg.com/567571/c7549c436bcda1f1.png" data-reactid="176"/></p><!-- react-text: 177 -->
+<!-- /react-text --><h3 id="四、flex-item属性详述" data-reactid="178"><a href="#%E5%9B%9B%E3%80%81flex-item%E5%B1%9E%E6%80%A7%E8%AF%A6%E8%BF%B0" aria-hidden="true" data-reactid="179"><span class="icon icon-link" data-reactid="180"></span></a><!-- react-text: 181 -->四、flex item属性详述<!-- /react-text --></h3><!-- react-text: 182 -->
+<!-- /react-text --><p data-reactid="183">　　item的属性在item的style中设置。item共有如下六种属性</p><!-- react-text: 184 -->
+<!-- /react-text --><p data-reactid="185">　　1、order</p><!-- react-text: 186 -->
+<!-- /react-text --><p data-reactid="187">　　　　order的值是整数，默认为0，整数越小，item排列越靠前，如下图所示代码如下</p><!-- react-text: 188 -->
+<!-- /react-text --><pre data-reactid="189"><code data-query="{}" data-lang="data-lang" data-reactid="190">&lt;div class=&quot;wrap&quot;&gt;
+    &lt;div class=&quot;div&quot; style=&quot;order:4&quot;&gt;&lt;h2&gt;item 1&lt;/h2&gt;&lt;/div&gt;
+    &lt;div class=&quot;div&quot; style=&quot;order:2&quot;&gt;&lt;h2&gt;item 2&lt;/h2&gt;&lt;/div&gt;
+    &lt;div class=&quot;div&quot; style=&quot;order:3&quot;&gt;&lt;h2&gt;item 3&lt;/h2&gt;&lt;/div&gt;
+    &lt;div class=&quot;div&quot; style=&quot;order:1&quot;&gt;&lt;h2&gt;item 4&lt;/h2&gt;&lt;/div&gt;
+&lt;/div&gt;
+</code></pre><!-- react-text: 191 -->
+<!-- /react-text --><p data-reactid="192"><!-- react-text: 193 -->效果图为：
+<!-- /react-text --><img src="http://p1.bqimg.com/567571/9b36ad4f69794ba0.png" data-reactid="194"/><!-- react-text: 195 -->
+2、flex-grow<!-- /react-text --></p><!-- react-text: 196 -->
+<!-- /react-text --><p data-reactid="197">　　　　定义了当flex容器有多余空间时，item是否放大。默认值为0，即当有多余空间时也不放大；可能的值为整数，表示不同item的放大比例，如</p><!-- react-text: 198 -->
+<!-- /react-text --><pre data-reactid="199"><code data-query="{}" data-lang="data-lang" data-reactid="200">&lt;div class=&quot;wrap&quot;&gt;
+    &lt;div class=&quot;div&quot; style=&quot;flex-grow:1&quot;&gt;&lt;h2&gt;item 1&lt;/h2&gt;&lt;/div&gt;
+    &lt;div class=&quot;div&quot; style=&quot;flex-grow:2&quot;&gt;&lt;h2&gt;item 2&lt;/h2&gt;&lt;/div&gt;
+    &lt;div class=&quot;div&quot; style=&quot;flex-grow:3&quot;&gt;&lt;h2&gt;item 3&lt;/h2&gt;&lt;/div&gt;
+&lt;/div&gt;
+</code></pre><!-- react-text: 201 -->
+<!-- /react-text --><p data-reactid="202">即当有多余空间时item1、item2、和item3以1：2:3的比例放大。</p><!-- react-text: 203 -->
+<!-- /react-text --><p data-reactid="204">　　3、flex-shrink</p><!-- react-text: 205 -->
+<!-- /react-text --><p data-reactid="206">　　　　定义了当容器空间不足时，item是否缩小。默认值为1，表示当空间不足时，item自动缩小，其可能的值为整数，表示不同item的缩小比例。flex-grow</p><!-- react-text: 207 -->
+<!-- /react-text --><p data-reactid="208">　　4、flex-basis</p><!-- react-text: 209 -->
+<!-- /react-text --><p data-reactid="210">　　　　表示项目在主轴上占据的空间，默认值为auto。如下代码</p><!-- react-text: 211 -->
+<!-- /react-text --><pre data-reactid="212"><code data-query="{}" data-lang="data-lang" data-reactid="213">&lt;div class=&quot;wrap&quot;&gt;
+    &lt;div class=&quot;div&quot; style=&quot;flex-basis:80px&quot;&gt;&lt;h2&gt;item 1&lt;/h2&gt;&lt;/div&gt;
+    &lt;div class=&quot;div&quot; style=&quot;flex-basis:160px&quot;&gt;&lt;h2&gt;item 2&lt;/h2&gt;&lt;/div&gt;
+    &lt;div class=&quot;div&quot; style=&quot;flex-basis:240px&quot;&gt;&lt;h2&gt;item 3&lt;/h2&gt;&lt;/div&gt;
+&lt;/div&gt;
+</code></pre><!-- react-text: 214 -->
+<!-- /react-text --><p data-reactid="215"><!-- react-text: 216 -->其效果图为
+<!-- /react-text --><img src="http://p1.bqimg.com/567571/8a9174b01e3e57e9.png" data-reactid="217"/><!-- react-text: 218 -->
+　　5、flex<!-- /react-text --></p><!-- react-text: 219 -->
+<!-- /react-text --><p data-reactid="220">　　　　flex属性是flex-grow、flex-shrink和flex-basis三属性的简写总和。</p><!-- react-text: 221 -->
+<!-- /react-text --><p data-reactid="222">　　6、align-self</p><!-- react-text: 223 -->
+<!-- /react-text --><p data-reactid="224">　　　　align-self属性允许item有自己独特的在交叉轴上的对齐方式，它有六个可能的值。默认值为auto</p><!-- react-text: 225 -->
+<!-- /react-text --><p data-reactid="226">　　　　　　auto：和父元素align-self的值一致</p><!-- react-text: 227 -->
+<!-- /react-text --><p data-reactid="228">　　　　　　flex-start：顶端对齐</p><!-- react-text: 229 -->
+<!-- /react-text --><p data-reactid="230">　　　　　　flex-end：底部对齐</p><!-- react-text: 231 -->
+<!-- /react-text --><p data-reactid="232">　　　　　　center：竖直方向上居中对齐</p><!-- react-text: 233 -->
+<!-- /react-text --><p data-reactid="234">　　　　　　baseline：item第一行文字的底部对齐</p><!-- react-text: 235 -->
+<!-- /react-text --><p data-reactid="236"><!-- react-text: 237 -->　　　　　　stretch：当item未设置高度时，item将和容器等高对齐
+<!-- /react-text --><img src="http://p1.bqimg.com/567571/67c74561e9565884.png" data-reactid="238"/></p><!-- react-text: 239 -->
+<!-- /react-text --></article></div><div class="gitment-container" data-reactid="240"></div></div><div class="paginator body-width" data-reactid="241"><a title="上一篇" class="prev light-tip" href="/浅析js闭包" data-reactid="242"><span class="icon-font" data-reactid="243"></span><!-- react-text: 244 --> <!-- /react-text --><!-- react-text: 245 -->上一篇<!-- /react-text --></a></div></div></main><footer data-reactid="246"><div class="footer-avatar" data-reactid="247"><img src="/avatar.png" alt="avatar" data-reactid="248"/></div><div class="copyright" data-reactid="249"><!-- react-text: 250 -->© <!-- /react-text --><time data-reactid="251">2018</time><!-- react-text: 252 -->. Powered By <!-- /react-text --><a href="https://github.com/picidaejs/picidae" data-reactid="253"> Picidae </a><!-- react-text: 254 -->  |  <!-- /react-text --><a href="https://github.com/picidaejs/picidae-theme-crystal" data-reactid="255"> theme-crystal</a></div><div id="busuanzi-count" data-reactid="256"><span id="busuanzi_container_site_uv" data-reactid="257"><span class="icon-font" data-reactid="258"></span><span id="busuanzi_value_site_uv" data-reactid="259"></span></span><!-- react-text: 260 -->  |  <!-- /react-text --><span id="busuanzi_container_site_pv" data-reactid="261"><span class="icon-font" data-reactid="262"></span><!-- react-text: 263 --> <!-- /react-text --><span id="busuanzi_value_site_pv" data-reactid="264"></span></span></div></footer></div>
+</div>
+<script src="/PICIDAE_COMMON.js"></script>
+<script src="/PICIDAE_ENTRY.js"></script>
+</body>
+</html>

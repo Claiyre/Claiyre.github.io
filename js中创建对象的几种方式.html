@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <title> js中创建对象的几种方式 - Claiyre的个人博客 </title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<div id="root">
+    <div class="wrap" data-reactroot="" data-reactid="1" data-react-checksum="-1012408370"><header data-reactid="2"><div class="blog-name" data-reactid="3"><a href="/" data-reactid="4">Claiyre&#x27;s Blog</a></div><ul class="nav nav-list" data-reactid="5"><li class="nav-list-item" data-reactid="6"><a class="nav-list-link" href="/posts/1" data-reactid="7">Posts</a></li><li class="nav-list-item" data-reactid="8"><a class="nav-list-link" href="/tags" data-reactid="9">Tags</a></li><li class="nav-list-item" data-reactid="10"><a class="nav-list-link" href="/about" data-reactid="11">About</a></li></ul></header><main data-reactid="12"><div data-reactid="13"><div class="post body-width" data-reactid="14"><article class="post-block" data-reactid="15"><h1 class="title post-title" data-reactid="16">js中创建对象的几种方式</h1><div class="post-info" data-reactid="17"><div class="post-info-item" data-reactid="18"><span class="icon-font" data-reactid="19"></span><!-- react-text: 20 -->JavaScript<!-- /react-text --></div><div class="post-info-item" data-reactid="21"><span class="icon-font" data-reactid="22"></span><!-- react-text: 23 -->JavaScript<!-- /react-text --></div><div class="post-info-item" data-reactid="24"><span class="icon-font" data-reactid="25"></span><time datetime="2017-02-05T17:01:39.000Z" data-reactid="26">2017-02-05</time></div></div></article><div class="post-content" data-reactid="27"><article data-reactid="28"><div class="picidae-toc" data-reactid="29"><!-- react-text: 30 -->
+<!-- /react-text --><ul data-reactid="31"><!-- react-text: 32 -->
+<!-- /react-text --><li data-reactid="33"><!-- react-text: 34 -->
+<!-- /react-text --><a href="#%E5%89%8D%E8%A8%80" data-reactid="35">前言</a><!-- react-text: 36 -->
+<!-- /react-text --></li><!-- react-text: 37 -->
+<!-- /react-text --><li data-reactid="38"><!-- react-text: 39 -->
+<!-- /react-text --><a href="#%E6%AD%A3%E6%96%87" data-reactid="40">正文</a><!-- react-text: 41 -->
+<!-- /react-text --><ul data-reactid="42"><!-- react-text: 43 -->
+<!-- /react-text --><li data-reactid="44"><!-- react-text: 45 -->
+<!-- /react-text --><ul data-reactid="46"><!-- react-text: 47 -->
+<!-- /react-text --><li data-reactid="48"><!-- react-text: 49 -->
+<!-- /react-text --><a href="#%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F" data-reactid="50">工厂模式</a><!-- react-text: 51 -->
+<!-- /react-text --></li><!-- react-text: 52 -->
+<!-- /react-text --><li data-reactid="53"><!-- react-text: 54 -->
+<!-- /react-text --><a href="#%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E6%A8%A1%E5%BC%8F" data-reactid="55">构造函数模式</a><!-- react-text: 56 -->
+<!-- /react-text --></li><!-- react-text: 57 -->
+<!-- /react-text --><li data-reactid="58"><!-- react-text: 59 -->
+<!-- /react-text --><a href="#%E5%8E%9F%E5%9E%8B%E6%A8%A1%E5%BC%8F" data-reactid="60">原型模式</a><!-- react-text: 61 -->
+<!-- /react-text --></li><!-- react-text: 62 -->
+<!-- /react-text --><li data-reactid="63"><!-- react-text: 64 -->
+<!-- /react-text --><a href="#%E7%BB%84%E5%90%88%E4%BD%BF%E7%94%A8%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E5%92%8C%E5%8E%9F%E5%9E%8B%E6%A8%A1%E5%BC%8F" data-reactid="65">组合使用构造函数和原型模式</a><!-- react-text: 66 -->
+<!-- /react-text --></li><!-- react-text: 67 -->
+<!-- /react-text --><li data-reactid="68"><!-- react-text: 69 -->
+<!-- /react-text --><a href="#%E5%85%B6%E4%BB%96%E6%A8%A1%E5%BC%8F" data-reactid="70">其他模式</a><!-- react-text: 71 -->
+<!-- /react-text --></li><!-- react-text: 72 -->
+<!-- /react-text --></ul><!-- react-text: 73 -->
+<!-- /react-text --></li><!-- react-text: 74 -->
+<!-- /react-text --></ul><!-- react-text: 75 -->
+<!-- /react-text --></li><!-- react-text: 76 -->
+<!-- /react-text --><li data-reactid="77"><!-- react-text: 78 -->
+<!-- /react-text --><a href="#%E7%BB%93%E8%AF%AD" data-reactid="79">结语</a><!-- react-text: 80 -->
+<!-- /react-text --></li><!-- react-text: 81 -->
+<!-- /react-text --></ul><!-- react-text: 82 -->
+<!-- /react-text --></div><!-- react-text: 83 -->
+<!-- /react-text --><blockquote data-reactid="84"><!-- react-text: 85 -->
+<!-- /react-text --><p data-reactid="86"><!-- react-text: 87 -->博客原文地址：<!-- /react-text --><a href="https://claiyre.github.io/" data-reactid="88">Claiyre的个人博客 https://claiyre.github.io/</a><!-- react-text: 89 -->
+博客园地址：<!-- /react-text --><a href="http://www.cnblogs.com/nuannuan7362/" data-reactid="90">http://www.cnblogs.com/nuannuan7362/</a><!-- react-text: 91 -->
+如需转载，请在文章开头注明原文地址
+士不可以不弘毅，任重而道远。<!-- /react-text --></p><!-- react-text: 92 -->
+<!-- /react-text --></blockquote><!-- react-text: 93 -->
+<!-- /react-text --><h1 id="前言" data-reactid="94"><a href="#%E5%89%8D%E8%A8%80" aria-hidden="true" data-reactid="95"><span class="icon icon-link" data-reactid="96"></span></a><!-- react-text: 97 -->前言<!-- /react-text --></h1><!-- react-text: 98 -->
+<!-- /react-text --><p data-reactid="99">不管是哪门语言，千变万化不离其宗，深入理解其本质，方能应用自如。对应到js，闭包，原型，函数，对象等是需要花费大功夫思考、理解的。本文穿插了js原型和函数的相关知识，讨论了批量创建对象的几种方式以及它们的优缺点。</p><!-- react-text: 100 -->
+<!-- /react-text --><!-- react-text: 101 -->
+<!-- /react-text --><h1 id="正文" data-reactid="102"><a href="#%E6%AD%A3%E6%96%87" aria-hidden="true" data-reactid="103"><span class="icon icon-link" data-reactid="104"></span></a><!-- react-text: 105 -->正文<!-- /react-text --></h1><!-- react-text: 106 -->
+<!-- /react-text --><p data-reactid="107">说起创建对象，最容易想到的便是通过对象字面量方式直接定义一个对象吧，但这种方式只能创建少量，单独且相互间无联系的对象。若要批量创建对象，该如何？</p><!-- react-text: 108 -->
+<!-- /react-text --><h3 id="工厂模式" data-reactid="109"><a href="#%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F" aria-hidden="true" data-reactid="110"><span class="icon icon-link" data-reactid="111"></span></a><!-- react-text: 112 -->工厂模式<!-- /react-text --></h3><!-- react-text: 113 -->
+<!-- /react-text --><p data-reactid="114">工厂模式非常直观，将创建对象的过程抽象为一个函数，用函数封装以特定接口创建对象的细节。如下所示：</p><!-- react-text: 115 -->
+<!-- /react-text --><pre data-reactid="116"><code data-query="{}" data-lang="data-lang" data-reactid="117">function createStudent(name,sex,grade){                     
+    var o = new Object();
+    o.name = name;
+    o.sex = sex;
+    o.grade = grade;
+
+    o.sayName = function(){
+        console.log(this.name);
+    }
+    return o;
+}
+var s1 = createStudent(&#x27;Claiyre&#x27;,&#x27;famale&#x27;,1);
+</code></pre><!-- react-text: 118 -->
+<!-- /react-text --><p data-reactid="119"><!-- react-text: 120 -->通俗地讲，工厂模式就是将创建对象的语句放在一个函数里，通过传入参数来创建特定对象，最后返回创建的对象。
+<!-- /react-text --><strong data-reactid="121">工厂模式虽然可以创建多个相似的对象，但却不能解决对象标识的问题，即怎样知道一个对象的类型</strong><!-- react-text: 122 -->。构造函数模式应运而生。<!-- /react-text --></p><!-- react-text: 123 -->
+<!-- /react-text --><h3 id="构造函数模式" data-reactid="124"><a href="#%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E6%A8%A1%E5%BC%8F" aria-hidden="true" data-reactid="125"><span class="icon icon-link" data-reactid="126"></span></a><!-- react-text: 127 -->构造函数模式<!-- /react-text --></h3><!-- react-text: 128 -->
+<!-- /react-text --><p data-reactid="129">构造函数模式是java语言创建对象的通用方式。两种语言用构造函数创建对象的方式略有不同，注意区别。
+在JavaScript中没有类的概念，函数即为一等公民，因此，不必显式声明某个类，直接创建构造函数即可，类的方法和属性在构造函数中（或原型对象上）处理。构造函数模式的示例代码如下：</p><!-- react-text: 130 -->
+<!-- /react-text --><pre data-reactid="131"><code data-query="{}" data-lang="data-lang" data-reactid="132">function Student(name,sex,grade){               
+    this.name = name;
+    this.sex = sex;
+    this.grade = grade;
+    this.sayName = function(){
+        console.log(this.name);
+    }
+}
+var s2 = new Student(&#x27;孙悟空&#x27;，&#x27;male&#x27;,2);
+</code></pre><!-- react-text: 133 -->
+<!-- /react-text --><p data-reactid="134">细心的朋友一定发现了构造函数的函数名首字母是大写的，而普通函数首字母则是小写，这是众多OO语言约定俗成的规定，虽然大多数情况下不大写也不会报错，但是为了代码的规范性和可读性，还是应该将构造函数的首字母大写，与普通函数区别开。
+与工厂模式相比，用构造模式创建对象有以下几点不同：</p><!-- react-text: 135 -->
+<!-- /react-text --><ul data-reactid="136"><!-- react-text: 137 -->
+<!-- /react-text --><li data-reactid="138">没有显示地创建对象</li><!-- react-text: 139 -->
+<!-- /react-text --><li data-reactid="140">直接将属性和方法赋给this对象</li><!-- react-text: 141 -->
+<!-- /react-text --><li data-reactid="142">没有return语句</li><!-- react-text: 143 -->
+<!-- /react-text --></ul><!-- react-text: 144 -->
+<!-- /react-text --><p data-reactid="145">此外，还应注意到要创建Student的实例，必须要使用new操作符，创建的实例对象将有一个constructor（构造器）属性，指向Person构造函数。调用构造函数创建对象经过了以下几个过程：</p><!-- react-text: 146 -->
+<!-- /react-text --><ul data-reactid="147"><!-- react-text: 148 -->
+<!-- /react-text --><li data-reactid="149">创建一个新对象</li><!-- react-text: 150 -->
+<!-- /react-text --><li data-reactid="151">将构造函数的作用域赋给新对象（因此this就指向了这个新对象）</li><!-- react-text: 152 -->
+<!-- /react-text --><li data-reactid="153">执行构造函数中的代码</li><!-- react-text: 154 -->
+<!-- /react-text --><li data-reactid="155">返回新对象（不需要显式返回）</li><!-- react-text: 156 -->
+<!-- /react-text --></ul><!-- react-text: 157 -->
+<!-- /react-text --><p data-reactid="158"><!-- react-text: 159 -->构造函数虽好用，但也不是没有缺点。使用构造函数的主要问题是：<!-- /react-text --><strong data-reactid="160">每个方法都要在每个实例上创建一遍</strong><!-- react-text: 161 -->。在ECMAScript中，函数即对象，因此每定义一个函数，也就是实例化了一个对象。下面的例子证明了这个缺点。<!-- /react-text --></p><!-- react-text: 162 -->
+<!-- /react-text --><pre data-reactid="163"><code data-query="{}" data-lang="data-lang" data-reactid="164">var s3 = new Student(&#x27;唐僧&#x27;,&#x27;male&#x27;,3);                   
+var s4 = new Student(&#x27;白骨精&#x27;,&#x27;female&#x27;,4);
+s3.sayName();
+s4.sayName();
+console.log(s3.sayName == s4.sayName);
+</code></pre><!-- react-text: 165 -->
+<!-- /react-text --><p data-reactid="166"><!-- react-text: 167 -->运行结果：
+<!-- /react-text --><img src="http://p1.bpimg.com/567571/3359b736833b0818.png" data-reactid="168"/></p><!-- react-text: 169 -->
+<!-- /react-text --><p data-reactid="170">也就是说通过构造函数实例化的多个对象的方法，是多个不同的方法，但它们内部的代码以及实现的功能是相同的，这就造成了一定的资源浪费。
+幸运的是，这个问题可以用原型模式来解决。</p><!-- react-text: 171 -->
+<!-- /react-text --><h3 id="原型模式" data-reactid="172"><a href="#%E5%8E%9F%E5%9E%8B%E6%A8%A1%E5%BC%8F" aria-hidden="true" data-reactid="173"><span class="icon icon-link" data-reactid="174"></span></a><!-- react-text: 175 -->原型模式<!-- /react-text --></h3><!-- react-text: 176 -->
+<!-- /react-text --><p data-reactid="177"><!-- react-text: 178 -->js中，每个函数都有一个<!-- /react-text --><code data-reactid="179">prototype</code><!-- react-text: 180 -->属性，它是一个指针，指向一个对象，叫做原型对象，原型对象包含了<!-- /react-text --><strong data-reactid="181">可以由特定类型的所有实例对象共享的属性和方法</strong><!-- react-text: 182 -->。此外，这个对象有一个与生自来的属性<!-- /react-text --><code data-reactid="183">constructor</code><!-- react-text: 184 -->，指向创建对象的构造方法。
+使用原型模式可以让所有的实例共享原型对象中的属性和方法，也就是说，不必再构造函数中定义对象实例的信息。用代码表示如下：<!-- /react-text --></p><!-- react-text: 185 -->
+<!-- /react-text --><pre data-reactid="186"><code data-query="{}" data-lang="data-lang" data-reactid="187">function Student_1(){
+
+}
+Student_1.prototype.name = &#x27;Claiyre&#x27;;
+Student_1.prototype.sex = &#x27;female&#x27;;
+Student_1.prototype.class = 5;
+Student_1.prototype.sayName = function (){
+    console.log(this.name);
+}
+
+var s5 = new Student_1();                              
+s5.sayName();    //Claiyre
+var s6 = new Student_1();
+s6.sayName();    //Claiyre
+</code></pre><!-- react-text: 188 -->
+<!-- /react-text --><p data-reactid="189"><!-- react-text: 190 -->一张图胜过千言万语，下图清楚地阐释了各个对象和原型对象间的关系：
+<!-- /react-text --><img src="http://p1.bpimg.com/567571/1538bfc566a89b93.png" data-reactid="191"/></p><!-- react-text: 192 -->
+<!-- /react-text --><p data-reactid="193">了解过原型后，可以继续在实例对象上增添属性或方法：</p><!-- react-text: 194 -->
+<!-- /react-text --><pre data-reactid="195"><code data-query="{}" data-lang="data-lang" data-reactid="196">s6.name = &#x27;John&#x27;;                             
+s6.sayName();       //John
+</code></pre><!-- react-text: 197 -->
+<!-- /react-text --><p data-reactid="198"><!-- react-text: 199 -->当要读取某个对象的属性时，都会执行一次搜索，搜索首先从对象实例本身开始，如果在实例中找到了这个属性，则搜索结束，返回实例属性的值；若实例上没有找到，则继续向对象的原型对象延伸，搜索对象的原型对象，若在原型对象上找到了，则返回原型上相应属性的值，若没有找到，则返回<!-- /react-text --><code data-reactid="200">undefined</code><!-- react-text: 201 -->。因此，实例对象属性会覆盖原型对象上的同名属性，所以上面第二行代码输出的是John。<!-- /react-text --></p><!-- react-text: 202 -->
+<!-- /react-text --><ul data-reactid="203"><!-- react-text: 204 -->
+<!-- /react-text --><li data-reactid="205"><code data-reactid="206">Object.getPrototypeOf(object)</code><!-- react-text: 207 -->方法返回参数对象的原型对象。<!-- /react-text --></li><!-- react-text: 208 -->
+<!-- /react-text --><li data-reactid="209"><code data-reactid="210">Object.keys(object)</code><!-- react-text: 211 -->方法返回对象上课枚举的实例属性。<!-- /react-text --></li><!-- react-text: 212 -->
+<!-- /react-text --></ul><!-- react-text: 213 -->
+<!-- /react-text --><p data-reactid="214">原型中的所有属性都是被所有实例所共享的，这种共享对于函数来说非常合适，对于包含基本值的属性也说的过去（实例属性会覆盖原型同名属性），但对于那些包含引用类型的属性，可有大麻烦了</p><!-- react-text: 215 -->
+<!-- /react-text --><pre data-reactid="216"><code data-query="{}" data-lang="data-lang" data-reactid="217">Student_1.prototype.friends = [&#x27;aa&#x27;,&#x27;bb&#x27;];              
+
+console.log(&#x27;s6的朋友&#x27; + s6.friends);
+s5.friends.push(&#x27;cc&#x27;);
+console.log(&#x27;s5的朋友&#x27; + s5.friends);
+console.log(&#x27;s6的朋友&#x27; + s6.friends);
+</code></pre><!-- react-text: 218 -->
+<!-- /react-text --><p data-reactid="219"><!-- react-text: 220 -->运行结果：
+<!-- /react-text --><img src="http://i1.piimg.com/567571/a81173a51ef0b9d4.png" data-reactid="221"/></p><!-- react-text: 222 -->
+<!-- /react-text --><p data-reactid="223">问题来了，我们只想改变s5的朋友列表，但由于原型模式的共享本质，s6的朋友列表也随之改变了。
+因此，很少单独使用原型模式。</p><!-- react-text: 224 -->
+<!-- /react-text --><h3 id="组合使用构造函数和原型模式" data-reactid="225"><a href="#%E7%BB%84%E5%90%88%E4%BD%BF%E7%94%A8%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E5%92%8C%E5%8E%9F%E5%9E%8B%E6%A8%A1%E5%BC%8F" aria-hidden="true" data-reactid="226"><span class="icon icon-link" data-reactid="227"></span></a><!-- react-text: 228 -->组合使用构造函数和原型模式<!-- /react-text --></h3><!-- react-text: 229 -->
+<!-- /react-text --><p data-reactid="230">构造函数模式用于定义实例属性，原型模式则用于定义方法和共享的属性。这种混合模式不仅支持向构造函数传入参数，还最大限度地节约了内存，可谓是集两模式之长。示例代码如下：</p><!-- react-text: 231 -->
+<!-- /react-text --><pre data-reactid="232"><code data-query="{}" data-lang="data-lang" data-reactid="233">function Student(name,sex,grade){                   
+    this.name = name;
+    this.sex = sex;
+    this.grade = grade;
+}
+
+Student.prototype.sayName = function(){
+        console.log(this.name);
+}
+Student.prototype.school = &#x27;Joooh school&#x27;;
+</code></pre><!-- react-text: 234 -->
+<!-- /react-text --><h3 id="其他模式" data-reactid="235"><a href="#%E5%85%B6%E4%BB%96%E6%A8%A1%E5%BC%8F" aria-hidden="true" data-reactid="236"><span class="icon icon-link" data-reactid="237"></span></a><!-- react-text: 238 -->其他模式<!-- /react-text --></h3><!-- react-text: 239 -->
+<!-- /react-text --><p data-reactid="240">除了以上几种常见的模式外，批量创建对象的方式还有</p><!-- react-text: 241 -->
+<!-- /react-text --><ul data-reactid="242"><!-- react-text: 243 -->
+<!-- /react-text --><li data-reactid="244">动态原型模式：仅在第一次调用构造函数时，将方法赋给原型对象的相应属性，其他示例的处理方式同构造函数模式</li><!-- react-text: 245 -->
+<!-- /react-text --><li data-reactid="246"><!-- react-text: 247 -->寄生构造函数模式：仅仅封装创建对象的代码，然后再返回新创建的对象，仍使用<!-- /react-text --><code data-reactid="248">new</code><!-- react-text: 249 -->操作符调用<!-- /react-text --></li><!-- react-text: 250 -->
+<!-- /react-text --><li data-reactid="251"><!-- react-text: 252 -->稳妥构造函数模式：没有公共属性，只有私有变量和方法，以及一些<!-- /react-text --><code data-reactid="253">get/set</code><!-- react-text: 254 -->方法，用以处理私有变量。<!-- /react-text --></li><!-- react-text: 255 -->
+<!-- /react-text --></ul><!-- react-text: 256 -->
+<!-- /react-text --><h1 id="结语" data-reactid="257"><a href="#%E7%BB%93%E8%AF%AD" aria-hidden="true" data-reactid="258"><span class="icon icon-link" data-reactid="259"></span></a><!-- react-text: 260 -->结语<!-- /react-text --></h1><!-- react-text: 261 -->
+<!-- /react-text --><p data-reactid="262">每种模式都有各自的优缺点，具体要使用哪种，还需结合实际场景，深入理解，灵活运用。</p><!-- react-text: 263 -->
+<!-- /react-text --></article></div><div class="gitment-container" data-reactid="264"></div></div><div class="paginator body-width" data-reactid="265"><a title="上一篇" class="prev light-tip" href="/动态样式语言LESS" data-reactid="266"><span class="icon-font" data-reactid="267"></span><!-- react-text: 268 --> <!-- /react-text --><!-- react-text: 269 -->上一篇<!-- /react-text --></a><a title="下一篇" class="next light-tip" href="/Node学习笔记-初识Node" data-reactid="270"><!-- react-text: 271 -->下一篇<!-- /react-text --><!-- react-text: 272 --> <!-- /react-text --><span class="icon-font" data-reactid="273"></span></a></div></div></main><footer data-reactid="274"><div class="footer-avatar" data-reactid="275"><img src="/avatar.png" alt="avatar" data-reactid="276"/></div><div class="copyright" data-reactid="277"><!-- react-text: 278 -->© <!-- /react-text --><time data-reactid="279">2018</time><!-- react-text: 280 -->. Powered By <!-- /react-text --><a href="https://github.com/picidaejs/picidae" data-reactid="281"> Picidae </a><!-- react-text: 282 -->  |  <!-- /react-text --><a href="https://github.com/picidaejs/picidae-theme-crystal" data-reactid="283"> theme-crystal</a></div><div id="busuanzi-count" data-reactid="284"><span id="busuanzi_container_site_uv" data-reactid="285"><span class="icon-font" data-reactid="286"></span><span id="busuanzi_value_site_uv" data-reactid="287"></span></span><!-- react-text: 288 -->  |  <!-- /react-text --><span id="busuanzi_container_site_pv" data-reactid="289"><span class="icon-font" data-reactid="290"></span><!-- react-text: 291 --> <!-- /react-text --><span id="busuanzi_value_site_pv" data-reactid="292"></span></span></div></footer></div>
+</div>
+<script src="/PICIDAE_COMMON.js"></script>
+<script src="/PICIDAE_ENTRY.js"></script>
+</body>
+</html>

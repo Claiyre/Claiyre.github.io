@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <title> 浅析js闭包 - Claiyre的个人博客 </title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<div id="root">
+    <div class="wrap" data-reactroot="" data-reactid="1" data-react-checksum="1613162980"><header data-reactid="2"><div class="blog-name" data-reactid="3"><a href="/" data-reactid="4">Claiyre&#x27;s Blog</a></div><ul class="nav nav-list" data-reactid="5"><li class="nav-list-item" data-reactid="6"><a class="nav-list-link" href="/posts/1" data-reactid="7">Posts</a></li><li class="nav-list-item" data-reactid="8"><a class="nav-list-link" href="/tags" data-reactid="9">Tags</a></li><li class="nav-list-item" data-reactid="10"><a class="nav-list-link" href="/about" data-reactid="11">About</a></li></ul></header><main data-reactid="12"><div data-reactid="13"><div class="post body-width" data-reactid="14"><article class="post-block" data-reactid="15"><h1 class="title post-title" data-reactid="16">浅析js闭包</h1><div class="post-info" data-reactid="17"><div class="post-info-item" data-reactid="18"><span class="icon-font" data-reactid="19"></span><!-- react-text: 20 -->JavaScript<!-- /react-text --></div><div class="post-info-item" data-reactid="21"><span class="icon-font" data-reactid="22"></span><!-- react-text: 23 -->JavaScript<!-- /react-text --></div><div class="post-info-item" data-reactid="24"><span class="icon-font" data-reactid="25"></span><time datetime="2016-11-26T20:19:55.000Z" data-reactid="26">2016-11-26</time></div></div></article><div class="post-content" data-reactid="27"><article data-reactid="28"><div class="picidae-toc" data-reactid="29"><!-- react-text: 30 -->
+<!-- /react-text --><ul data-reactid="31"><!-- react-text: 32 -->
+<!-- /react-text --><li data-reactid="33"><!-- react-text: 34 -->
+<!-- /react-text --><a href="#1%E3%80%81%E7%94%A8%E9%80%94" data-reactid="35">1、用途</a><!-- react-text: 36 -->
+<!-- /react-text --><ul data-reactid="37"><!-- react-text: 38 -->
+<!-- /react-text --><li data-reactid="39"><!-- react-text: 40 -->
+<!-- /react-text --><a href="#%E4%BB%8E%E5%A4%96%E9%83%A8%E8%AF%BB%E5%8F%96%E6%9F%90%E4%B8%AA%E5%87%BD%E6%95%B0%E7%9A%84%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F%E3%80%82" data-reactid="41">从外部读取某个函数的局部变量。</a><!-- react-text: 42 -->
+<!-- /react-text --></li><!-- react-text: 43 -->
+<!-- /react-text --><li data-reactid="44"><!-- react-text: 45 -->
+<!-- /react-text --><a href="#%E8%AE%A9%E6%9F%90%E4%B8%AA%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F%E5%A7%8B%E7%BB%88%E4%BF%9D%E5%AD%98%E5%9C%A8%E5%86%85%E5%AD%98%E4%B8%AD" data-reactid="46">让某个局部变量始终保存在内存中</a><!-- react-text: 47 -->
+<!-- /react-text --></li><!-- react-text: 48 -->
+<!-- /react-text --></ul><!-- react-text: 49 -->
+<!-- /react-text --></li><!-- react-text: 50 -->
+<!-- /react-text --><li data-reactid="51"><!-- react-text: 52 -->
+<!-- /react-text --><a href="#2%E3%80%81%E7%BC%BA%E7%82%B9" data-reactid="53">2、缺点</a><!-- react-text: 54 -->
+<!-- /react-text --><ul data-reactid="55"><!-- react-text: 56 -->
+<!-- /react-text --><li data-reactid="57"><!-- react-text: 58 -->
+<!-- /react-text --><a href="#%E5%8D%A0%E7%94%A8%E8%BF%87%E5%A4%9A%E7%9A%84%E5%86%85%E5%AD%98" data-reactid="59">占用过多的内存</a><!-- react-text: 60 -->
+<!-- /react-text --></li><!-- react-text: 61 -->
+<!-- /react-text --><li data-reactid="62"><!-- react-text: 63 -->
+<!-- /react-text --><a href="#%E5%86%85%E5%AD%98%E6%B3%84%E9%9C%B2" data-reactid="64">内存泄露</a><!-- react-text: 65 -->
+<!-- /react-text --></li><!-- react-text: 66 -->
+<!-- /react-text --></ul><!-- react-text: 67 -->
+<!-- /react-text --></li><!-- react-text: 68 -->
+<!-- /react-text --></ul><!-- react-text: 69 -->
+<!-- /react-text --></div><!-- react-text: 70 -->
+<!-- /react-text --><p data-reactid="71">我理解的闭包是可以访其他函数作用域的函数，在js中，通常通过在一个函数内部定义另一个函数来实现。提到闭包，应首先理解JavaScript特有的链式作用域</p><!-- react-text: 72 -->
+<!-- /react-text --><!-- react-text: 73 -->
+<!-- /react-text --><blockquote data-reactid="74"><!-- react-text: 75 -->
+<!-- /react-text --><p data-reactid="76"><!-- react-text: 77 -->博客原文地址：<!-- /react-text --><a href="https://claiyre.github.io/" data-reactid="78">Claiyre的个人博客</a><!-- react-text: 79 -->
+如需转载，请在文章开头注明原文地址<!-- /react-text --></p><!-- react-text: 80 -->
+<!-- /react-text --></blockquote><!-- react-text: 81 -->
+<!-- /react-text --><p data-reactid="82">很久前的一个问题终于得以解决，内心是无比喜悦的，不多说，先上代码：</p><!-- react-text: 83 -->
+<!-- /react-text --><pre data-reactid="84"><code data-query="{}" data-lang="data-lang" data-reactid="85">function test(){
+        for(var i=0;i&lt;5;i++){
+              window.onclick=function(){
+                    alert(i);  
+              }
+       }         
+} 
+test()  
+</code></pre><!-- react-text: 86 -->
+<!-- /react-text --><p data-reactid="87"> 原意是点击第一下弹出i的值0，点击第二下弹出i的值1，一直到第五次点击弹出4。想象是美好的，现实却不按常规出牌，无论点击多少次，alert出来的值都是5。后来接触了js闭包，才知道原来是它搞的鬼。看了不少相关书籍和博客后，发现其实它也没有想象得那么难。</p><!-- react-text: 88 -->
+<!-- /react-text --><p data-reactid="89"><!-- react-text: 90 -->我理解的闭包是可以访其他函数作用域的函数，在js中，通常通过在一个函数内部定义另一个函数来实现，如上例。提到闭包，应首先理解JavaScript特有的链式作用域，即一个函数作用域链的第一位是该函数本身的活动对象，第二位是包含该函数（即父函数）活动对象的索引，第三位是父函数的父函数活动对象的索引，以此类推，直至全局变量对象。注意，反之不成立，即父函数的作用域不包含子函数变量对象的索引。如图：
+<!-- /react-text --><img src="http://p1.bqimg.com/567571/47489d2a3992bfcf.png" data-reactid="91"/><!-- react-text: 92 -->
+在文章开头的例子中，每个匿名函数（循环了五次，相当于五个匿名函数）的作用域链中都保存着test的活动对象，所以它们引用的是同一个变量i。当函数返回后，i的值是5，此时，每个函数都引用着保存变量i的对象，所以在每个函数内部，i的值都是5.<!-- /react-text --></p><!-- react-text: 93 -->
+<!-- /react-text --><p data-reactid="94">闭包具有两面性，有缺点，也有优点，在上例中因为对闭包使用不当没有达到想要的效果，但在一些特殊的应用中，只有用闭包才能实现相应的功能，接下来，就谈谈闭包的用途（优点）和注意事项（缺点）。</p><!-- react-text: 95 -->
+<!-- /react-text --><h3 id="1、用途" data-reactid="96"><a href="#1%E3%80%81%E7%94%A8%E9%80%94" aria-hidden="true" data-reactid="97"><span class="icon icon-link" data-reactid="98"></span></a><!-- react-text: 99 -->1、用途<!-- /react-text --></h3><!-- react-text: 100 -->
+<!-- /react-text --><h4 id="从外部读取某个函数的局部变量。" data-reactid="101"><a href="#%E4%BB%8E%E5%A4%96%E9%83%A8%E8%AF%BB%E5%8F%96%E6%9F%90%E4%B8%AA%E5%87%BD%E6%95%B0%E7%9A%84%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F%E3%80%82" aria-hidden="true" data-reactid="102"><span class="icon icon-link" data-reactid="103"></span></a><!-- react-text: 104 -->从外部读取某个函数的局部变量。<!-- /react-text --></h4><!-- react-text: 105 -->
+<!-- /react-text --><p data-reactid="106">子函数可以访问父函数的作用域，那么如果全局作用域需要访问函数的局部变量怎么办？</p><!-- react-text: 107 -->
+<!-- /react-text --><pre data-reactid="108"><code data-query="{}" data-lang="data-lang" data-reactid="109">function myA(){
+    var a=6;
+    function myB(){
+        alert(a);
+    }
+    return myB;
+}
+var result=myA();
+result();
+</code></pre><!-- react-text: 110 -->
+<!-- /react-text --><p data-reactid="111">在上述代码中，无法直接访问myA内的变量a，但是可以再内部定义一个函数myB，该函数可以访问它的父函数myA的作用域内的变量a,然后将这个函数返回并赋值给result，相当于在全局作用域内调用myB。</p><!-- react-text: 112 -->
+<!-- /react-text --><h4 id="让某个局部变量始终保存在内存中" data-reactid="113"><a href="#%E8%AE%A9%E6%9F%90%E4%B8%AA%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F%E5%A7%8B%E7%BB%88%E4%BF%9D%E5%AD%98%E5%9C%A8%E5%86%85%E5%AD%98%E4%B8%AD" aria-hidden="true" data-reactid="114"><span class="icon icon-link" data-reactid="115"></span></a><!-- react-text: 116 -->让某个局部变量始终保存在内存中<!-- /react-text --></h4><!-- react-text: 117 -->
+<!-- /react-text --><p data-reactid="118">　　js的内存回收机制是这样的：当调用一个函数时，为它的局部变量对象分配相应的内存空间，一旦调用结束，则收回为它分配的内存。但是这样会有一个bug,即若在函数A内定义了函数B，而B也调用了A内的局部变量x，且B随时可能被全局调用，因为A调用完毕后内存被收回，所以B访问不到x。js的解决办法是，在定义一个函数时，把这个函数和它可能使用到的变量（包括自身变量和父函数的变量），统统一起保存起来，构成一个闭包，即便当父函数调用完毕，这些变量占用的内存也不会被收回。只有当该函数不可能被调用时，才会收回这些内存。</p><!-- react-text: 119 -->
+<!-- /react-text --><p data-reactid="120">　　若需要随时访问某个局部变量，则可以通过该方法，构建一个闭包，让一个局部变量始终保存在内存中。</p><!-- react-text: 121 -->
+<!-- /react-text --><h3 id="2、缺点" data-reactid="122"><a href="#2%E3%80%81%E7%BC%BA%E7%82%B9" aria-hidden="true" data-reactid="123"><span class="icon icon-link" data-reactid="124"></span></a><!-- react-text: 125 -->2、缺点<!-- /react-text --></h3><!-- react-text: 126 -->
+<!-- /react-text --><h4 id="占用过多的内存" data-reactid="127"><a href="#%E5%8D%A0%E7%94%A8%E8%BF%87%E5%A4%9A%E7%9A%84%E5%86%85%E5%AD%98" aria-hidden="true" data-reactid="128"><span class="icon icon-link" data-reactid="129"></span></a><!-- react-text: 130 -->占用过多的内存<!-- /react-text --></h4><!-- react-text: 131 -->
+<!-- /react-text --><p data-reactid="132">　　　　上述js的回收机制说明，只要闭包不被销毁，它的作用域链所占用的内存便不能被释放，若过多地、无用地占用内存，对效率和性能极为不利。</p><!-- react-text: 133 -->
+<!-- /react-text --><h4 id="内存泄露" data-reactid="134"><a href="#%E5%86%85%E5%AD%98%E6%B3%84%E9%9C%B2" aria-hidden="true" data-reactid="135"><span class="icon icon-link" data-reactid="136"></span></a><!-- react-text: 137 -->内存泄露<!-- /react-text --></h4><!-- react-text: 138 -->
+<!-- /react-text --><p data-reactid="139">　　　　由于IE9之前的版本对JavaScript和COM对象使用不同的垃圾回收机制（因为IE9之前中的部分对象不是原生JavaScript对象，如其中的BOM和DOM就是以c++的COM对象实现的，所以回收机制不同），所以只要在IE9之前版本中涉及COM对象，就会导致循环引用，以至于对象内存不能被收回。具体来说就是，如果闭包的作用域中保存着一个HTML元素，则意味着该元素将无法被销毁，例如：</p><!-- react-text: 140 -->
+<!-- /react-text --><pre data-reactid="141"><code data-query="{}" data-lang="data-lang" data-reactid="142">function f1(){
+    var e=document.getElementById(&quot;top&quot;);
+    element.onclick=function(){
+          alert(e.id);
+     };   
+}
+</code></pre><!-- react-text: 143 -->
+<!-- /react-text --><p data-reactid="144">　　上述代码为e元素事件创建了一个闭包，即匿名函数，由于匿名函数包含着对f1活动对象的引用，只要匿名函数存在，e元素的引用次数至少为1，因此它占用的内存便永远不会被收回（IE9对COM对象的垃圾回收机制决定的）。该问题也有相应的解决方法，请读者自行思考。</p><!-- react-text: 145 -->
+<!-- /react-text --><p data-reactid="146">　　最后，关于闭包中this对象，需注意，由于匿名函数的作用域具有全局性，所以慎用闭包的this对象。没有用var声明的局部变量也具有全局性</p><!-- react-text: 147 -->
+<!-- /react-text --><pre data-reactid="148"><code data-query="{}" data-lang="data-lang" data-reactid="149">  
+</code></pre><!-- react-text: 150 -->
+<!-- /react-text --></article></div><div class="gitment-container" data-reactid="151"></div></div><div class="paginator body-width" data-reactid="152"><a title="上一篇" class="prev light-tip" href="/hexo安装总结" data-reactid="153"><span class="icon-font" data-reactid="154"></span><!-- react-text: 155 --> <!-- /react-text --><!-- react-text: 156 -->上一篇<!-- /react-text --></a><a title="下一篇" class="next light-tip" href="/fle学习总结" data-reactid="157"><!-- react-text: 158 -->下一篇<!-- /react-text --><!-- react-text: 159 --> <!-- /react-text --><span class="icon-font" data-reactid="160"></span></a></div></div></main><footer data-reactid="161"><div class="footer-avatar" data-reactid="162"><img src="/avatar.png" alt="avatar" data-reactid="163"/></div><div class="copyright" data-reactid="164"><!-- react-text: 165 -->© <!-- /react-text --><time data-reactid="166">2018</time><!-- react-text: 167 -->. Powered By <!-- /react-text --><a href="https://github.com/picidaejs/picidae" data-reactid="168"> Picidae </a><!-- react-text: 169 -->  |  <!-- /react-text --><a href="https://github.com/picidaejs/picidae-theme-crystal" data-reactid="170"> theme-crystal</a></div><div id="busuanzi-count" data-reactid="171"><span id="busuanzi_container_site_uv" data-reactid="172"><span class="icon-font" data-reactid="173"></span><span id="busuanzi_value_site_uv" data-reactid="174"></span></span><!-- react-text: 175 -->  |  <!-- /react-text --><span id="busuanzi_container_site_pv" data-reactid="176"><span class="icon-font" data-reactid="177"></span><!-- react-text: 178 --> <!-- /react-text --><span id="busuanzi_value_site_pv" data-reactid="179"></span></span></div></footer></div>
+</div>
+<script src="/PICIDAE_COMMON.js"></script>
+<script src="/PICIDAE_ENTRY.js"></script>
+</body>
+</html>

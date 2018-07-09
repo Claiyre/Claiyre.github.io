@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <title> JavaScript函数学习总结(一)---函数定义 - Claiyre的个人博客 </title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<div id="root">
+    <div class="wrap" data-reactroot="" data-reactid="1" data-react-checksum="1242373604"><header data-reactid="2"><div class="blog-name" data-reactid="3"><a href="/" data-reactid="4">Claiyre&#x27;s Blog</a></div><ul class="nav nav-list" data-reactid="5"><li class="nav-list-item" data-reactid="6"><a class="nav-list-link" href="/posts/1" data-reactid="7">Posts</a></li><li class="nav-list-item" data-reactid="8"><a class="nav-list-link" href="/tags" data-reactid="9">Tags</a></li><li class="nav-list-item" data-reactid="10"><a class="nav-list-link" href="/about" data-reactid="11">About</a></li></ul></header><main data-reactid="12"><div data-reactid="13"><div class="post body-width" data-reactid="14"><article class="post-block" data-reactid="15"><h1 class="title post-title" data-reactid="16">JavaScript函数学习总结(一)---函数定义</h1><div class="post-info" data-reactid="17"><div class="post-info-item" data-reactid="18"><span class="icon-font" data-reactid="19"></span><!-- react-text: 20 -->JavaScript<!-- /react-text --></div><div class="post-info-item" data-reactid="21"><span class="icon-font" data-reactid="22"></span><!-- react-text: 23 -->学习总结<!-- /react-text --></div><div class="post-info-item" data-reactid="24"><span class="icon-font" data-reactid="25"></span><time datetime="2016-12-03T12:02:39.000Z" data-reactid="26">2016-12-03</time></div></div></article><div class="post-content" data-reactid="27"><article data-reactid="28"><div class="picidae-toc" data-reactid="29"><!-- react-text: 30 -->
+<!-- /react-text --><ul data-reactid="31"><!-- react-text: 32 -->
+<!-- /react-text --><li data-reactid="33"><!-- react-text: 34 -->
+<!-- /react-text --><a href="#%E6%99%AE%E9%80%9A%E5%87%BD%E6%95%B0%E5%AE%9A%E4%B9%89%E4%B8%8E%E5%88%9D%E5%A7%8B%E5%8C%96" data-reactid="35">普通函数定义与初始化</a><!-- react-text: 36 -->
+<!-- /react-text --></li><!-- react-text: 37 -->
+<!-- /react-text --><li data-reactid="38"><!-- react-text: 39 -->
+<!-- /react-text --><a href="#generator%EF%BC%88%E7%94%9F%E6%88%90%E5%99%A8%EF%BC%89%E5%87%BD%E6%95%B0%E7%9A%84%E5%AE%9A%E4%B9%89" data-reactid="40">generator（生成器）函数的定义</a><!-- react-text: 41 -->
+<!-- /react-text --><ul data-reactid="42"><!-- react-text: 43 -->
+<!-- /react-text --><li data-reactid="44"><!-- react-text: 45 -->
+<!-- /react-text --><a href="#%E7%BA%B8%E4%B8%8A%E8%B0%88%E5%85%B5%E7%BB%88%E8%A7%89%E6%B5%85%EF%BC%8C%E6%88%91%E4%BB%AC%E6%9D%A5%E7%9C%8B%E4%B8%80%E4%B8%AA%E4%BE%8B%E5%AD%90" data-reactid="46">纸上谈兵终觉浅，我们来看一个例子</a><!-- react-text: 47 -->
+<!-- /react-text --></li><!-- react-text: 48 -->
+<!-- /react-text --></ul><!-- react-text: 49 -->
+<!-- /react-text --></li><!-- react-text: 50 -->
+<!-- /react-text --><li data-reactid="51"><!-- react-text: 52 -->
+<!-- /react-text --><a href="#%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0%E7%9A%84%E5%AE%9A%E4%B9%89" data-reactid="53">箭头函数的定义</a><!-- react-text: 54 -->
+<!-- /react-text --></li><!-- react-text: 55 -->
+<!-- /react-text --></ul><!-- react-text: 56 -->
+<!-- /react-text --></div><!-- react-text: 57 -->
+<!-- /react-text --><p data-reactid="58"><!-- react-text: 59 -->在许多传统的OO语言中，对象可以包含数据，还可拥有方法，也就是属于该对象的函数。但在JavaScript中，函数也被认为是一个对象，一个Function对象，因此函数被称为JavaScript的<!-- /react-text --><code data-reactid="60">一级公民</code><!-- react-text: 61 -->（ first-class objects）！<!-- /react-text --></p><!-- react-text: 62 -->
+<!-- /react-text --><!-- react-text: 63 -->
+<!-- /react-text --><blockquote data-reactid="64"><!-- react-text: 65 -->
+<!-- /react-text --><p data-reactid="66"><!-- react-text: 67 -->博客原文地址：<!-- /react-text --><a href="https://claiyre.github.io/" data-reactid="68">Claiyre的个人博客</a><!-- react-text: 69 -->
+如需转载，请在文章开头注明原文地址<!-- /react-text --></p><!-- react-text: 70 -->
+<!-- /react-text --></blockquote><!-- react-text: 71 -->
+<!-- /react-text --><h3 id="普通函数定义与初始化" data-reactid="72"><a href="#%E6%99%AE%E9%80%9A%E5%87%BD%E6%95%B0%E5%AE%9A%E4%B9%89%E4%B8%8E%E5%88%9D%E5%A7%8B%E5%8C%96" aria-hidden="true" data-reactid="73"><span class="icon icon-link" data-reactid="74"></span></a><!-- react-text: 75 -->普通函数定义与初始化<!-- /react-text --></h3><!-- react-text: 76 -->
+<!-- /react-text --><p data-reactid="77">1.通过构造器Function
+我们知道，JavaScript中Array，Date等基本类型的声明是通过其对应的构造器（关键字）来声明的。如</p><!-- react-text: 78 -->
+<!-- /react-text --><pre data-reactid="79"><code data-query="{}" data-lang="data-lang" data-reactid="80">var arr1 = new Array();   #声明一个空数组
+var date1 = new Date();   #声明一个时间对象，获取当前时间
+</code></pre><!-- react-text: 81 -->
+<!-- /react-text --><p data-reactid="82">与定义其他基本对象类型如Array，Date一样，JavaScript的函数是通过关键字Function来定义并初始化的</p><!-- react-text: 83 -->
+<!-- /react-text --><pre data-reactid="84"><code data-query="{}" data-lang="data-lang" data-reactid="85"> new Function([arg1],[arg2](,[arg3,...]),functionBody);
+</code></pre><!-- react-text: 86 -->
+<!-- /react-text --><p data-reactid="87">举个栗子</p><!-- react-text: 88 -->
+<!-- /react-text --><pre data-reactid="89"><code data-query="{}" data-lang="data-lang" data-reactid="90">var f1 = new Function(&#x27;name&#x27;,&#x27;age&#x27;,&#x27;console.log(&quot;hello,&quot; + name);console.log(&quot;You are &quot; + age)&#x27;);
+f1(&quot;Claiyre&quot;,20);
+</code></pre><!-- react-text: 91 -->
+<!-- /react-text --><p data-reactid="92">当然，除了这种‘吃力不讨好’的定义方法外，你还有其他更简洁的方法来定义一个函数！</p><!-- react-text: 93 -->
+<!-- /react-text --><p data-reactid="94">2.通过函数声明（function statement）
+语法：</p><!-- react-text: 95 -->
+<!-- /react-text --><pre data-reactid="96"><code data-query="{}" data-lang="data-lang" data-reactid="97">function name([arg1,[,arg2,[...argn]]]) {
+   functionBody;
+ }
+</code></pre><!-- react-text: 98 -->
+<!-- /react-text --><p data-reactid="99"> name是指定的函数名，arg是函数的参数，可以为任意多个（当然，不能超过可以表示的范围），functionBody为函数体。
+栗子如下</p><!-- react-text: 100 -->
+<!-- /react-text --><pre data-reactid="101"><code data-query="{}" data-lang="data-lang" data-reactid="102">function sayHi (name,age){
+       console.log(&quot;hello,&quot; + name);
+       console.log(&quot;you are &quot; + age);
+ }
+</code></pre><!-- react-text: 103 -->
+<!-- /react-text --><p data-reactid="104">3.通过函数表达式（function expression)
+语法</p><!-- react-text: 105 -->
+<!-- /react-text --><pre data-reactid="106"><code data-query="{}" data-lang="data-lang" data-reactid="107">   function [name]([arg1,[,arg2,[...argn]]]) {
+       console.log(&quot;hello,&quot; + name);
+       console.log(&quot;you are &quot; + age);
+   }
+</code></pre><!-- react-text: 108 -->
+<!-- /react-text --><p data-reactid="109">4.总结</p><!-- react-text: 110 -->
+<!-- /react-text --><ul data-reactid="111"><!-- react-text: 112 -->
+<!-- /react-text --><li data-reactid="113">方式2和方式3拥有几乎相同的语法，极其相似。但聪明的你一定发现了它们的不同之处了对不对O(∩_∩)O——函数表达式定义一个函数时可以省略函数名，从而创建一个匿名函数或一个立即执行函数(IIFE)。</li><!-- react-text: 114 -->
+<!-- /react-text --><li data-reactid="115">相比于方式2和方式3，方式1用Function构造器声明函数的方式更为低效，因为后者生成的对象是在函数被创建时解析的，前者是和其他代码一起解析的。</li><!-- react-text: 116 -->
+<!-- /react-text --><li data-reactid="117">通过函数调用的方式调用Function 的构造函数（不用new关键字）跟方式1是一样的</li><!-- react-text: 118 -->
+<!-- /react-text --><li data-reactid="119">使用Function构造器，并不会在创建它的上下文(Context)中创建闭包，所以它们只能访问自身局部变量和全局变量，相当于它们总是在全局作用域中被创建的，即便实际并不是！</li><!-- react-text: 120 -->
+<!-- /react-text --></ul><!-- react-text: 121 -->
+<!-- /react-text --><pre data-reactid="122"><code data-query="{}" data-lang="data-lang" data-reactid="123">myName = &#x27;outer&#x27;;
+var person = {
+                myName: &#x27;inner&#x27;,
+                sayHi: new Function(&#x27;like&#x27;,&#x27;console.log(&quot;I am &quot;+ myName + &quot;!I like &quot; + like)&#x27;)
+            };
+ person.sayHi(&quot;banana&quot;);
+</code></pre><!-- react-text: 124 -->
+<!-- /react-text --><p data-reactid="125"><!-- react-text: 126 -->结果如下：
+<!-- /react-text --><img src="http://p1.bpimg.com/567571/e00ccdd2bd6a618c.png" data-reactid="127"/></p><!-- react-text: 128 -->
+<!-- /react-text --><h3 id="generator（生成器）函数的定义" data-reactid="129"><a href="#generator%EF%BC%88%E7%94%9F%E6%88%90%E5%99%A8%EF%BC%89%E5%87%BD%E6%95%B0%E7%9A%84%E5%AE%9A%E4%B9%89" aria-hidden="true" data-reactid="130"><span class="icon icon-link" data-reactid="131"></span></a><!-- react-text: 132 -->generator（生成器）函数的定义<!-- /react-text --></h3><!-- react-text: 133 -->
+<!-- /react-text --><p data-reactid="134"><!-- react-text: 135 -->generator是ES6标准引入的新的数据类型，旨在利用生成器函数返回一个对象，该对象遵守迭代器协议，而generator的环境(context)在每次执行后都会被保存，以便迭代器对象再次使用，每次迭代就相当于生成一个新的函数，这也是命名为generator（函数生成器）的缘故吧。迭代器协议是ES6标准引入的新协议之一，具体参见 <!-- /react-text --><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#iterator" data-reactid="136">the iterable protocol</a></p><!-- react-text: 137 -->
+<!-- /react-text --><p data-reactid="138">与普通函数类似，generator函数也有三种定义方式，但与普通函数稍有不同，具体如下
+1. 通过GeneratorFunction构造器</p><!-- react-text: 139 -->
+<!-- /react-text --><pre data-reactid="140"><code data-query="{}" data-lang="data-lang" data-reactid="141">    new GeneratorFunction ([arg1[, arg2[, ...argN]],] functionBody)
+</code></pre><!-- react-text: 142 -->
+<!-- /react-text --><ol start="2" data-reactid="143"><!-- react-text: 144 -->
+<!-- /react-text --><li data-reactid="145"><!-- react-text: 146 -->通过function<!-- /react-text --><em data-reactid="147"> 声明（function</em><!-- react-text: 148 --> statement）<!-- /react-text --></li><!-- react-text: 149 -->
+<!-- /react-text --></ol><!-- react-text: 150 -->
+<!-- /react-text --><pre data-reactid="151"><code data-query="{}" data-lang="data-lang" data-reactid="152">    function* name([param[, param[, ... param]]]) {
+         statements
+     }
+</code></pre><!-- react-text: 153 -->
+<!-- /react-text --><ol start="3" data-reactid="154"><!-- react-text: 155 -->
+<!-- /react-text --><li data-reactid="156"><!-- react-text: 157 -->通过function<!-- /react-text --><em data-reactid="158">表达式（function</em><!-- react-text: 159 --> expression）<!-- /react-text --></li><!-- react-text: 160 -->
+<!-- /react-text --></ol><!-- react-text: 161 -->
+<!-- /react-text --><pre data-reactid="162"><code data-query="{}" data-lang="data-lang" data-reactid="163">    function* [name]([param1[, param2[, ..., paramN]]]) {
+       statements
+    }
+</code></pre><!-- react-text: 164 -->
+<!-- /react-text --><p data-reactid="165"><!-- react-text: 166 -->调用一个生成器函数并不会立即执行它的主体，而是返回一个与该函数对应的迭代器对象，当调用这个迭代器对象的<!-- /react-text --><strong data-reactid="167">next()</strong><!-- react-text: 168 -->方法时，生成器函数的主体才会被执行，直到遇见第一个 <!-- /react-text --><strong data-reactid="169">yield表达式</strong></p><!-- react-text: 170 -->
+<!-- /react-text --><h4 id="纸上谈兵终觉浅，我们来看一个例子" data-reactid="171"><a href="#%E7%BA%B8%E4%B8%8A%E8%B0%88%E5%85%B5%E7%BB%88%E8%A7%89%E6%B5%85%EF%BC%8C%E6%88%91%E4%BB%AC%E6%9D%A5%E7%9C%8B%E4%B8%80%E4%B8%AA%E4%BE%8B%E5%AD%90" aria-hidden="true" data-reactid="172"><span class="icon icon-link" data-reactid="173"></span></a><!-- react-text: 174 -->纸上谈兵终觉浅，我们来看一个例子<!-- /react-text --></h4><!-- react-text: 175 -->
+<!-- /react-text --><pre data-reactid="176"><code data-query="{}" data-lang="data-lang" data-reactid="177">function* idMaker(){
+  var index = 0;
+  while(index &lt; 3)
+    yield index++;
+}
+
+var gen = idMaker();   // 此时并没有执行idmaker的主体
+
+console.log(gen.next().value); // 0
+console.log(gen.next().value); // 1
+console.log(gen.next().value); // 2
+console.log(gen.next().value); // undefined
+</code></pre><!-- react-text: 178 -->
+<!-- /react-text --><p data-reactid="179"><!-- react-text: 180 -->即可用<!-- /react-text --><strong data-reactid="181">yield</strong><!-- react-text: 182 -->指定要返回的值，也可用 <!-- /react-text --><strong data-reactid="183">yield*</strong><!-- react-text: 184 --> 委派另一个generator函数对象  <!-- /react-text --></p><!-- react-text: 185 -->
+<!-- /react-text --><p data-reactid="186">如下</p><!-- react-text: 187 -->
+<!-- /react-text --><pre data-reactid="188"><code data-query="{}" data-lang="data-lang" data-reactid="189">function* generatorOne(index){                                                 
+   yield index;
+   yield* generatorTwo(index);
+   yield index+10;
+}
+
+ function* generatorTwo(index){
+   yield index+1;
+   yield index+2;
+   yield index+3;
+}
+
+var ge = generatorOne(10);                                                                
+console.log(ge.next());   
+console.log(ge.next());
+console.log(ge.next());
+console.log(ge.next());
+console.log(ge.next());
+console.log(ge.next());
+</code></pre><!-- react-text: 190 -->
+<!-- /react-text --><p data-reactid="191"><!-- react-text: 192 -->运行结果如下：
+<!-- /react-text --><img src="http://p1.bpimg.com/567571/0b42a32b3df47f38.png" data-reactid="193"/></p><!-- react-text: 194 -->
+<!-- /react-text --><p data-reactid="195"><!-- react-text: 196 -->我们可以看到<!-- /react-text --><strong data-reactid="197">ge.next()</strong><!-- react-text: 198 -->返回了一个对象，该对象有两个属性，value是其返回的值，done代表迭代器是否迭代到了尽头<!-- /react-text --></p><!-- react-text: 199 -->
+<!-- /react-text --><p data-reactid="200"><!-- react-text: 201 -->generator就像是一个不用占用任何全局变量就可以记住执行状态的函数，它的好处当然不只是上面例子那样简单，关于优点和用处，个人认为廖雪峰老师写的已相当不错，参见<!-- /react-text --><a href="http://www.liaoxuefeng.com/wiki/001434446689867b27157e896e74d51a89c25cc8b43bdb3000/00143450083887673122b45a4414333ac366c3c935125e7000" data-reactid="202">generator</a><!-- react-text: 203 -->  <!-- /react-text --></p><!-- react-text: 204 -->
+<!-- /react-text --><h3 id="箭头函数的定义" data-reactid="205"><a href="#%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0%E7%9A%84%E5%AE%9A%E4%B9%89" aria-hidden="true" data-reactid="206"><span class="icon icon-link" data-reactid="207"></span></a><!-- react-text: 208 -->箭头函数的定义<!-- /react-text --></h3><!-- react-text: 209 -->
+<!-- /react-text --><p data-reactid="210">ES6标准有一个深受广大程序猿喜爱的新属性，那就是箭头函数。它的定义就是用一个箭头。其具体语法如下</p><!-- react-text: 211 -->
+<!-- /react-text --><pre data-reactid="212"><code data-query="{}" data-lang="data-lang" data-reactid="213">let add = x =&gt; x+1 ;
+add(10);   //11
+</code></pre><!-- react-text: 214 -->
+<!-- /react-text --><p data-reactid="215">是不是很简便呢？</p><!-- react-text: 216 -->
+<!-- /react-text --><p data-reactid="217">当然如果有多个参数的话，需要给所有参数加上括号</p><!-- react-text: 218 -->
+<!-- /react-text --><pre data-reactid="219"><code data-query="{}" data-lang="data-lang" data-reactid="220">let add = (x,y) =&gt; x+y ;
+add(5,6);
+</code></pre><!-- react-text: 221 -->
+<!-- /react-text --><p data-reactid="222"><!-- react-text: 223 -->以此类推，如果函数体有多条语句的话，也应该给函数体加上<!-- /react-text --><strong data-reactid="224">{}</strong><!-- react-text: 225 -->
+此外，箭头函数的另一个特殊之处是它的this总是指向词法作用域，不能被改变,比如：<!-- /react-text --></p><!-- react-text: 226 -->
+<!-- /react-text --><pre data-reactid="227"><code data-query="{}" data-lang="data-lang" data-reactid="228">var myName = &quot;outer&quot;;
+var person = {
+    myName:&quot;inner&quot;,
+    age:20
+};
+var sayHi= ()=&gt;console.log(this.myName);
+sayHi();                                  //outer
+sayHi.call(person);                       //outer
+</code></pre><!-- react-text: 229 -->
+<!-- /react-text --><p data-reactid="230"><!-- react-text: 231 -->参考资料：
+<!-- /react-text --><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions" data-reactid="232">MDN JavaScript</a></p><!-- react-text: 233 -->
+<!-- /react-text --></article></div><div class="gitment-container" data-reactid="234"></div></div><div class="paginator body-width" data-reactid="235"><a title="上一篇" class="prev light-tip" href="/css居中小结" data-reactid="236"><span class="icon-font" data-reactid="237"></span><!-- react-text: 238 --> <!-- /react-text --><!-- react-text: 239 -->上一篇<!-- /react-text --></a><a title="下一篇" class="next light-tip" href="/hexo安装总结" data-reactid="240"><!-- react-text: 241 -->下一篇<!-- /react-text --><!-- react-text: 242 --> <!-- /react-text --><span class="icon-font" data-reactid="243"></span></a></div></div></main><footer data-reactid="244"><div class="footer-avatar" data-reactid="245"><img src="/avatar.png" alt="avatar" data-reactid="246"/></div><div class="copyright" data-reactid="247"><!-- react-text: 248 -->© <!-- /react-text --><time data-reactid="249">2018</time><!-- react-text: 250 -->. Powered By <!-- /react-text --><a href="https://github.com/picidaejs/picidae" data-reactid="251"> Picidae </a><!-- react-text: 252 -->  |  <!-- /react-text --><a href="https://github.com/picidaejs/picidae-theme-crystal" data-reactid="253"> theme-crystal</a></div><div id="busuanzi-count" data-reactid="254"><span id="busuanzi_container_site_uv" data-reactid="255"><span class="icon-font" data-reactid="256"></span><span id="busuanzi_value_site_uv" data-reactid="257"></span></span><!-- react-text: 258 -->  |  <!-- /react-text --><span id="busuanzi_container_site_pv" data-reactid="259"><span class="icon-font" data-reactid="260"></span><!-- react-text: 261 --> <!-- /react-text --><span id="busuanzi_value_site_pv" data-reactid="262"></span></span></div></footer></div>
+</div>
+<script src="/PICIDAE_COMMON.js"></script>
+<script src="/PICIDAE_ENTRY.js"></script>
+</body>
+</html>

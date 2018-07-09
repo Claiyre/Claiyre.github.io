@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <title> footer定位引发的一些思考 - Claiyre的个人博客 </title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<div id="root">
+    <div class="wrap" data-reactroot="" data-reactid="1" data-react-checksum="809417827"><header data-reactid="2"><div class="blog-name" data-reactid="3"><a href="/" data-reactid="4">Claiyre&#x27;s Blog</a></div><ul class="nav nav-list" data-reactid="5"><li class="nav-list-item" data-reactid="6"><a class="nav-list-link" href="/posts/1" data-reactid="7">Posts</a></li><li class="nav-list-item" data-reactid="8"><a class="nav-list-link" href="/tags" data-reactid="9">Tags</a></li><li class="nav-list-item" data-reactid="10"><a class="nav-list-link" href="/about" data-reactid="11">About</a></li></ul></header><main data-reactid="12"><div data-reactid="13"><div class="post body-width" data-reactid="14"><article class="post-block" data-reactid="15"><h1 class="title post-title" data-reactid="16">footer定位引发的一些思考</h1><div class="post-info" data-reactid="17"><div class="post-info-item" data-reactid="18"><span class="icon-font" data-reactid="19"></span><!-- react-text: 20 -->position<!-- /react-text --></div><div class="post-info-item" data-reactid="21"><span class="icon-font" data-reactid="22"></span><!-- react-text: 23 -->相对高度<!-- /react-text --></div><div class="post-info-item" data-reactid="24"><span class="icon-font" data-reactid="25"></span><!-- react-text: 26 -->CSS<!-- /react-text --></div><div class="post-info-item" data-reactid="27"><span class="icon-font" data-reactid="28"></span><time datetime="2018-02-22T22:04:55.000Z" data-reactid="29">2018-02-22</time></div></div></article><div class="post-content" data-reactid="30"><article data-reactid="31"><div class="picidae-toc" data-reactid="32"><!-- react-text: 33 -->
+<!-- /react-text --><ul data-reactid="34"><!-- react-text: 35 -->
+<!-- /react-text --><li data-reactid="36"><!-- react-text: 37 -->
+<!-- /react-text --><a href="#footer%E7%BB%9D%E5%AF%B9%E5%AE%9A%E4%BD%8D" data-reactid="38">footer绝对定位</a><!-- react-text: 39 -->
+<!-- /react-text --></li><!-- react-text: 40 -->
+<!-- /react-text --><li data-reactid="41"><!-- react-text: 42 -->
+<!-- /react-text --><a href="#%E6%B7%BB%E5%8A%A0%E9%A2%9D%E5%A4%96%E6%A0%87%E7%AD%BE" data-reactid="43">添加额外标签</a><!-- react-text: 44 -->
+<!-- /react-text --></li><!-- react-text: 45 -->
+<!-- /react-text --></ul><!-- react-text: 46 -->
+<!-- /react-text --></div><!-- react-text: 47 -->
+<!-- /react-text --><p data-reactid="48">定位是一个极其常见的需求，用到的css属性也是很基础的，像position，height等。但前些天写博客主题，接连定位博客footer不成功，才意识到即便是这么简单的属性，其中也蕴含着‘大道理’。
+当时自认为遇到了一些很奇怪的问题，查阅了相关资料后才发现其实是一些基本概念没弄清楚，比如：</p><!-- react-text: 49 -->
+<!-- /react-text --><ul data-reactid="50"><!-- react-text: 51 -->
+<!-- /react-text --><li data-reactid="52">相对高度的相对是根据谁来计算的？</li><!-- react-text: 53 -->
+<!-- /react-text --><li data-reactid="54">怎么确定绝对定位元素的包含块？</li><!-- react-text: 55 -->
+<!-- /react-text --><li data-reactid="56">绝对定位和相对定位元素的相对高度计算规则是否一样？相对最小高度（min-height）呢？</li><!-- react-text: 57 -->
+<!-- /react-text --><li data-reactid="58"><!-- react-text: 59 -->什么是 <!-- /react-text --><code data-reactid="60">initial containing block</code><!-- react-text: 61 -->, 初始包含块的大小怎么算？<!-- /react-text --></li><!-- react-text: 62 -->
+<!-- /react-text --></ul><!-- react-text: 63 -->
+<!-- /react-text --><p data-reactid="64">ok，先抛开这些问题，回到定位footer。</p><!-- react-text: 65 -->
+<!-- /react-text --><p data-reactid="66">为了便于叙述，我们把一个页面抽象为三部分，页面头部、页面底部和页面主体内容部分，下文中分别用header、footer和content来指代这三部分。</p><!-- react-text: 67 -->
+<!-- /react-text --><p data-reactid="68">通常情况下，footer的高度是固定的，content的高度不固定。footer的定位通常有两个要求：</p><!-- react-text: 69 -->
+<!-- /react-text --><ol data-reactid="70"><!-- react-text: 71 -->
+<!-- /react-text --><li data-reactid="72">当页面高度小于视图(viewport)高度时，footer在视图底部</li><!-- react-text: 73 -->
+<!-- /react-text --><li data-reactid="74">当页面高度大于视图高度时，footer在页面底部</li><!-- react-text: 75 -->
+<!-- /react-text --></ol><!-- react-text: 76 -->
+<!-- /react-text --><p data-reactid="77">考虑到以上，有两种思路</p><!-- react-text: 78 -->
+<!-- /react-text --><ul data-reactid="79"><!-- react-text: 80 -->
+<!-- /react-text --><li data-reactid="81"><!-- react-text: 82 -->footer使用绝对定位且<!-- /react-text --><code data-reactid="83">bottom: 0</code><!-- react-text: 84 -->，footer的包含块的高度 = max(视图高度，页面高度)<!-- /react-text --></li><!-- react-text: 85 -->
+<!-- /react-text --><li data-reactid="86">用一个额外的标签包含header和content，footer使用margin负值</li><!-- react-text: 87 -->
+<!-- /react-text --></ul><!-- react-text: 88 -->
+<!-- /react-text --><h3 id="footer绝对定位" data-reactid="89"><a href="#footer%E7%BB%9D%E5%AF%B9%E5%AE%9A%E4%BD%8D" aria-hidden="true" data-reactid="90"><span class="icon icon-link" data-reactid="91"></span></a><!-- react-text: 92 -->footer绝对定位<!-- /react-text --></h3><!-- react-text: 93 -->
+<!-- /react-text --><p data-reactid="94">绝对定位的语法没啥可说的，其位置（top/bottom/left/right）是相对该元素的包含块来说的，所以定好位的关键是找准元素的包含块。</p><!-- react-text: 95 -->
+<!-- /react-text --><p data-reactid="96">html结构如下</p><!-- react-text: 97 -->
+<!-- /react-text --><pre data-reactid="98"><code class="hljs language-html" data-query="{}" data-lang="html" data-reactid="99"><span class="hljs-tag" data-reactid="100"><!-- react-text: 101 -->&lt;<!-- /react-text --><span class="hljs-name" data-reactid="102">body</span><!-- react-text: 103 -->&gt;<!-- /react-text --></span><!-- react-text: 104 -->
+  <!-- /react-text --><span class="hljs-tag" data-reactid="105"><!-- react-text: 106 -->&lt;<!-- /react-text --><span class="hljs-name" data-reactid="107">div</span><!-- react-text: 108 --> <!-- /react-text --><span class="hljs-attr" data-reactid="109">class</span><!-- react-text: 110 -->=<!-- /react-text --><span class="hljs-string" data-reactid="111">&quot;wrap&quot;</span><!-- react-text: 112 -->&gt;<!-- /react-text --></span><!-- react-text: 113 -->
+    <!-- /react-text --><span class="hljs-tag" data-reactid="114"><!-- react-text: 115 -->&lt;<!-- /react-text --><span class="hljs-name" data-reactid="116">div</span><!-- react-text: 117 --> <!-- /react-text --><span class="hljs-attr" data-reactid="118">class</span><!-- react-text: 119 -->=<!-- /react-text --><span class="hljs-string" data-reactid="120">&quot;header&quot;</span><!-- react-text: 121 -->&gt;<!-- /react-text --></span><!-- react-text: 122 -->This is header<!-- /react-text --><span class="hljs-tag" data-reactid="123"><!-- react-text: 124 -->&lt;/<!-- /react-text --><span class="hljs-name" data-reactid="125">div</span><!-- react-text: 126 -->&gt;<!-- /react-text --></span><!-- react-text: 127 -->
+    <!-- /react-text --><span class="hljs-tag" data-reactid="128"><!-- react-text: 129 -->&lt;<!-- /react-text --><span class="hljs-name" data-reactid="130">div</span><!-- react-text: 131 --> <!-- /react-text --><span class="hljs-attr" data-reactid="132">class</span><!-- react-text: 133 -->=<!-- /react-text --><span class="hljs-string" data-reactid="134">&quot;content&quot;</span><!-- react-text: 135 -->&gt;<!-- /react-text --></span><!-- react-text: 136 -->This is content<!-- /react-text --><span class="hljs-tag" data-reactid="137"><!-- react-text: 138 -->&lt;/<!-- /react-text --><span class="hljs-name" data-reactid="139">div</span><!-- react-text: 140 -->&gt;<!-- /react-text --></span><!-- react-text: 141 -->
+    <!-- /react-text --><span class="hljs-tag" data-reactid="142"><!-- react-text: 143 -->&lt;<!-- /react-text --><span class="hljs-name" data-reactid="144">div</span><!-- react-text: 145 --> <!-- /react-text --><span class="hljs-attr" data-reactid="146">class</span><!-- react-text: 147 -->=<!-- /react-text --><span class="hljs-string" data-reactid="148">&quot;footer&quot;</span><!-- react-text: 149 -->&gt;<!-- /react-text --></span><!-- react-text: 150 -->This is footer<!-- /react-text --><span class="hljs-tag" data-reactid="151"><!-- react-text: 152 -->&lt;/<!-- /react-text --><span class="hljs-name" data-reactid="153">div</span><!-- react-text: 154 -->&gt;<!-- /react-text --></span><!-- react-text: 155 -->
+  <!-- /react-text --><span class="hljs-tag" data-reactid="156"><!-- react-text: 157 -->&lt;/<!-- /react-text --><span class="hljs-name" data-reactid="158">div</span><!-- react-text: 159 -->&gt;<!-- /react-text --></span><!-- react-text: 160 -->
+<!-- /react-text --><span class="hljs-tag" data-reactid="161"><!-- react-text: 162 -->&lt;/<!-- /react-text --><span class="hljs-name" data-reactid="163">body</span><!-- react-text: 164 -->&gt;<!-- /react-text --></span></code></pre><!-- react-text: 165 -->
+<!-- /react-text --><p data-reactid="166">footer设置绝对定位</p><!-- react-text: 167 -->
+<!-- /react-text --><pre data-reactid="168"><code class="hljs language-CSS" data-query="{}" data-lang="CSS" data-reactid="169"><span class="hljs-selector-class" data-reactid="170">.footer</span><!-- react-text: 171 --> {
+  <!-- /react-text --><span class="hljs-attribute" data-reactid="172">position</span><!-- react-text: 173 -->: absolute;
+  <!-- /react-text --><span class="hljs-attribute" data-reactid="174">height</span><!-- react-text: 175 -->: <!-- /react-text --><span class="hljs-number" data-reactid="176">100px</span><!-- react-text: 177 -->;
+  <!-- /react-text --><span class="hljs-attribute" data-reactid="178">bottom</span><!-- react-text: 179 -->: <!-- /react-text --><span class="hljs-number" data-reactid="180">0</span><!-- react-text: 181 -->;
+  <!-- /react-text --><span class="hljs-attribute" data-reactid="182">width</span><!-- react-text: 183 -->: <!-- /react-text --><span class="hljs-number" data-reactid="184">100%</span><!-- react-text: 185 -->;
+  <!-- /react-text --><span class="hljs-attribute" data-reactid="186">background</span><!-- react-text: 187 -->: blue;
+}<!-- /react-text --></code></pre><!-- react-text: 188 -->
+<!-- /react-text --><p data-reactid="189">若只是这样，footer总是在视图底部，即便页面高度大于视图高度，并没有达到我们想到的效果。</p><!-- react-text: 190 -->
+<!-- /react-text --><p data-reactid="191">为什么呢？</p><!-- react-text: 192 -->
+<!-- /react-text --><p data-reactid="193">分析一下，绝对定位元素的位置是相对其包含块来说的，那么绝对定位元素的包含块是谁？</p><!-- react-text: 194 -->
+<!-- /react-text --><p data-reactid="195"><a href="https://www.w3.org/TR/CSS2/visudet.html#containing-block-details" data-reactid="196">w3.org 10.1节关于containing block的介绍：</a></p><!-- react-text: 197 -->
+<!-- /react-text --><blockquote data-reactid="198"><!-- react-text: 199 -->
+<!-- /react-text --><p data-reactid="200">If the element has &#x27;position: absolute&#x27;, the containing block is established by the nearest ancestor with a &#x27;position&#x27; of &#x27;absolute&#x27;, &#x27;relative&#x27; or &#x27;fixed&#x27;, in the following way:</p><!-- react-text: 201 -->
+<!-- /react-text --><p data-reactid="202">In the case that the ancestor is an inline element, the containing block is the bounding box around the padding boxes of the first and the last inline boxes generated for that element. In CSS 2.1, if the inline element is split across multiple lines, the containing block is undefined.</p><!-- react-text: 203 -->
+<!-- /react-text --><p data-reactid="204">Otherwise, the containing block is formed by the padding edge of the ancestor.</p><!-- react-text: 205 -->
+<!-- /react-text --><p data-reactid="206">If there is no such ancestor, the containing block is the initial containing block.</p><!-- react-text: 207 -->
+<!-- /react-text --></blockquote><!-- react-text: 208 -->
+<!-- /react-text --><p data-reactid="209">简而言之，绝对定位元素的包含块是position为absolute/relative/fixed的最近的祖先元素，如果没有这样的祖先，那就是初始包含块。</p><!-- react-text: 210 -->
+<!-- /react-text --><p data-reactid="211"><a href="https://www.w3.org/TR/CSS2/visudet.html#containing-block-details" data-reactid="212">w3c对初始包含块的介绍: </a></p><!-- react-text: 213 -->
+<!-- /react-text --><blockquote data-reactid="214"><!-- react-text: 215 -->
+<!-- /react-text --><p data-reactid="216">The containing block in which the root element lives is a rectangle called the initial containing block. For continuous media, it has the dimensions of the viewport and is anchored at the canvas origin; it is the page area for paged media. </p><!-- react-text: 217 -->
+<!-- /react-text --></blockquote><!-- react-text: 218 -->
+<!-- /react-text --><p data-reactid="219"><!-- react-text: 220 -->根元素的包含块是初始包含块，对于<!-- /react-text --><code data-reactid="221">continuous media</code><!-- react-text: 222 -->来说，它的尺寸和视图尺寸一样大。<!-- /react-text --></p><!-- react-text: 223 -->
+<!-- /react-text --><p data-reactid="224">回到footer定位
+可以发现footer现在的包含块就是初始包含块，所以footer会一直在视图底部。</p><!-- react-text: 225 -->
+<!-- /react-text --><p data-reactid="226">包含块可以是任意祖先元素，若其高度要等于max(视图高度，页面高度)，footer的位置即可满足条件。</p><!-- react-text: 227 -->
+<!-- /react-text --><p data-reactid="228">那就给footer找一个合适的祖先元素咯~</p><!-- react-text: 229 -->
+<!-- /react-text --><pre data-reactid="230"><code class="hljs language-CSS" data-query="{}" data-lang="CSS" data-reactid="231"><span class="hljs-selector-tag" data-reactid="232">html</span><!-- react-text: 233 -->, <!-- /react-text --><span class="hljs-selector-tag" data-reactid="234">body</span><!-- react-text: 235 --> {
+  <!-- /react-text --><span class="hljs-attribute" data-reactid="236">height</span><!-- react-text: 237 -->: <!-- /react-text --><span class="hljs-number" data-reactid="238">100%</span><!-- react-text: 239 -->;
+}
+<!-- /react-text --><span class="hljs-selector-class" data-reactid="240">.wrap</span><!-- react-text: 241 --> {
+  <!-- /react-text --><span class="hljs-attribute" data-reactid="242">position</span><!-- react-text: 243 -->: relative;   <!-- /react-text --><span class="hljs-comment" data-reactid="244">/* 使wrap成为footer的包含块，也可以是absolute/fixed */</span><!-- react-text: 245 -->
+  <!-- /react-text --><span class="hljs-attribute" data-reactid="246">min-height</span><!-- react-text: 247 -->: <!-- /react-text --><span class="hljs-number" data-reactid="248">100%</span><!-- react-text: 249 -->;     
+  <!-- /react-text --><span class="hljs-attribute" data-reactid="250">padding-bottom</span><!-- react-text: 251 -->: <!-- /react-text --><span class="hljs-number" data-reactid="252">100px</span><!-- react-text: 253 -->; <!-- /react-text --><span class="hljs-comment" data-reactid="254">/* 给footer留空间 */</span><!-- react-text: 255 -->
+  <!-- /react-text --><span class="hljs-attribute" data-reactid="256">box-sizing</span><!-- react-text: 257 -->: border-box;
+}<!-- /react-text --></code></pre><!-- react-text: 258 -->
+<!-- /react-text --><p data-reactid="259"><a href="https://codepen.io/Claiyre/pen/xYWXde" data-reactid="260">demo1</a></p><!-- react-text: 261 -->
+<!-- /react-text --><p data-reactid="262"><!-- react-text: 263 -->这里的关键是给把html和body的高度指定为100%，MDN上对相对<!-- /react-text --><code data-reactid="264">min-height</code><!-- react-text: 265 -->有这样的介绍：<!-- /react-text --></p><!-- react-text: 266 -->
+<!-- /react-text --><blockquote data-reactid="267"><!-- react-text: 268 -->
+<!-- /react-text --><p data-reactid="269">The percentage is calculated with respect to the height of the generated box&#x27;s containing block. If the height of the containing block is not specified explicitly (i.e., it depends on content height), and this element is not absolutely positioned, the percentage value is treated as 0.</p><!-- react-text: 270 -->
+<!-- /react-text --></blockquote><!-- react-text: 271 -->
+<!-- /react-text --><p data-reactid="272">翻译过来就是相对高度是根据其包含块的高度计算的，若包含块的高度没有被明确指定，且该元素不是绝对定位元素，则这个相对高度被视作0</p><!-- react-text: 273 -->
+<!-- /react-text --><p data-reactid="274">这里相对定位元素wrap的包含块是它的父元素body，若不指定body的高度，wrap的min-height就相当于0，若不指定html的高度为100%，html的默认高度是其content高度，当content的高度不足时，footer在wrap底部但不在视图底部。</p><!-- react-text: 275 -->
+<!-- /react-text --><p data-reactid="276"><!-- react-text: 277 -->但是在一些情况下，wrap和body之间有多个元素，即body并不是wrap的直接父元素，我们不便强制要求wrap的所有祖先元素都 <!-- /react-text --><code data-reactid="278">height: 100%</code><!-- react-text: 279 -->，这时该怎么办呢？<!-- /react-text --></p><!-- react-text: 280 -->
+<!-- /react-text --><p data-reactid="281">考虑绝对定位呀！</p><!-- react-text: 282 -->
+<!-- /react-text --><p data-reactid="283">绝对定位元素的包含块，不总是其父元素，利用这点。</p><!-- react-text: 284 -->
+<!-- /react-text --><pre data-reactid="285"><code class="hljs language-CSS" data-query="{}" data-lang="CSS" data-reactid="286"><span class="hljs-selector-class" data-reactid="287">.wrap</span><!-- react-text: 288 --> {
+  <!-- /react-text --><span class="hljs-attribute" data-reactid="289">position</span><!-- react-text: 290 -->: absolute;
+  <!-- /react-text --><span class="hljs-attribute" data-reactid="291">min-height</span><!-- react-text: 292 -->: <!-- /react-text --><span class="hljs-number" data-reactid="293">100%</span><!-- react-text: 294 -->;
+  <!-- /react-text --><span class="hljs-attribute" data-reactid="295">padding-bottom</span><!-- react-text: 296 -->: <!-- /react-text --><span class="hljs-number" data-reactid="297">100px</span><!-- react-text: 298 -->;
+  <!-- /react-text --><span class="hljs-attribute" data-reactid="299">box-sizing</span><!-- react-text: 300 -->: border-box;
+  <!-- /react-text --><span class="hljs-attribute" data-reactid="301">width</span><!-- react-text: 302 -->: <!-- /react-text --><span class="hljs-number" data-reactid="303">100%</span><!-- react-text: 304 -->;
+}<!-- /react-text --></code></pre><!-- react-text: 305 -->
+<!-- /react-text --><p data-reactid="306"><a href="https://codepen.io/Claiyre/pen/ZrxXrq" data-reactid="307">demo2</a></p><!-- react-text: 308 -->
+<!-- /react-text --><p data-reactid="309">这样wrap的包含块就变成了初始包含块，其高度是视图高度，所以wrap的最小高度就是视图高度咯！
+完成~</p><!-- react-text: 310 -->
+<!-- /react-text --><h3 id="添加额外标签" data-reactid="311"><a href="#%E6%B7%BB%E5%8A%A0%E9%A2%9D%E5%A4%96%E6%A0%87%E7%AD%BE" aria-hidden="true" data-reactid="312"><span class="icon icon-link" data-reactid="313"></span></a><!-- react-text: 314 -->添加额外标签<!-- /react-text --></h3><!-- react-text: 315 -->
+<!-- /react-text --><p data-reactid="316">第二种思路是把除footer外的其他部分用一个父元素包裹起来，形成这样的结构</p><!-- react-text: 317 -->
+<!-- /react-text --><pre data-reactid="318"><code class="hljs language-html" data-query="{}" data-lang="html" data-reactid="319"><span class="hljs-tag" data-reactid="320"><!-- react-text: 321 -->&lt;<!-- /react-text --><span class="hljs-name" data-reactid="322">body</span><!-- react-text: 323 -->&gt;<!-- /react-text --></span><!-- react-text: 324 -->
+  <!-- /react-text --><span class="hljs-tag" data-reactid="325"><!-- react-text: 326 -->&lt;<!-- /react-text --><span class="hljs-name" data-reactid="327">div</span><!-- react-text: 328 --> <!-- /react-text --><span class="hljs-attr" data-reactid="329">class</span><!-- react-text: 330 -->=<!-- /react-text --><span class="hljs-string" data-reactid="331">&quot;container&quot;</span><!-- react-text: 332 -->&gt;<!-- /react-text --></span><!-- react-text: 333 -->
+    <!-- /react-text --><span class="hljs-tag" data-reactid="334"><!-- react-text: 335 -->&lt;<!-- /react-text --><span class="hljs-name" data-reactid="336">div</span><!-- react-text: 337 --> <!-- /react-text --><span class="hljs-attr" data-reactid="338">class</span><!-- react-text: 339 -->=<!-- /react-text --><span class="hljs-string" data-reactid="340">&quot;header&quot;</span><!-- react-text: 341 -->&gt;<!-- /react-text --></span><!-- react-text: 342 -->This is header<!-- /react-text --><span class="hljs-tag" data-reactid="343"><!-- react-text: 344 -->&lt;/<!-- /react-text --><span class="hljs-name" data-reactid="345">div</span><!-- react-text: 346 -->&gt;<!-- /react-text --></span><!-- react-text: 347 -->
+    <!-- /react-text --><span class="hljs-tag" data-reactid="348"><!-- react-text: 349 -->&lt;<!-- /react-text --><span class="hljs-name" data-reactid="350">div</span><!-- react-text: 351 --> <!-- /react-text --><span class="hljs-attr" data-reactid="352">class</span><!-- react-text: 353 -->=<!-- /react-text --><span class="hljs-string" data-reactid="354">&quot;content&quot;</span><!-- react-text: 355 -->&gt;<!-- /react-text --></span><!-- react-text: 356 -->This is content<!-- /react-text --><span class="hljs-tag" data-reactid="357"><!-- react-text: 358 -->&lt;/<!-- /react-text --><span class="hljs-name" data-reactid="359">div</span><!-- react-text: 360 -->&gt;<!-- /react-text --></span><!-- react-text: 361 -->
+  <!-- /react-text --><span class="hljs-tag" data-reactid="362"><!-- react-text: 363 -->&lt;/<!-- /react-text --><span class="hljs-name" data-reactid="364">div</span><!-- react-text: 365 -->&gt;<!-- /react-text --></span><!-- react-text: 366 -->
+  <!-- /react-text --><span class="hljs-tag" data-reactid="367"><!-- react-text: 368 -->&lt;<!-- /react-text --><span class="hljs-name" data-reactid="369">div</span><!-- react-text: 370 --> <!-- /react-text --><span class="hljs-attr" data-reactid="371">class</span><!-- react-text: 372 -->=<!-- /react-text --><span class="hljs-string" data-reactid="373">&quot;footer&quot;</span><!-- react-text: 374 -->&gt;<!-- /react-text --></span><!-- react-text: 375 -->This is footer<!-- /react-text --><span class="hljs-tag" data-reactid="376"><!-- react-text: 377 -->&lt;/<!-- /react-text --><span class="hljs-name" data-reactid="378">div</span><!-- react-text: 379 -->&gt;<!-- /react-text --></span><!-- react-text: 380 -->
+<!-- /react-text --><span class="hljs-tag" data-reactid="381"><!-- react-text: 382 -->&lt;/<!-- /react-text --><span class="hljs-name" data-reactid="383">body</span><!-- react-text: 384 -->&gt;<!-- /react-text --></span></code></pre><!-- react-text: 385 -->
+<!-- /react-text --><p data-reactid="386">css样式</p><!-- react-text: 387 -->
+<!-- /react-text --><pre data-reactid="388"><code class="hljs language-css" data-query="{}" data-lang="css" data-reactid="389"><span class="hljs-selector-tag" data-reactid="390">html</span><!-- react-text: 391 -->, <!-- /react-text --><span class="hljs-selector-tag" data-reactid="392">body</span><!-- react-text: 393 -->{
+  <!-- /react-text --><span class="hljs-attribute" data-reactid="394">height</span><!-- react-text: 395 -->: <!-- /react-text --><span class="hljs-number" data-reactid="396">100%</span><!-- react-text: 397 -->;
+}
+<!-- /react-text --><span class="hljs-selector-class" data-reactid="398">.container</span><!-- react-text: 399 --> {
+  <!-- /react-text --><span class="hljs-attribute" data-reactid="400">min-height</span><!-- react-text: 401 -->: <!-- /react-text --><span class="hljs-number" data-reactid="402">100%</span><!-- react-text: 403 -->;
+  <!-- /react-text --><span class="hljs-attribute" data-reactid="404">box-sizing</span><!-- react-text: 405 -->: border-box;
+  <!-- /react-text --><span class="hljs-attribute" data-reactid="406">padding</span><!-- react-text: 407 -->: <!-- /react-text --><span class="hljs-number" data-reactid="408">100px</span><!-- react-text: 409 -->;       <!-- /react-text --><span class="hljs-comment" data-reactid="410">/* footer的高度 */</span><!-- react-text: 411 -->
+}
+<!-- /react-text --><span class="hljs-selector-class" data-reactid="412">.footer</span><!-- react-text: 413 --> {
+  <!-- /react-text --><span class="hljs-attribute" data-reactid="414">height</span><!-- react-text: 415 -->: <!-- /react-text --><span class="hljs-number" data-reactid="416">100px</span><!-- react-text: 417 -->;
+  <!-- /react-text --><span class="hljs-attribute" data-reactid="418">margin-top</span><!-- react-text: 419 -->: <!-- /react-text --><span class="hljs-number" data-reactid="420">100px</span><!-- react-text: 421 -->;
+  <!-- /react-text --><span class="hljs-attribute" data-reactid="422">background</span><!-- react-text: 423 -->: blue;
+}<!-- /react-text --></code></pre><!-- react-text: 424 -->
+<!-- /react-text --><p data-reactid="425">这种方法给header和content添加了一个额外的标签，语义化结构不如第一种好，但易于理解。</p><!-- react-text: 426 -->
+<!-- /react-text --></article></div><div class="gitment-container" data-reactid="427"></div></div><div class="paginator body-width" data-reactid="428"><a title="下一篇" class="next light-tip" href="/致2017" data-reactid="429"><!-- react-text: 430 -->下一篇<!-- /react-text --><!-- react-text: 431 --> <!-- /react-text --><span class="icon-font" data-reactid="432"></span></a></div></div></main><footer data-reactid="433"><div class="footer-avatar" data-reactid="434"><img src="/avatar.png" alt="avatar" data-reactid="435"/></div><div class="copyright" data-reactid="436"><!-- react-text: 437 -->© <!-- /react-text --><time data-reactid="438">2018</time><!-- react-text: 439 -->. Powered By <!-- /react-text --><a href="https://github.com/picidaejs/picidae" data-reactid="440"> Picidae </a><!-- react-text: 441 -->  |  <!-- /react-text --><a href="https://github.com/picidaejs/picidae-theme-crystal" data-reactid="442"> theme-crystal</a></div><div id="busuanzi-count" data-reactid="443"><span id="busuanzi_container_site_uv" data-reactid="444"><span class="icon-font" data-reactid="445"></span><span id="busuanzi_value_site_uv" data-reactid="446"></span></span><!-- react-text: 447 -->  |  <!-- /react-text --><span id="busuanzi_container_site_pv" data-reactid="448"><span class="icon-font" data-reactid="449"></span><!-- react-text: 450 --> <!-- /react-text --><span id="busuanzi_value_site_pv" data-reactid="451"></span></span></div></footer></div>
+</div>
+<script src="/PICIDAE_COMMON.js"></script>
+<script src="/PICIDAE_ENTRY.js"></script>
+</body>
+</html>

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <title> JavaScript对象的深浅复制 - Claiyre的个人博客 </title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<div id="root">
+    <div class="wrap" data-reactroot="" data-reactid="1" data-react-checksum="-1670930598"><header data-reactid="2"><div class="blog-name" data-reactid="3"><a href="/" data-reactid="4">Claiyre&#x27;s Blog</a></div><ul class="nav nav-list" data-reactid="5"><li class="nav-list-item" data-reactid="6"><a class="nav-list-link" href="/posts/1" data-reactid="7">Posts</a></li><li class="nav-list-item" data-reactid="8"><a class="nav-list-link" href="/tags" data-reactid="9">Tags</a></li><li class="nav-list-item" data-reactid="10"><a class="nav-list-link" href="/about" data-reactid="11">About</a></li></ul></header><main data-reactid="12"><div data-reactid="13"><div class="post body-width" data-reactid="14"><article class="post-block" data-reactid="15"><h1 class="title post-title" data-reactid="16">JavaScript对象的深浅复制</h1><div class="post-info" data-reactid="17"><div class="post-info-item" data-reactid="18"><span class="icon-font" data-reactid="19"></span><!-- react-text: 20 -->JavaScript<!-- /react-text --></div><div class="post-info-item" data-reactid="21"><span class="icon-font" data-reactid="22"></span><!-- react-text: 23 -->JavaScript<!-- /react-text --></div><div class="post-info-item" data-reactid="24"><span class="icon-font" data-reactid="25"></span><time datetime="2017-03-29T21:43:10.000Z" data-reactid="26">2017-03-29</time></div></div></article><div class="post-content" data-reactid="27"><article data-reactid="28"><div class="picidae-toc" data-reactid="29"><!-- react-text: 30 -->
+<!-- /react-text --><ul data-reactid="31"><!-- react-text: 32 -->
+<!-- /react-text --><li data-reactid="33"><!-- react-text: 34 -->
+<!-- /react-text --><a href="#%E5%89%8D%E8%A8%80" data-reactid="35">前言</a><!-- react-text: 36 -->
+<!-- /react-text --></li><!-- react-text: 37 -->
+<!-- /react-text --><li data-reactid="38"><!-- react-text: 39 -->
+<!-- /react-text --><a href="#%E6%AD%A3%E6%96%87" data-reactid="40">正文</a><!-- react-text: 41 -->
+<!-- /react-text --><ul data-reactid="42"><!-- react-text: 43 -->
+<!-- /react-text --><li data-reactid="44"><!-- react-text: 45 -->
+<!-- /react-text --><ul data-reactid="46"><!-- react-text: 47 -->
+<!-- /react-text --><li data-reactid="48"><!-- react-text: 49 -->
+<!-- /react-text --><a href="#%E6%B5%85%E5%A4%8D%E5%88%B6" data-reactid="50">浅复制</a><!-- react-text: 51 -->
+<!-- /react-text --></li><!-- react-text: 52 -->
+<!-- /react-text --><li data-reactid="53"><!-- react-text: 54 -->
+<!-- /react-text --><a href="#%E6%B7%B1%E5%A4%8D%E5%88%B6" data-reactid="55">深复制</a><!-- react-text: 56 -->
+<!-- /react-text --></li><!-- react-text: 57 -->
+<!-- /react-text --></ul><!-- react-text: 58 -->
+<!-- /react-text --></li><!-- react-text: 59 -->
+<!-- /react-text --></ul><!-- react-text: 60 -->
+<!-- /react-text --></li><!-- react-text: 61 -->
+<!-- /react-text --><li data-reactid="62"><!-- react-text: 63 -->
+<!-- /react-text --><a href="#%E7%BB%93%E8%AF%AD" data-reactid="64">结语</a><!-- react-text: 65 -->
+<!-- /react-text --></li><!-- react-text: 66 -->
+<!-- /react-text --></ul><!-- react-text: 67 -->
+<!-- /react-text --></div><!-- react-text: 68 -->
+<!-- /react-text --><blockquote data-reactid="69"><!-- react-text: 70 -->
+<!-- /react-text --><p data-reactid="71"><!-- react-text: 72 -->博客原文地址：<!-- /react-text --><a href="https://claiyre.github.io/" data-reactid="73">Claiyre的个人博客 https://claiyre.github.io/</a><!-- react-text: 74 -->
+博客园地址：<!-- /react-text --><a href="http://www.cnblogs.com/nuannuan7362/" data-reactid="75">http://www.cnblogs.com/nuannuan7362/</a><!-- react-text: 76 -->
+如需转载，请在文章开头注明原文地址<!-- /react-text --></p><!-- react-text: 77 -->
+<!-- /react-text --></blockquote><!-- react-text: 78 -->
+<!-- /react-text --><h1 id="前言" data-reactid="79"><a href="#%E5%89%8D%E8%A8%80" aria-hidden="true" data-reactid="80"><span class="icon icon-link" data-reactid="81"></span></a><!-- react-text: 82 -->前言<!-- /react-text --></h1><!-- react-text: 83 -->
+<!-- /react-text --><p data-reactid="84">从层次上来看，对象的复制可以简单地分为浅复制和深复制，顾名思义，浅复制是指只复制一层对象的属性，不会复制对象中的对象的属性，对象的深复制会复制对象中层层嵌套的对象的属性。
+在复制对象时，除了要复制对象的属性外，还要兼顾到是否保留了对象的constructor属性，是否对每一种数据类型（JavaScript常见的数据类型有String，Number，Boolean,Data,RegExp,Array,Funtion,Object）都实现正确的复制。项目中，我们可以根据实际情况，决定需要实现什么样程度的复制。
+本文是我在复制对象方面的一些心得总结，由浅复制到深复制，由只复制简单属性到复制Function，RegExp等复杂属性，层层递进。如有陈述不当之处，烦请指出，不胜感激。</p><!-- react-text: 85 -->
+<!-- /react-text --><!-- react-text: 86 -->
+<!-- /react-text --><h1 id="正文" data-reactid="87"><a href="#%E6%AD%A3%E6%96%87" aria-hidden="true" data-reactid="88"><span class="icon icon-link" data-reactid="89"></span></a><!-- react-text: 90 -->正文<!-- /react-text --></h1><!-- react-text: 91 -->
+<!-- /react-text --><h3 id="浅复制" data-reactid="92"><a href="#%E6%B5%85%E5%A4%8D%E5%88%B6" aria-hidden="true" data-reactid="93"><span class="icon icon-link" data-reactid="94"></span></a><!-- react-text: 95 -->浅复制<!-- /react-text --></h3><!-- react-text: 96 -->
+<!-- /react-text --><p data-reactid="97">浅复制只会依次复制对象的每一个属性，不会对这些属性进行递归复制。下面是一个简单的浅复制实现。</p><!-- react-text: 98 -->
+<!-- /react-text --><pre data-reactid="99"><code data-query="{}" data-lang="data-lang" data-reactid="100">//对象浅复制                                                           
+function shadowCopy(obj){
+        if(typeof obj !== &#x27;object&#x27; || obj === null)  return obj ;
+
+        for(var prop in obj){
+            if(obj.hasOwnProperty(prop)){
+                newObj[prop] = obj[prop];
+            }
+        }
+        return newObj;
+    }
+</code></pre><!-- react-text: 101 -->
+<!-- /react-text --><p data-reactid="102">仔细观察，不难发现上述方法的缺陷：
+1.不能正确实现数组的浅复制
+2.复制操作丢失了对象的constructor属性</p><!-- react-text: 103 -->
+<!-- /react-text --><p data-reactid="104">好，我们现在已经发现了问题所在，只需针对性地解决，一个还算完美的浅复制对象的方法就诞生了！</p><!-- react-text: 105 -->
+<!-- /react-text --><pre data-reactid="106"><code data-query="{}" data-lang="data-lang" data-reactid="107">//对象浅复制
+    function shadowCopy(obj){
+            if(typeof obj !== &#x27;object&#x27; || obj === null)  return obj ;
+            var newObj;
+
+            //保留对象的constructor属性
+            if(obj.constructor === Array){
+                newObj = [];
+            } else {
+                newObj = {};
+                newObj.constructor = obj.constructor;
+            }
+
+            for(var prop in obj){
+                if(obj.hasOwnProperty(prop)){
+                    newObj[prop] = obj[prop];
+                }
+            }
+            return newObj;
+        }
+</code></pre><!-- react-text: 108 -->
+<!-- /react-text --><p data-reactid="109">浏览器中测试一下：</p><!-- react-text: 110 -->
+<!-- /react-text --><pre data-reactid="111"><code data-query="{}" data-lang="data-lang" data-reactid="112">    var arr1 = [0,1,2];
+    console.log(arr1);
+    console.log(shadowCopy(arr1));
+    
+    var arr2 = [0,1,2,[3,4,5]],
+        arr2Copy = shadowCopy(arr2);
+    console.log(arr2);
+    console.log(arr2Copy);
+    arr2Copy[3][0] = 6;
+    console.log(arr2[3][0]);  //6
+</code></pre><!-- react-text: 113 -->
+<!-- /react-text --><p data-reactid="114"><img src="http://i4.buimg.com/567571/577c9855b9bf0430.png" data-reactid="115"/></p><!-- react-text: 116 -->
+<!-- /react-text --><p data-reactid="117"><!-- react-text: 118 -->Good! 可以正确实现数组复制和并且保留constructor了，但细心的你一定发现了，浅复制后的对象的 <!-- /react-text --><code data-reactid="119">arr2Copy[3]</code><!-- react-text: 120 --> 和 <!-- /react-text --><code data-reactid="121">arr2[3]</code><!-- react-text: 122 --> 指向的是一个对象，改变其中一个，同时也会改变另一个。我们想要实现的是 <!-- /react-text --><strong data-reactid="123">复制</strong><!-- react-text: 124 -->，但这并不是复制呀！
+这是浅复制的一个弊端所在，接下让我们看看深复制是怎样解决这个问题的。<!-- /react-text --></p><!-- react-text: 125 -->
+<!-- /react-text --><h3 id="深复制" data-reactid="126"><a href="#%E6%B7%B1%E5%A4%8D%E5%88%B6" aria-hidden="true" data-reactid="127"><span class="icon icon-link" data-reactid="128"></span></a><!-- react-text: 129 -->深复制<!-- /react-text --></h3><!-- react-text: 130 -->
+<!-- /react-text --><p data-reactid="131">深复制需要层层递归，复制对象的所有属性，包括对象属性的属性的属性....(晕~)
+如果只是需要简单地复制对象的属性，而不用考虑它的constructor，也不用考虑函数，正则，Data等特殊数据类型，那这里有一个深复制的小trick，两行代码即可：</p><!-- react-text: 132 -->
+<!-- /react-text --><pre data-reactid="133"><code data-query="{}" data-lang="data-lang" data-reactid="134">function deepCopy(obj){
+    if(typeof obj !== &#x27;object&#x27; || obj === null)  return obj ;
+    var str = JSON.stringify(obj);
+
+    return JSON.parse(str);
+}
+</code></pre><!-- react-text: 135 -->
+<!-- /react-text --><p data-reactid="136">大多数情况下，上面的就可以满足要求了，但一些时候，我们需要把函数，正则等特殊数据类型也考虑在内，或者当前环境不支持JSON时，上面的方法也就不适用了。这时，我们可以通过递归来实现对象的深层复制，如下：</p><!-- react-text: 137 -->
+<!-- /react-text --><pre data-reactid="138"><code data-query="{}" data-lang="data-lang" data-reactid="139">function deepCopy(obj){
+    if(typeof obj !== &#x27;object&#x27; || obj === null)  return obj ;
+    var newObj;
+
+    //保留对象的constructor属性
+    if(obj.constructor === Array){
+        newObj = [];
+    } else {
+        newObj = {};
+        newObj.constructor = obj.constructor;
+    }
+
+    for(var prop in obj){
+        if(typeof obj[prop] === &#x27;object&#x27;){
+            if(obj[prop].constructor === RegExp ||obj[prop].constructor === Date){
+                newObj[prop] = obj[prop];
+            } else {
+                //递归
+                newObj[prop] = deepCopy(obj[prop]);
+            }
+        } else {
+            newObj[prop] = obj[prop];
+        }
+    }
+    return newObj;
+}
+</code></pre><!-- react-text: 140 -->
+<!-- /react-text --><p data-reactid="141">先用上面的例子测试：</p><!-- react-text: 142 -->
+<!-- /react-text --><p data-reactid="143"><img src="http://i1.piimg.com/567571/e86a7c0b5191a6b1.png" data-reactid="144"/></p><!-- react-text: 145 -->
+<!-- /react-text --><p data-reactid="146"><!-- react-text: 147 -->棒！可以正确实现多维数组的<!-- /react-text --><strong data-reactid="148">复制</strong><!-- react-text: 149 -->，再看是否能实现函数和正则的复制：<!-- /react-text --></p><!-- react-text: 150 -->
+<!-- /react-text --><pre data-reactid="151"><code data-query="{}" data-lang="data-lang" data-reactid="152">function Person(name){
+    this.name = name;
+    this.age = age;
+    this.search = new RegExp(name);
+    this.say = function(){
+        console.log(this.name + &quot;今年&quot; + this.age + &quot;岁了&quot;);
+    }
+}
+var p1 = new Person(&quot;Claiyre&quot;,20),
+    p2 = deepCopy(p1);
+
+console.log(p1);
+console.log(p2);
+
+p2.age = 22;
+p1.say();
+p2.say();
+</code></pre><!-- react-text: 153 -->
+<!-- /react-text --><p data-reactid="154"><img src="http://i2.muimg.com/567571/2b2b14b3ad818535.png" data-reactid="155"/></p><!-- react-text: 156 -->
+<!-- /react-text --><p data-reactid="157">圆满完成！！</p><!-- react-text: 158 -->
+<!-- /react-text --><p data-reactid="159">稍加整理，我们就可以得到一个较为通用的js对象复制函数：</p><!-- react-text: 160 -->
+<!-- /react-text --><pre data-reactid="161"><code data-query="{}" data-lang="data-lang" data-reactid="162">function deepCopy(obj){
+    if(typeof obj !== &#x27;object&#x27; || obj === null)  return obj ;
+
+    var newObj = obj.constructor === Array ? []:{};
+    newObj.constructor = obj.constructor;
+
+    if(window.JSON){
+        //若需要考虑特殊的数据类型，如正则，函数等，把这个if去掉直接进入else内容即可
+        newObj = JSON.parse(JSON.stringify(obj));
+    } else {
+        for(var prop in obj){
+            if(obj[prop].constructor === RegExp ||obj[prop].constructor === Date){
+                newObj[prop] = obj[prop];
+            } else if(typeof obj[prop] === &#x27;object&#x27;){
+                //递归
+                newObj[prop] = deepCopy(obj[prop]);
+            } else {
+                newObj[prop] = obj[prop];
+            }
+        }
+    } 
+    return newObj;
+}
+</code></pre><!-- react-text: 163 -->
+<!-- /react-text --><h1 id="结语" data-reactid="164"><a href="#%E7%BB%93%E8%AF%AD" aria-hidden="true" data-reactid="165"><span class="icon icon-link" data-reactid="166"></span></a><!-- react-text: 167 -->结语<!-- /react-text --></h1><!-- react-text: 168 -->
+<!-- /react-text --><p data-reactid="169">面向对象的编程语言，其核心是对象，因此深入了解对象的相关操作，纵向比较异同，对学习过程是极有好处的。</p><!-- react-text: 170 -->
+<!-- /react-text --></article></div><div class="gitment-container" data-reactid="171"></div></div><div class="paginator body-width" data-reactid="172"><a title="上一篇" class="prev light-tip" href="/从网络通信角度谈web性能优化" data-reactid="173"><span class="icon-font" data-reactid="174"></span><!-- react-text: 175 --> <!-- /react-text --><!-- react-text: 176 -->上一篇<!-- /react-text --></a><a title="下一篇" class="next light-tip" href="/Ajax原理、优缺点及应用场景" data-reactid="177"><!-- react-text: 178 -->下一篇<!-- /react-text --><!-- react-text: 179 --> <!-- /react-text --><span class="icon-font" data-reactid="180"></span></a></div></div></main><footer data-reactid="181"><div class="footer-avatar" data-reactid="182"><img src="/avatar.png" alt="avatar" data-reactid="183"/></div><div class="copyright" data-reactid="184"><!-- react-text: 185 -->© <!-- /react-text --><time data-reactid="186">2018</time><!-- react-text: 187 -->. Powered By <!-- /react-text --><a href="https://github.com/picidaejs/picidae" data-reactid="188"> Picidae </a><!-- react-text: 189 -->  |  <!-- /react-text --><a href="https://github.com/picidaejs/picidae-theme-crystal" data-reactid="190"> theme-crystal</a></div><div id="busuanzi-count" data-reactid="191"><span id="busuanzi_container_site_uv" data-reactid="192"><span class="icon-font" data-reactid="193"></span><span id="busuanzi_value_site_uv" data-reactid="194"></span></span><!-- react-text: 195 -->  |  <!-- /react-text --><span id="busuanzi_container_site_pv" data-reactid="196"><span class="icon-font" data-reactid="197"></span><!-- react-text: 198 --> <!-- /react-text --><span id="busuanzi_value_site_pv" data-reactid="199"></span></span></div></footer></div>
+</div>
+<script src="/PICIDAE_COMMON.js"></script>
+<script src="/PICIDAE_ENTRY.js"></script>
+</body>
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <title> hexo安装总结 - Claiyre的个人博客 </title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<div id="root">
+    <div class="wrap" data-reactroot="" data-reactid="1" data-react-checksum="-1706829487"><header data-reactid="2"><div class="blog-name" data-reactid="3"><a href="/" data-reactid="4">Claiyre&#x27;s Blog</a></div><ul class="nav nav-list" data-reactid="5"><li class="nav-list-item" data-reactid="6"><a class="nav-list-link" href="/posts/1" data-reactid="7">Posts</a></li><li class="nav-list-item" data-reactid="8"><a class="nav-list-link" href="/tags" data-reactid="9">Tags</a></li><li class="nav-list-item" data-reactid="10"><a class="nav-list-link" href="/about" data-reactid="11">About</a></li></ul></header><main data-reactid="12"><div data-reactid="13"><div class="post body-width" data-reactid="14"><article class="post-block" data-reactid="15"><h1 class="title post-title" data-reactid="16">hexo安装总结</h1><div class="post-info" data-reactid="17"><div class="post-info-item" data-reactid="18"><span class="icon-font" data-reactid="19"></span><!-- react-text: 20 -->hexo<!-- /react-text --></div><div class="post-info-item" data-reactid="21"><span class="icon-font" data-reactid="22"></span><!-- react-text: 23 -->安装教程<!-- /react-text --></div><div class="post-info-item" data-reactid="24"><span class="icon-font" data-reactid="25"></span><time datetime="2016-11-28T15:45:51.000Z" data-reactid="26">2016-11-28</time></div></div></article><div class="post-content" data-reactid="27"><article data-reactid="28"><div class="picidae-toc" data-reactid="29"><!-- react-text: 30 -->
+<!-- /react-text --><ul data-reactid="31"><!-- react-text: 32 -->
+<!-- /react-text --><li data-reactid="33"><!-- react-text: 34 -->
+<!-- /react-text --><a href="#%E6%B5%81%E7%A8%8B%E5%A6%82%E4%B8%8B" data-reactid="35">流程如下</a><!-- react-text: 36 -->
+<!-- /react-text --></li><!-- react-text: 37 -->
+<!-- /react-text --><li data-reactid="38"><!-- react-text: 39 -->
+<!-- /react-text --><a href="#%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88" data-reactid="40">常见问题及解决方案</a><!-- react-text: 41 -->
+<!-- /react-text --><ul data-reactid="42"><!-- react-text: 43 -->
+<!-- /react-text --><li data-reactid="44"><!-- react-text: 45 -->
+<!-- /react-text --><a href="#4000%E7%AB%AF%E5%8F%A3%E8%A2%AB%E5%8D%A0%E7%94%A8" data-reactid="46">4000端口被占用</a><!-- react-text: 47 -->
+<!-- /react-text --></li><!-- react-text: 48 -->
+<!-- /react-text --><li data-reactid="49"><!-- react-text: 50 -->
+<!-- /react-text --><a href="#%E5%A4%9A%E8%AF%B4%E8%AF%84%E8%AE%BA%E4%B8%8D%E8%83%BD%E6%AD%A3%E5%B8%B8%E6%98%BE%E7%A4%BA%E6%88%96%E5%87%BA%E9%94%99" data-reactid="51">多说评论不能正常显示或出错</a><!-- react-text: 52 -->
+<!-- /react-text --></li><!-- react-text: 53 -->
+<!-- /react-text --><li data-reactid="54"><!-- react-text: 55 -->
+<!-- /react-text --><a href="#%E5%85%B6%E4%BB%96%E9%94%99%E8%AF%AF" data-reactid="56">其他错误</a><!-- react-text: 57 -->
+<!-- /react-text --></li><!-- react-text: 58 -->
+<!-- /react-text --></ul><!-- react-text: 59 -->
+<!-- /react-text --></li><!-- react-text: 60 -->
+<!-- /react-text --><li data-reactid="61"><!-- react-text: 62 -->
+<!-- /react-text --><a href="#%E5%85%B6%E4%BB%96" data-reactid="63">其他</a><!-- react-text: 64 -->
+<!-- /react-text --><ul data-reactid="65"><!-- react-text: 66 -->
+<!-- /react-text --><li data-reactid="67"><!-- react-text: 68 -->
+<!-- /react-text --><a href="#%E4%B8%BB%E9%A2%98" data-reactid="69">主题</a><!-- react-text: 70 -->
+<!-- /react-text --></li><!-- react-text: 71 -->
+<!-- /react-text --><li data-reactid="72"><!-- react-text: 73 -->
+<!-- /react-text --><a href="#%E5%9B%BE%E5%BA%8A" data-reactid="74">图床</a><!-- react-text: 75 -->
+<!-- /react-text --></li><!-- react-text: 76 -->
+<!-- /react-text --><li data-reactid="77"><!-- react-text: 78 -->
+<!-- /react-text --><a href="#markdown%E8%AF%AD%E6%B3%95" data-reactid="79">markdown语法</a><!-- react-text: 80 -->
+<!-- /react-text --></li><!-- react-text: 81 -->
+<!-- /react-text --></ul><!-- react-text: 82 -->
+<!-- /react-text --></li><!-- react-text: 83 -->
+<!-- /react-text --></ul><!-- react-text: 84 -->
+<!-- /react-text --></div><!-- react-text: 85 -->
+<!-- /react-text --><p data-reactid="86">不知为何，每次装一个新的东西时，总是历经坎坷，总要遇到比别人更多的bug,付出更多的努力，就记录下这次遇到的坑吧，希望可以帮助后来的小伙伴！</p><!-- react-text: 87 -->
+<!-- /react-text --><!-- react-text: 88 -->
+<!-- /react-text --><blockquote data-reactid="89"><!-- react-text: 90 -->
+<!-- /react-text --><p data-reactid="91"><!-- react-text: 92 -->博客原文地址：<!-- /react-text --><a href="https://claiyre.github.io/" data-reactid="93">Claiyre的个人博客</a><!-- react-text: 94 -->
+如需转载，请在文章开头注明原文地址<!-- /react-text --></p><!-- react-text: 95 -->
+<!-- /react-text --></blockquote><!-- react-text: 96 -->
+<!-- /react-text --><p data-reactid="97">hexo真心是一个不错的东西呢，安装简单（然而对博主来说并不是这样，伤心脸），主题样式简洁优雅，还有多种选择。</p><!-- react-text: 98 -->
+<!-- /react-text --><h3 id="流程如下" data-reactid="99"><a href="#%E6%B5%81%E7%A8%8B%E5%A6%82%E4%B8%8B" aria-hidden="true" data-reactid="100"><span class="icon icon-link" data-reactid="101"></span></a><!-- react-text: 102 -->流程如下<!-- /react-text --></h3><!-- react-text: 103 -->
+<!-- /react-text --><ol data-reactid="104"><!-- react-text: 105 -->
+<!-- /react-text --><li data-reactid="106">安装nodejs</li><!-- react-text: 107 -->
+<!-- /react-text --><li data-reactid="108">安装gitBash</li><!-- react-text: 109 -->
+<!-- /react-text --><li data-reactid="110"><!-- react-text: 111 -->在github上创建一个<!-- /react-text --><strong data-reactid="112">你的github名称.github.io  </strong><!-- react-text: 113 -->的仓库（一定要把“你的github名称”换成你的github名称啊）<!-- /react-text --></li><!-- react-text: 114 -->
+<!-- /react-text --><li data-reactid="115">安装hexo</li><!-- react-text: 116 -->
+<!-- /react-text --></ol><!-- react-text: 117 -->
+<!-- /react-text --><pre data-reactid="118"><code data-query="{}" data-lang="data-lang" data-reactid="119">$ npm install -g hexo
+</code></pre><!-- react-text: 120 -->
+<!-- /react-text --><p data-reactid="121">建议在gitBash中进行命令行操作，windows自带的cmd容易报错
+5.  初始化</p><!-- react-text: 122 -->
+<!-- /react-text --><pre data-reactid="123"><code data-query="{}" data-lang="data-lang" data-reactid="124">$ cd &lt;你指定存放hexo的目录&gt;
+$ hexo init &lt;你指定存放hexo的目录&gt;
+</code></pre><!-- react-text: 125 -->
+<!-- /react-text --><ol start="6" data-reactid="126"><!-- react-text: 127 -->
+<!-- /react-text --><li data-reactid="128"><!-- react-text: 129 -->
+<!-- /react-text --><p data-reactid="130"><!-- react-text: 131 -->安装相关插件
+参见<!-- /react-text --><a href="https://github.com/hexojs/hexo/wiki/Migrating-from-2.x-to-3.0#install-hexo-cli" data-reactid="132">hexo github</a></p><!-- react-text: 133 -->
+<!-- /react-text --></li><!-- react-text: 134 -->
+<!-- /react-text --><li data-reactid="135"><!-- react-text: 136 -->
+<!-- /react-text --><p data-reactid="137">生成静态页面</p><!-- react-text: 138 -->
+<!-- /react-text --></li><!-- react-text: 139 -->
+<!-- /react-text --></ol><!-- react-text: 140 -->
+<!-- /react-text --><pre data-reactid="141"><code data-query="{}" data-lang="data-lang" data-reactid="142">$ hexo generate
+</code></pre><!-- react-text: 143 -->
+<!-- /react-text --><ol start="8" data-reactid="144"><!-- react-text: 145 -->
+<!-- /react-text --><li data-reactid="146">本地启动</li><!-- react-text: 147 -->
+<!-- /react-text --></ol><!-- react-text: 148 -->
+<!-- /react-text --><pre data-reactid="149"><code data-query="{}" data-lang="data-lang" data-reactid="150">$ hexo server
+</code></pre><!-- react-text: 151 -->
+<!-- /react-text --><p data-reactid="152"><!-- react-text: 153 -->默认在4000端口 在浏览器输入<!-- /react-text --><a href="http://localhost:4000/%E5%8D%B3%E5%8F%AF%E7%9C%8B%E5%88%B0%E4%BD%A0%E5%8D%9A%E5%AE%A2%E6%9C%AA%E6%9D%A5%E7%9A%84%E6%A0%B7%E5%AD%90%E5%95%A6%EF%BC%81%E6%9C%89%E6%9C%A8%E6%9C%89%E5%BE%88%E9%B8%A1%E5%86%BB%EF%BC%9F%EF%BC%81" data-reactid="154">http://localhost:4000/即可看到你博客未来的样子啦！有木有很鸡冻？！</a><!-- react-text: 155 -->
+9.  发布
+找到hexo根目录下的_config.yml文件，找到下面的deploy: 并更改为<!-- /react-text --></p><!-- react-text: 156 -->
+<!-- /react-text --><pre data-reactid="157"><code data-query="{}" data-lang="data-lang" data-reactid="158">deploy:
+  type: git
+  repo: https://github.com/Claiyre/Claiyre.github.io.git  # 3中创建的仓库的地址
+  branch: master
+</code></pre><!-- react-text: 159 -->
+<!-- /react-text --><p data-reactid="160"><strong data-reactid="161">注意冒号后面有一个半角空格</strong><!-- react-text: 162 -->
+好啦，接下来打开这个仓库得页面，点击左上那个绿色的按钮。
+对！没错！放心点吧！就是那个“GH Pages”！
+好啦，看到了你的新博客了是吧（如果你真的只是做了以上9步就看到了的话，我一定会嫉妒你的，啊啊啊）<!-- /react-text --></p><!-- react-text: 163 -->
+<!-- /react-text --><p data-reactid="164"><!-- react-text: 165 -->上面是大致安装流程，想看具体的话，点这
+<!-- /react-text --><a href="https://xdlrt.github.io/tags/hexo%E6%95%99%E7%A8%8B/" data-reactid="166">点我！点我！</a><!-- react-text: 167 -->
+<!-- /react-text --><a href="http://ibruce.info/2013/11/22/hexo-your-blog/" data-reactid="168">这里，这里！</a></p><!-- react-text: 169 -->
+<!-- /react-text --><p data-reactid="170">下面的是博主自己遇到的问题，以上两篇文章未提及或者提及的方法不适用于博主的</p><!-- react-text: 171 -->
+<!-- /react-text --><h3 id="常见问题及解决方案" data-reactid="172"><a href="#%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88" aria-hidden="true" data-reactid="173"><span class="icon icon-link" data-reactid="174"></span></a><!-- react-text: 175 -->常见问题及解决方案<!-- /react-text --></h3><!-- react-text: 176 -->
+<!-- /react-text --><h4 id="4000端口被占用" data-reactid="177"><a href="#4000%E7%AB%AF%E5%8F%A3%E8%A2%AB%E5%8D%A0%E7%94%A8" aria-hidden="true" data-reactid="178"><span class="icon icon-link" data-reactid="179"></span></a><!-- react-text: 180 -->4000端口被占用<!-- /react-text --></h4><!-- react-text: 181 -->
+<!-- /react-text --><p data-reactid="182">给hexo指定其他端口（比如5000）</p><!-- react-text: 183 -->
+<!-- /react-text --><pre data-reactid="184"><code data-query="{}" data-lang="data-lang" data-reactid="185">hexo server -p 5000
+</code></pre><!-- react-text: 186 -->
+<!-- /react-text --><p data-reactid="187">至于怎么查看端口被占用——百度知道</p><!-- react-text: 188 -->
+<!-- /react-text --><h4 id="多说评论不能正常显示或出错" data-reactid="189"><a href="#%E5%A4%9A%E8%AF%B4%E8%AF%84%E8%AE%BA%E4%B8%8D%E8%83%BD%E6%AD%A3%E5%B8%B8%E6%98%BE%E7%A4%BA%E6%88%96%E5%87%BA%E9%94%99" aria-hidden="true" data-reactid="190"><span class="icon icon-link" data-reactid="191"></span></a><!-- react-text: 192 -->多说评论不能正常显示或出错<!-- /react-text --></h4><!-- react-text: 193 -->
+<!-- /react-text --><p data-reactid="194"><!-- react-text: 195 -->shortname不是你登录多说的那个名字！不是登录多说的那个名字！不是！
+如果你只是想在别人的博客下评论的话，随便选个快捷方式登录多说即可，但是！但是！如果你要给自己的博客添加多说的话
+1.登录网页版多说，点击右上角多说图标，进入多说主页
+2.点击“我要安装”按钮，如下图
+<!-- /react-text --><img src="http://i1.piimg.com/567571/7ad876daf73acf93.png" data-reactid="196"/><!-- react-text: 197 -->
+3.填写相关信息
+箭头所指处应该填写的是你的shortname,也就是你的域名
+<!-- /react-text --><img src="http://i1.piimg.com/567571/2453d4d518fa7973.png" data-reactid="198"/></p><!-- react-text: 199 -->
+<!-- /react-text --><h4 id="其他错误" data-reactid="200"><a href="#%E5%85%B6%E4%BB%96%E9%94%99%E8%AF%AF" aria-hidden="true" data-reactid="201"><span class="icon icon-link" data-reactid="202"></span></a><!-- react-text: 203 -->其他错误<!-- /react-text --></h4><!-- react-text: 204 -->
+<!-- /react-text --><p data-reactid="205"><!-- react-text: 206 -->如果还碰到了其他奇怪的错误，务必检查_config.yml文件中每个冒号后面是否有一个<!-- /react-text --><strong data-reactid="207">半角空格</strong></p><!-- react-text: 208 -->
+<!-- /react-text --><p data-reactid="209">暂时想到的就这么多（啊啊啊，明明记得有好多的呀）</p><!-- react-text: 210 -->
+<!-- /react-text --><h3 id="其他" data-reactid="211"><a href="#%E5%85%B6%E4%BB%96" aria-hidden="true" data-reactid="212"><span class="icon icon-link" data-reactid="213"></span></a><!-- react-text: 214 -->其他<!-- /react-text --></h3><!-- react-text: 215 -->
+<!-- /react-text --><h4 id="主题" data-reactid="216"><a href="#%E4%B8%BB%E9%A2%98" aria-hidden="true" data-reactid="217"><span class="icon icon-link" data-reactid="218"></span></a><!-- react-text: 219 -->主题<!-- /react-text --></h4><!-- react-text: 220 -->
+<!-- /react-text --><p data-reactid="221"><!-- react-text: 222 -->默认主题有点丑？没关系，随着不断地发展壮大，hexo已经有好多个不同风格的主题了！萝卜白菜，各有所爱。快去选个自己喜欢的主题吧！每个主题都有配置说明文档，按照上面配置就好了。
+<!-- /react-text --><a href="https://github.com/hexojs/hexo/wiki/Themes" data-reactid="223">hexo主题</a><!-- react-text: 224 -->
+有精力的小伙伴也可以自己写一个主题放github上为开源做贡献嘛<!-- /react-text --></p><!-- react-text: 225 -->
+<!-- /react-text --><h4 id="图床" data-reactid="226"><a href="#%E5%9B%BE%E5%BA%8A" aria-hidden="true" data-reactid="227"><span class="icon icon-link" data-reactid="228"></span></a><!-- react-text: 229 -->图床<!-- /react-text --></h4><!-- react-text: 230 -->
+<!-- /react-text --><p data-reactid="231"><!-- react-text: 232 -->为了方便博客的迁移和速度，图床是必须得，博主强烈推荐<!-- /react-text --><a href="http://yotuku.cn/" data-reactid="233">七牛</a><!-- react-text: 234 -->,真心灰常灰常好用啊<!-- /react-text --></p><!-- react-text: 235 -->
+<!-- /react-text --><h4 id="markdown语法" data-reactid="236"><a href="#markdown%E8%AF%AD%E6%B3%95" aria-hidden="true" data-reactid="237"><span class="icon icon-link" data-reactid="238"></span></a><!-- react-text: 239 -->markdown语法<!-- /react-text --></h4><!-- react-text: 240 -->
+<!-- /react-text --><p data-reactid="241"><!-- react-text: 242 -->不熟悉markdown编写的小伙伴可以<!-- /react-text --><a href="http://www.appinn.com/markdown/basic.html" data-reactid="243">点这里</a><!-- react-text: 244 -->,非常详细的介绍<!-- /react-text --></p><!-- react-text: 245 -->
+<!-- /react-text --><p data-reactid="246">叙述不当之处还望您不吝赐教</p><!-- react-text: 247 -->
+<!-- /react-text --></article></div><div class="gitment-container" data-reactid="248"></div></div><div class="paginator body-width" data-reactid="249"><a title="上一篇" class="prev light-tip" href="/JavaScript函数学习总结-一-函数定义" data-reactid="250"><span class="icon-font" data-reactid="251"></span><!-- react-text: 252 --> <!-- /react-text --><!-- react-text: 253 -->上一篇<!-- /react-text --></a><a title="下一篇" class="next light-tip" href="/浅析js闭包" data-reactid="254"><!-- react-text: 255 -->下一篇<!-- /react-text --><!-- react-text: 256 --> <!-- /react-text --><span class="icon-font" data-reactid="257"></span></a></div></div></main><footer data-reactid="258"><div class="footer-avatar" data-reactid="259"><img src="/avatar.png" alt="avatar" data-reactid="260"/></div><div class="copyright" data-reactid="261"><!-- react-text: 262 -->© <!-- /react-text --><time data-reactid="263">2018</time><!-- react-text: 264 -->. Powered By <!-- /react-text --><a href="https://github.com/picidaejs/picidae" data-reactid="265"> Picidae </a><!-- react-text: 266 -->  |  <!-- /react-text --><a href="https://github.com/picidaejs/picidae-theme-crystal" data-reactid="267"> theme-crystal</a></div><div id="busuanzi-count" data-reactid="268"><span id="busuanzi_container_site_uv" data-reactid="269"><span class="icon-font" data-reactid="270"></span><span id="busuanzi_value_site_uv" data-reactid="271"></span></span><!-- react-text: 272 -->  |  <!-- /react-text --><span id="busuanzi_container_site_pv" data-reactid="273"><span class="icon-font" data-reactid="274"></span><!-- react-text: 275 --> <!-- /react-text --><span id="busuanzi_value_site_pv" data-reactid="276"></span></span></div></footer></div>
+</div>
+<script src="/PICIDAE_COMMON.js"></script>
+<script src="/PICIDAE_ENTRY.js"></script>
+</body>
+</html>

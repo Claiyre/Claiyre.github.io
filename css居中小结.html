@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <title> css居中小结 - Claiyre的个人博客 </title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<div id="root">
+    <div class="wrap" data-reactroot="" data-reactid="1" data-react-checksum="-298517382"><header data-reactid="2"><div class="blog-name" data-reactid="3"><a href="/" data-reactid="4">Claiyre&#x27;s Blog</a></div><ul class="nav nav-list" data-reactid="5"><li class="nav-list-item" data-reactid="6"><a class="nav-list-link" href="/posts/1" data-reactid="7">Posts</a></li><li class="nav-list-item" data-reactid="8"><a class="nav-list-link" href="/tags" data-reactid="9">Tags</a></li><li class="nav-list-item" data-reactid="10"><a class="nav-list-link" href="/about" data-reactid="11">About</a></li></ul></header><main data-reactid="12"><div data-reactid="13"><div class="post body-width" data-reactid="14"><article class="post-block" data-reactid="15"><h1 class="title post-title" data-reactid="16">css居中小结</h1><div class="post-info" data-reactid="17"><div class="post-info-item" data-reactid="18"><span class="icon-font" data-reactid="19"></span><!-- react-text: 20 -->css<!-- /react-text --></div><div class="post-info-item" data-reactid="21"><span class="icon-font" data-reactid="22"></span><!-- react-text: 23 -->定位<!-- /react-text --></div><div class="post-info-item" data-reactid="24"><span class="icon-font" data-reactid="25"></span><!-- react-text: 26 -->CSS<!-- /react-text --></div><div class="post-info-item" data-reactid="27"><span class="icon-font" data-reactid="28"></span><time datetime="2016-12-09T22:04:55.000Z" data-reactid="29">2016-12-09</time></div></div></article><div class="post-content" data-reactid="30"><article data-reactid="31"><div class="picidae-toc" data-reactid="32"><!-- react-text: 33 -->
+<!-- /react-text --><ul data-reactid="34"><!-- react-text: 35 -->
+<!-- /react-text --><li data-reactid="36"><!-- react-text: 37 -->
+<!-- /react-text --><a href="#%E6%B0%B4%E5%B9%B3%E5%B1%85%E4%B8%AD" data-reactid="38">水平居中</a><!-- react-text: 39 -->
+<!-- /react-text --><ul data-reactid="40"><!-- react-text: 41 -->
+<!-- /react-text --><li data-reactid="42"><!-- react-text: 43 -->
+<!-- /react-text --><a href="#1-%E8%A1%8C%E5%86%85%E5%85%83%E7%B4%A0%E7%9A%84%E6%B0%B4%E5%B9%B3%E5%B1%85%E4%B8%AD" data-reactid="44">1. 行内元素的水平居中</a><!-- react-text: 45 -->
+<!-- /react-text --></li><!-- react-text: 46 -->
+<!-- /react-text --><li data-reactid="47"><!-- react-text: 48 -->
+<!-- /react-text --><a href="#2-%E5%9D%97%E7%BA%A7%E5%85%83%E7%B4%A0%E7%9A%84%E6%B0%B4%E5%B9%B3%E5%B1%85%E4%B8%AD" data-reactid="49">2. 块级元素的水平居中</a><!-- react-text: 50 -->
+<!-- /react-text --></li><!-- react-text: 51 -->
+<!-- /react-text --></ul><!-- react-text: 52 -->
+<!-- /react-text --></li><!-- react-text: 53 -->
+<!-- /react-text --><li data-reactid="54"><!-- react-text: 55 -->
+<!-- /react-text --><a href="#%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD" data-reactid="56">垂直居中</a><!-- react-text: 57 -->
+<!-- /react-text --><ul data-reactid="58"><!-- react-text: 59 -->
+<!-- /react-text --><li data-reactid="60"><!-- react-text: 61 -->
+<!-- /react-text --><a href="#1-%E8%A1%8C%E5%86%85%E5%85%83%E7%B4%A0%E7%9A%84%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD" data-reactid="62">1. 行内元素的垂直居中</a><!-- react-text: 63 -->
+<!-- /react-text --></li><!-- react-text: 64 -->
+<!-- /react-text --><li data-reactid="65"><!-- react-text: 66 -->
+<!-- /react-text --><a href="#2-%E5%9D%97%E7%BA%A7%E5%85%83%E7%B4%A0%E7%9A%84%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD" data-reactid="67">2. 块级元素的垂直居中</a><!-- react-text: 68 -->
+<!-- /react-text --></li><!-- react-text: 69 -->
+<!-- /react-text --></ul><!-- react-text: 70 -->
+<!-- /react-text --></li><!-- react-text: 71 -->
+<!-- /react-text --></ul><!-- react-text: 72 -->
+<!-- /react-text --></div><!-- react-text: 73 -->
+<!-- /react-text --><blockquote data-reactid="74"><!-- react-text: 75 -->
+<!-- /react-text --><p data-reactid="76"><!-- react-text: 77 -->博客原文地址：<!-- /react-text --><a href="https://claiyre.github.io/" data-reactid="78">Claiyre的个人博客 https://claiyre.github.io/</a><!-- react-text: 79 -->
+如需转载，请在文章开头注明原文地址
+不为繁华易匠心<!-- /react-text --></p><!-- react-text: 80 -->
+<!-- /react-text --></blockquote><!-- react-text: 81 -->
+<!-- /react-text --><p data-reactid="82"><!-- react-text: 83 -->从css入门就开始接触，无所不在的，一直备受争议的居中问题。
+css居中分为水平居中和垂直居中，水平居中方式也较为常见和统一，垂直居中的方法就千奇百怪了。本文是我积累的若干css居中的方法，先后讨论了块级元素的和行内元素的垂直居中和水平居中，特此记录下来与大家分享。如有叙述不当的地方，还望指出。o(<!-- /react-text --><em data-reactid="84">￣▽￣</em><!-- react-text: 85 -->)ブ<!-- /react-text --></p><!-- react-text: 86 -->
+<!-- /react-text --><!-- react-text: 87 -->
+<!-- /react-text --><hr data-reactid="88"/><!-- react-text: 89 -->
+<!-- /react-text --><p data-reactid="90"><strong data-reactid="91">本文以下代码中 .outer是父元素的类名，.inner块级代表子元素,span代表行内子元素。</strong></p><!-- react-text: 92 -->
+<!-- /react-text --><h2 id="水平居中" data-reactid="93"><a href="#%E6%B0%B4%E5%B9%B3%E5%B1%85%E4%B8%AD" aria-hidden="true" data-reactid="94"><span class="icon icon-link" data-reactid="95"></span></a><!-- react-text: 96 -->水平居中<!-- /react-text --></h2><!-- react-text: 97 -->
+<!-- /react-text --><h3 id="1-行内元素的水平居中" data-reactid="98"><a href="#1-%E8%A1%8C%E5%86%85%E5%85%83%E7%B4%A0%E7%9A%84%E6%B0%B4%E5%B9%B3%E5%B1%85%E4%B8%AD" aria-hidden="true" data-reactid="99"><span class="icon icon-link" data-reactid="100"></span></a><!-- react-text: 101 -->1. 行内元素的水平居中<!-- /react-text --></h3><!-- react-text: 102 -->
+<!-- /react-text --><p data-reactid="103">直接设置其父元素</p><!-- react-text: 104 -->
+<!-- /react-text --><pre data-reactid="105"><code data-query="{}" data-lang="data-lang" data-reactid="106">.ourter{
+text-align: center;
+}
+</code></pre><!-- react-text: 107 -->
+<!-- /react-text --><p data-reactid="108"><img src="http://p1.bpimg.com/567571/6d8f89e5e10fe43f.png" data-reactid="109"/><!-- react-text: 110 -->
+不管有几个行内元素，一行代码即可搞定，so easy~<!-- /react-text --></p><!-- react-text: 111 -->
+<!-- /react-text --><h3 id="2-块级元素的水平居中" data-reactid="112"><a href="#2-%E5%9D%97%E7%BA%A7%E5%85%83%E7%B4%A0%E7%9A%84%E6%B0%B4%E5%B9%B3%E5%B1%85%E4%B8%AD" aria-hidden="true" data-reactid="113"><span class="icon icon-link" data-reactid="114"></span></a><!-- react-text: 115 -->2. 块级元素的水平居中<!-- /react-text --></h3><!-- react-text: 116 -->
+<!-- /react-text --><p data-reactid="117">也非常简单呐
+设置该块级元素</p><!-- react-text: 118 -->
+<!-- /react-text --><pre data-reactid="119"><code data-query="{}" data-lang="data-lang" data-reactid="120">div{
+margin: 0 auto;                                                  
+}
+</code></pre><!-- react-text: 121 -->
+<!-- /react-text --><p data-reactid="122"><img src="http://p1.bpimg.com/567571/11942f248ca97113.png" data-reactid="123"/></p><!-- react-text: 124 -->
+<!-- /react-text --><p data-reactid="125"><strong data-reactid="126">但是！但是！如果该元素的position为absolute的话，该方法会失效。</strong><!-- react-text: 127 -->
+我是这样理解的：margin为auto即相当于外边距的值是自动的，相对的，所以在绝对定位下将失效。不过还是可以将其margin设为具体数值滴。<!-- /react-text --></p><!-- react-text: 128 -->
+<!-- /react-text --><h2 id="垂直居中" data-reactid="129"><a href="#%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD" aria-hidden="true" data-reactid="130"><span class="icon icon-link" data-reactid="131"></span></a><!-- react-text: 132 -->垂直居中<!-- /react-text --></h2><!-- react-text: 133 -->
+<!-- /react-text --><p data-reactid="134">有很多关于垂直居中tricks,博主在这里只介绍一些比较简单常用的
+如果对高度没有要求的哈</p><!-- react-text: 135 -->
+<!-- /react-text --><h3 id="1-行内元素的垂直居中" data-reactid="136"><a href="#1-%E8%A1%8C%E5%86%85%E5%85%83%E7%B4%A0%E7%9A%84%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD" aria-hidden="true" data-reactid="137"><span class="icon icon-link" data-reactid="138"></span></a><!-- react-text: 139 -->1. 行内元素的垂直居中<!-- /react-text --></h3><!-- react-text: 140 -->
+<!-- /react-text --><p data-reactid="141">1）如果对父元素的高度没有具体的要求的话，将父元素的padding-top padding-bottom设置为相同的值即可。</p><!-- react-text: 142 -->
+<!-- /react-text --><pre data-reactid="143"><code data-query="{}" data-lang="data-lang" data-reactid="144">.outer{
+padding-top: 60px;
+padidng-bottom: 60px;                                                       
+width：300px;
+height: auto; /*注意：此时父元素的height不能是具体数值*/
+}
+</code></pre><!-- react-text: 145 -->
+<!-- /react-text --><p data-reactid="146"> 2）如果要求父元素的高度为具体数值时，且确保行内元素不会换行时，可以设置line-height等于父元素的高度</p><!-- react-text: 147 -->
+<!-- /react-text --><pre data-reactid="148"><code data-query="{}" data-lang="data-lang" data-reactid="149">.outer{
+width: 300px;
+height: 200px;
+line-height: 200px;                                                  
+/*text-align: center; */                                    
+}
+</code></pre><!-- react-text: 150 -->
+<!-- /react-text --><p data-reactid="151"><!-- react-text: 152 -->此时，即可实现行内元素的垂直居中。若把最后一行加上，即可同时实现水平和垂直居中。
+<!-- /react-text --><strong data-reactid="153">但是！！！一定要确保不会换行，也就是只有一行。</strong><!-- react-text: 154 -->
+3）在保持父元素具体数值宽度不变且有不止一行时，可以使用一点小tricks,比如<!-- /react-text --></p><!-- react-text: 155 -->
+<!-- /react-text --><pre data-reactid="156"><code data-query="{}" data-lang="data-lang" data-reactid="157">.outer{
+text-align: center;                                                              
+height: 200px;
+width: 300px;
+}
+.outer::before{
+content: &quot; &quot;;
+height: 100%;
+width: 1%;
+display: inline-block;
+vertical-align: middle;
+}
+/*html代码如下*/
+&lt;div id=&quot;outer&quot;&gt;
+    &lt;span&gt;span1&lt;/span&gt;
+    &lt;span&gt;span2&lt;/span&gt;                                                
+&lt;/div&gt;
+</code></pre><!-- react-text: 158 -->
+<!-- /react-text --><p data-reactid="159"><!-- react-text: 160 -->但是，注意：因为vertical-align是指<!-- /react-text --><strong data-reactid="161">行内元素的基线相对于该元素所在行的基线的垂直对齐方式</strong><!-- react-text: 162 -->，所以该方法只对行内元素有效
+效果：
+<!-- /react-text --><img src="http://i1.piimg.com/567571/fc2b131eeefad29a.png" data-reactid="163"/></p><!-- react-text: 164 -->
+<!-- /react-text --><h3 id="2-块级元素的垂直居中" data-reactid="165"><a href="#2-%E5%9D%97%E7%BA%A7%E5%85%83%E7%B4%A0%E7%9A%84%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD" aria-hidden="true" data-reactid="166"><span class="icon icon-link" data-reactid="167"></span></a><!-- react-text: 168 -->2. 块级元素的垂直居中<!-- /react-text --></h3><!-- react-text: 169 -->
+<!-- /react-text --><p data-reactid="170">1）如果已知子元素的高度，可以这样</p><!-- react-text: 171 -->
+<!-- /react-text --><pre data-reactid="172"><code data-query="{}" data-lang="data-lang" data-reactid="173">.outer{
+position: relative;                                                       
+}
+.inner{
+height：50px;
+width:50px;
+position: absolute;
+top: 50%;
+margin-top: -25px;  /*该元素高度的一半*/                                  
+}
+</code></pre><!-- react-text: 174 -->
+<!-- /react-text --><p data-reactid="175"><strong data-reactid="176">注意子元素和父元素的position，切记父元素的position是relative</strong></p><!-- react-text: 177 -->
+<!-- /react-text --><p data-reactid="178"><img src="http://p1.bpimg.com/567571/6d32f20decdd1d04.png" data-reactid="179"/><!-- react-text: 180 -->
+2）如果不知道子元素的高度，可以利用css的transform属性，对1）进行小改动，如下：<!-- /react-text --></p><!-- react-text: 181 -->
+<!-- /react-text --><pre data-reactid="182"><code data-query="{}" data-lang="data-lang" data-reactid="183">.outer{
+position: relative;                                                         
+}
+.inner{
+width:50px;
+position: absolute;
+top: 50%;
+transform: translateY(-50%);                                                    
+}
+</code></pre><!-- react-text: 184 -->
+<!-- /react-text --><p data-reactid="185"><!-- react-text: 186 -->3）但以上两种方式对于有多个块级子元素的情况就不适用了，比如，这样的情况
+<!-- /react-text --><img src="http://i1.piimg.com/567571/1495e37bb76013be.png" data-reactid="187"/><!-- react-text: 188 -->
+这时我们可以用一个div把所有子元素包裹起来，变成一个子元素，然后就可以继续使用上面的方法了。<!-- /react-text --></p><!-- react-text: 189 -->
+<!-- /react-text --><p data-reactid="190"><strong data-reactid="191">最最后！上面的所有方法都是在不使用flex的前提下的才使用的！解决居中问题最爽的当然是flex布局啦，O(∩_∩)O~~ </strong><!-- react-text: 192 -->
+什么？！还不会使用flex布局？赶紧点下面~<!-- /react-text --></p><!-- react-text: 193 -->
+<!-- /react-text --><p data-reactid="194"><a href="https://claiyre.github.io/2016/11/26/fle%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/" data-reactid="195">flex布局学习总结</a><!-- react-text: 196 -->
+使用flex，管它是行内元素还是块级元素，管它有几个元素，统统搞定！
+举个栗子！
+实现多个块级元素的垂直加水平居中<!-- /react-text --></p><!-- react-text: 197 -->
+<!-- /react-text --><pre data-reactid="198"><code data-query="{}" data-lang="data-lang" data-reactid="199">.outer{
+display: flex;
+justify-content: center;                                                              
+align-items: center;
+flex: 0 0 auto;
+/* flex-direction: column;  */
+}
+</code></pre><!-- react-text: 200 -->
+<!-- /react-text --><p data-reactid="201"><!-- react-text: 202 -->效果图如下:
+<!-- /react-text --><img src="http://p1.bqimg.com/567571/e6bb0c95009a9515.png" data-reactid="203"/></p><!-- react-text: 204 -->
+<!-- /react-text --><p data-reactid="205">如果加上最后一行，则竖直排列子元素，即：</p><!-- react-text: 206 -->
+<!-- /react-text --><p data-reactid="207"><img src="http://p1.bqimg.com/567571/612652c9872724c0.png" data-reactid="208"/></p><!-- react-text: 209 -->
+<!-- /react-text --><p data-reactid="210">是不是很简便腻~O(∩_∩)O哈！</p><!-- react-text: 211 -->
+<!-- /react-text --></article></div><div class="gitment-container" data-reactid="212"></div></div><div class="paginator body-width" data-reactid="213"><a title="上一篇" class="prev light-tip" href="/三栏布局那些事儿-1" data-reactid="214"><span class="icon-font" data-reactid="215"></span><!-- react-text: 216 --> <!-- /react-text --><!-- react-text: 217 -->上一篇<!-- /react-text --></a><a title="下一篇" class="next light-tip" href="/JavaScript函数学习总结-一-函数定义" data-reactid="218"><!-- react-text: 219 -->下一篇<!-- /react-text --><!-- react-text: 220 --> <!-- /react-text --><span class="icon-font" data-reactid="221"></span></a></div></div></main><footer data-reactid="222"><div class="footer-avatar" data-reactid="223"><img src="/avatar.png" alt="avatar" data-reactid="224"/></div><div class="copyright" data-reactid="225"><!-- react-text: 226 -->© <!-- /react-text --><time data-reactid="227">2018</time><!-- react-text: 228 -->. Powered By <!-- /react-text --><a href="https://github.com/picidaejs/picidae" data-reactid="229"> Picidae </a><!-- react-text: 230 -->  |  <!-- /react-text --><a href="https://github.com/picidaejs/picidae-theme-crystal" data-reactid="231"> theme-crystal</a></div><div id="busuanzi-count" data-reactid="232"><span id="busuanzi_container_site_uv" data-reactid="233"><span class="icon-font" data-reactid="234"></span><span id="busuanzi_value_site_uv" data-reactid="235"></span></span><!-- react-text: 236 -->  |  <!-- /react-text --><span id="busuanzi_container_site_pv" data-reactid="237"><span class="icon-font" data-reactid="238"></span><!-- react-text: 239 --> <!-- /react-text --><span id="busuanzi_value_site_pv" data-reactid="240"></span></span></div></footer></div>
+</div>
+<script src="/PICIDAE_COMMON.js"></script>
+<script src="/PICIDAE_ENTRY.js"></script>
+</body>
+</html>

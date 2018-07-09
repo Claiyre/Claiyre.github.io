@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <title> 聊聊点击穿透 - Claiyre的个人博客 </title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<div id="root">
+    <div class="wrap" data-reactroot="" data-reactid="1" data-react-checksum="133835920"><header data-reactid="2"><div class="blog-name" data-reactid="3"><a href="/" data-reactid="4">Claiyre&#x27;s Blog</a></div><ul class="nav nav-list" data-reactid="5"><li class="nav-list-item" data-reactid="6"><a class="nav-list-link" href="/posts/1" data-reactid="7">Posts</a></li><li class="nav-list-item" data-reactid="8"><a class="nav-list-link" href="/tags" data-reactid="9">Tags</a></li><li class="nav-list-item" data-reactid="10"><a class="nav-list-link" href="/about" data-reactid="11">About</a></li></ul></header><main data-reactid="12"><div data-reactid="13"><div class="post body-width" data-reactid="14"><article class="post-block" data-reactid="15"><h1 class="title post-title" data-reactid="16">聊聊点击穿透</h1><div class="post-info" data-reactid="17"><div class="post-info-item" data-reactid="18"><span class="icon-font" data-reactid="19"></span><!-- react-text: 20 -->移动端<!-- /react-text --></div><div class="post-info-item" data-reactid="21"><span class="icon-font" data-reactid="22"></span><time datetime="2017-09-16T19:00:45.000Z" data-reactid="23">2017-09-16</time></div></div></article><div class="post-content" data-reactid="24"><article data-reactid="25"><div class="picidae-toc" data-reactid="26"><!-- react-text: 27 -->
+<!-- /react-text --><ul data-reactid="28"><!-- react-text: 29 -->
+<!-- /react-text --><li data-reactid="30"><!-- react-text: 31 -->
+<!-- /react-text --><a href="#%E7%A7%BB%E5%8A%A8%E7%AB%AFclick%E4%BA%8B%E4%BB%B6%E8%A2%AB%E5%BB%B6%E8%BF%9F" data-reactid="32">移动端click事件被延迟</a><!-- react-text: 33 -->
+<!-- /react-text --></li><!-- react-text: 34 -->
+<!-- /react-text --><li data-reactid="35"><!-- react-text: 36 -->
+<!-- /react-text --><a href="#tap%E4%BA%8B%E4%BB%B6" data-reactid="37">tap事件</a><!-- react-text: 38 -->
+<!-- /react-text --></li><!-- react-text: 39 -->
+<!-- /react-text --><li data-reactid="40"><!-- react-text: 41 -->
+<!-- /react-text --><a href="#%E7%82%B9%E5%87%BB%E7%A9%BF%E9%80%8F" data-reactid="42">点击穿透</a><!-- react-text: 43 -->
+<!-- /react-text --></li><!-- react-text: 44 -->
+<!-- /react-text --><li data-reactid="45"><!-- react-text: 46 -->
+<!-- /react-text --><a href="#%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3%E7%82%B9%E5%87%BB%E7%A9%BF%E9%80%8F" data-reactid="47">如何解决点击穿透</a><!-- react-text: 48 -->
+<!-- /react-text --></li><!-- react-text: 49 -->
+<!-- /react-text --><li data-reactid="50"><!-- react-text: 51 -->
+<!-- /react-text --><a href="#%E5%8F%82%E8%80%83%E6%96%87%E7%AB%A0%EF%BC%9A" data-reactid="52">参考文章：</a><!-- react-text: 53 -->
+<!-- /react-text --></li><!-- react-text: 54 -->
+<!-- /react-text --></ul><!-- react-text: 55 -->
+<!-- /react-text --></div><!-- react-text: 56 -->
+<!-- /react-text --><h3 id="移动端click事件被延迟" data-reactid="57"><a href="#%E7%A7%BB%E5%8A%A8%E7%AB%AFclick%E4%BA%8B%E4%BB%B6%E8%A2%AB%E5%BB%B6%E8%BF%9F" aria-hidden="true" data-reactid="58"><span class="icon icon-link" data-reactid="59"></span></a><!-- react-text: 60 -->移动端click事件被延迟<!-- /react-text --></h3><!-- react-text: 61 -->
+<!-- /react-text --><p data-reactid="62">移动端的开发经常需要监听用户的双击行为，所以在touchend事件之后会有300ms左右的延迟，用来判断是否有双击事件。</p><!-- react-text: 63 -->
+<!-- /react-text --><p data-reactid="64">因为这种延迟，所以我们在移动端通常不监听click事件。</p><!-- react-text: 65 -->
+<!-- /react-text --><!-- react-text: 66 -->
+<!-- /react-text --><p data-reactid="67">移动端的事件的发生顺序是这样的：touchstart---touchmove---touchend,然后大约过300ms触发click事件</p><!-- react-text: 68 -->
+<!-- /react-text --><h3 id="tap事件" data-reactid="69"><a href="#tap%E4%BA%8B%E4%BB%B6" aria-hidden="true" data-reactid="70"><span class="icon icon-link" data-reactid="71"></span></a><!-- react-text: 72 -->tap事件<!-- /react-text --></h3><!-- react-text: 73 -->
+<!-- /react-text --><p data-reactid="74">zepto这个库解决click延迟的思路是：自定义tap事件，当用户点击元素时，touchend事件会先于click发生，当touchend冒泡到document时触发目标元素的tap事件
+所以我们可以通过监听tap事件代替监听click事件。
+但需要注意的是，tap事件并不是</p><!-- react-text: 75 -->
+<!-- /react-text --><h3 id="点击穿透" data-reactid="76"><a href="#%E7%82%B9%E5%87%BB%E7%A9%BF%E9%80%8F" aria-hidden="true" data-reactid="77"><span class="icon icon-link" data-reactid="78"></span></a><!-- react-text: 79 -->点击穿透<!-- /react-text --></h3><!-- react-text: 80 -->
+<!-- /react-text --><p data-reactid="81">在我们常见的弹出层这种情况下，点击关闭弹出层时可能会发生穿透现象。
+那为什么会出现点击穿透这种现象呢</p><!-- react-text: 82 -->
+<!-- /react-text --><p data-reactid="83">因为当tap事件发生时，上层遮罩层关闭，此时事件只进行到了touchend,而click大约在300ms后才触发，当click触发时，上面的遮罩层已经消失，这就相当于点击了到了下层的元素</p><!-- react-text: 84 -->
+<!-- /react-text --><p data-reactid="85">如果这个元素绑定了click事件，或者有默认的点击行为，比如a标签和input等等，那么就会触发他们的click行为。
+这就是点击穿透事件。</p><!-- react-text: 86 -->
+<!-- /react-text --><h3 id="如何解决点击穿透" data-reactid="87"><a href="#%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3%E7%82%B9%E5%87%BB%E7%A9%BF%E9%80%8F" aria-hidden="true" data-reactid="88"><span class="icon icon-link" data-reactid="89"></span></a><!-- react-text: 90 -->如何解决点击穿透<!-- /react-text --></h3><!-- react-text: 91 -->
+<!-- /react-text --><p data-reactid="92">1.直接将上层的tap事件换成click
+代价就是有300ms的延迟，但毕竟这个按钮用户也就关闭时点一下，所以影响不大</p><!-- react-text: 93 -->
+<!-- /react-text --><p data-reactid="94">2.在click事件发生前阻止它
+具体做法是在touchend的事件处理函数中使用e.preventDefault()来阻止后续的click事件。</p><!-- react-text: 95 -->
+<!-- /react-text --><p data-reactid="96">3.使用css3的一个新特性：pointer-events
+pointer-events:none 可以彻底屏蔽鼠标事件，所以可以给点击按钮这个属性，然后就可以放心大胆地使用tap事件或者touchend啦</p><!-- react-text: 97 -->
+<!-- /react-text --><h3 id="参考文章：" data-reactid="98"><a href="#%E5%8F%82%E8%80%83%E6%96%87%E7%AB%A0%EF%BC%9A" aria-hidden="true" data-reactid="99"><span class="icon icon-link" data-reactid="100"></span></a><!-- react-text: 101 -->参考文章：<!-- /react-text --></h3><!-- react-text: 102 -->
+<!-- /react-text --><ol data-reactid="103"><!-- react-text: 104 -->
+<!-- /react-text --><li data-reactid="105"><!-- react-text: 106 -->
+<!-- /react-text --><p data-reactid="107"><a href="http://www.zhangxinxu.com/wordpress/2011/12/css3-pointer-events-none-javascript/" data-reactid="108">http://www.zhangxinxu.com/wordpress/2011/12/css3-pointer-events-none-javascript/</a></p><!-- react-text: 109 -->
+<!-- /react-text --></li><!-- react-text: 110 -->
+<!-- /react-text --><li data-reactid="111"><!-- react-text: 112 -->
+<!-- /react-text --><p data-reactid="113"><a href="https://segmentfault.com/a/1190000003848737" data-reactid="114">https://segmentfault.com/a/1190000003848737</a></p><!-- react-text: 115 -->
+<!-- /react-text --></li><!-- react-text: 116 -->
+<!-- /react-text --><li data-reactid="117"><!-- react-text: 118 -->
+<!-- /react-text --><p data-reactid="119"><a href="https://github.com/mattt/MsgPackSerialization/wiki/%E7%A7%BB%E5%8A%A8%E7%AB%AFclick%E5%BB%B6%E8%BF%9F%E5%8F%8Azepto%E7%9A%84%E7%A9%BF%E9%80%8F%E7%8E%B0%E8%B1%A1" data-reactid="120">https://github.com/mattt/MsgPackSerialization/wiki/%E7%A7%BB%E5%8A%A8%E7%AB%AFclick%E5%BB%B6%E8%BF%9F%E5%8F%8Azepto%E7%9A%84%E7%A9%BF%E9%80%8F%E7%8E%B0%E8%B1%A1</a></p><!-- react-text: 121 -->
+<!-- /react-text --></li><!-- react-text: 122 -->
+<!-- /react-text --></ol><!-- react-text: 123 -->
+<!-- /react-text --></article></div><div class="gitment-container" data-reactid="124"></div></div><div class="paginator body-width" data-reactid="125"><a title="上一篇" class="prev light-tip" href="/致2017" data-reactid="126"><span class="icon-font" data-reactid="127"></span><!-- react-text: 128 --> <!-- /react-text --><!-- react-text: 129 -->上一篇<!-- /react-text --></a><a title="下一篇" class="next light-tip" href="/picidae" data-reactid="130"><!-- react-text: 131 -->下一篇<!-- /react-text --><!-- react-text: 132 --> <!-- /react-text --><span class="icon-font" data-reactid="133"></span></a></div></div></main><footer data-reactid="134"><div class="footer-avatar" data-reactid="135"><img src="/avatar.png" alt="avatar" data-reactid="136"/></div><div class="copyright" data-reactid="137"><!-- react-text: 138 -->© <!-- /react-text --><time data-reactid="139">2018</time><!-- react-text: 140 -->. Powered By <!-- /react-text --><a href="https://github.com/picidaejs/picidae" data-reactid="141"> Picidae </a><!-- react-text: 142 -->  |  <!-- /react-text --><a href="https://github.com/picidaejs/picidae-theme-crystal" data-reactid="143"> theme-crystal</a></div><div id="busuanzi-count" data-reactid="144"><span id="busuanzi_container_site_uv" data-reactid="145"><span class="icon-font" data-reactid="146"></span><span id="busuanzi_value_site_uv" data-reactid="147"></span></span><!-- react-text: 148 -->  |  <!-- /react-text --><span id="busuanzi_container_site_pv" data-reactid="149"><span class="icon-font" data-reactid="150"></span><!-- react-text: 151 --> <!-- /react-text --><span id="busuanzi_value_site_pv" data-reactid="152"></span></span></div></footer></div>
+</div>
+<script src="/PICIDAE_COMMON.js"></script>
+<script src="/PICIDAE_ENTRY.js"></script>
+</body>
+</html>
